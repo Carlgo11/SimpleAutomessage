@@ -1,0 +1,8 @@
+name: Automessage
+main: com.carlgo11.automessage.main.Main
+version: 0.2
+description: Sends a msg
+commands:
+   reloadmsg:
+     aliases: [msgreload,automessagereload]
+     description: Reload the Config.
