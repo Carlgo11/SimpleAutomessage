@@ -9,9 +9,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
-
 	public class Main extends JavaPlugin{
-		
+		static int random = 0;
 	public int tick = 1;
 	     String color = null;
 		 ChatColor realcolor = null;
@@ -46,11 +45,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 		public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 			String prefix = getConfig().getString("Prefix");
 			if(cmd.getName().equalsIgnoreCase("reloadmsg")){
+				if(sender.hasPermission("AutoMsg.cmd.reloadmsg")){
 				this.reloadConfig();
 				Prefixcolors();
 				colors();
 				Time();
+				limit = getConfig().getInt("limit");
 				sender.sendMessage(prefixcolor + "[" + prefix + "]  " + ChatColor.GREEN + "Automessage reloaded!");
+				} else {
+					sender.sendMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RED + "Error: You don't have permission.");
+				}
 			}
 				return true;
 		}
@@ -321,18 +325,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 		}
 		
 		
-		// Will fix this in the next version!
-		
-		//@EventHandler
-		//public void Command(PlayerCommandPreprocessEvent event ){  
-			//if(event.getMessage().startsWith("MsgReload") || event.getMessage().startsWith("ReloadMsg")){
-				//event.setCancelled(true);
-				//Main.logger.info("Reloaded " + getDescription().getName());
-				//this.saveConfig();
-				//this.reloadConfig();
-			//}
-			
-			//}
+	
 		
 		
 		public void onError(){
