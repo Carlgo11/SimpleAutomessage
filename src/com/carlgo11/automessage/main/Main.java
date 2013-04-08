@@ -62,6 +62,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 		@EventHandler
 		public void Time(){
 			intime = getConfig().getInt("time");
+			time = 1;
+			ltime = 1;
 			time *= intime;
 			ltime=time;
 			System.out.println("intime: " + intime);
