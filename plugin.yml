@@ -1,8 +1,9 @@
-name: Automessage
+name: SimpleAutomessage
 main: com.carlgo11.automessage.main.Main
-version: 0.2.2
-description: Sends a msg
+version: 1.0.0
+description: Broadcasts a message to all players
+author: Carlgo11
 commands:
-   reloadmsg:
-     aliases: [msgreload,automessagereload]
-     description: Reload the Config.
+   simpleautomessage:
+     aliases: [AutoMessage, Simplemsg]
+     description: Main command of SimpleAutoMessage.

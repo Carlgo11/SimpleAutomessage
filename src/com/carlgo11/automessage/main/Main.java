@@ -20,7 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 		 int z = 1;
 		 int n = 1;
 		 int intime = 1;
-		 int time = 20;
+		 int time = 0;
 		 long ltime = 0;
 		 long testtime = 40;
 		public final static Logger  logger = Logger.getLogger("Minercraft");
@@ -33,7 +33,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 			getLogger().info(getDescription().getName() + getDescription().getVersion() + " Is Enabled!");
 	    Prefixcolors();
 		colors();
-		Main2();
+		Broadcast();
 		Time();
 		
 		}
@@ -43,33 +43,53 @@ import org.bukkit.plugin.java.JavaPlugin;
 		}
 		
 		public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-			String prefix = getConfig().getString("Prefix");
-			if(cmd.getName().equalsIgnoreCase("reloadmsg")){
-				if(sender.hasPermission("AutoMsg.cmd.reloadmsg")){
+			String prefix = prefixcolor + "[" + getConfig().getString("Prefix") + "]  ";
+			String badperm = prefix + ChatColor.RED + "Error: You don't have permission to use that command!";
+			if(cmd.getName().equalsIgnoreCase("simpleautomessage")){
+				
+					
+				if(args.length == 0){
+					if(sender.hasPermission("SimpleAutoMessage.cmd.main") || sender.hasPermission("SimpleAutoMessage.cmd.*")){	
+					sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + getConfig().getString("Prefix") + ChatColor.GREEN + " ======== ");
+					sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + " Shows the commands");
+					sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + " Reloads the config.yml");
+					} else {
+						sender.sendMessage(badperm);
+					}
+				} else 
+				if(args.length == 1){
+				if(args[0].equalsIgnoreCase("reload")){	
+				if(sender.hasPermission("SimpleAutoMessage.cmd.reload")){
 				this.reloadConfig();
 				Prefixcolors();
 				colors();
+				saveConfig();
 				Time();
-				limit = getConfig().getInt("limit");
-				sender.sendMessage(prefixcolor + "[" + prefix + "]  " + ChatColor.GREEN + "Automessage reloaded!");
+				Broadcast();
+				
+				sender.sendMessage(prefix + ChatColor.GREEN + "Automessage reloaded!");
 				} else {
-					sender.sendMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RED + "Error: You don't have permission.");
+					sender.sendMessage(badperm);
+					}
+				} else {
+					sender.sendMessage(prefix + ChatColor.RED + "Error: Unknown command!");
 				}
+				} else 
+					if(args.length > 1){
+						sender.sendMessage(prefix + ChatColor.RED + "Error: Unknown command!");
+					}
+				
 			}
 				return true;
 		}
 		
 		@EventHandler
 		public void Time(){
-			intime = getConfig().getInt("time");
-			time = 1;
-			ltime = 1;
-			time *= intime;
-			ltime=time;
-			System.out.println("intime: " + intime);
-			System.out.println("time: " + time);
-			ltime=time;
-			System.out.println("Ltime: " + ltime);
+			time = getConfig().getInt("time");
+			//add X 20 feature
+			if(getConfig().getString("debug").equalsIgnoreCase("true")){
+				System.out.println("time: " + time);
+			}
 		}
 		
 		@EventHandler
@@ -78,69 +98,99 @@ import org.bukkit.plugin.java.JavaPlugin;
 			color = getConfig().getString("Prefix-Color");
 			if(color.equalsIgnoreCase("0") || color.equalsIgnoreCase("black")){
 				prefixcolor = ChatColor.BLACK;
+				if(getConfig().getString("debug").equalsIgnoreCase("true")){
 				Main.logger.info("converted color > prefixcolor");
-			
+				}
 			} 
 				if(color.equalsIgnoreCase("1") || color.equalsIgnoreCase("blue")){
 					prefixcolor = ChatColor.DARK_BLUE;
+					if(getConfig().getString("debug").equalsIgnoreCase("true")){
 					Main.logger.info("converted color > prefixcolor");
-				
+					}
 				}
 					if(color.equalsIgnoreCase("2") || color.equalsIgnoreCase("green")){
 						prefixcolor = ChatColor.DARK_GREEN;
+						if(getConfig().getString("debug").equalsIgnoreCase("true")){
 						Main.logger.info("converted color > prefixcolor");
+						}
 					}
 						if(color.equalsIgnoreCase("3") || color.equalsIgnoreCase("Cyan")){
 							prefixcolor = ChatColor.DARK_AQUA;
+							if(getConfig().getString("debug").equalsIgnoreCase("true")){
 							Main.logger.info("converted color > prefixcolor");
+						}
 						} 
 			if(color.equalsIgnoreCase("4") || color.equalsIgnoreCase("Red")){
 				prefixcolor = ChatColor.DARK_RED;
+				if(getConfig().getString("debug").equalsIgnoreCase("true")){
 				Main.logger.info("converted color > prefixcolor");
 			} 
+			}
 				if(color.equalsIgnoreCase("5") || color.equalsIgnoreCase("Purple")){
 					prefixcolor = ChatColor.DARK_PURPLE;
+					if(getConfig().getString("debug").equalsIgnoreCase("true")){
 					Main.logger.info("converted color > prefixcolor");
-				} 
+				}
+				}
 					if(color.equalsIgnoreCase("6") || color.equalsIgnoreCase("Yellow")){
 						prefixcolor = ChatColor.YELLOW;
+						if(getConfig().getString("debug").equalsIgnoreCase("true")){
 						Main.logger.info("converted color > prefixcolor");
+						}
 					} 
 						if(color.equalsIgnoreCase("7") || color.equalsIgnoreCase("Gray")){
 							prefixcolor = ChatColor.DARK_GRAY;
+							if(getConfig().getString("debug").equalsIgnoreCase("true")){
 							Main.logger.info("converted color > prefixcolor");
+							}
 						} 
 							if(color.equalsIgnoreCase("8") || color.equalsIgnoreCase("Light_Gray")){
 								prefixcolor = ChatColor.GRAY;
+								if(getConfig().getString("debug").equalsIgnoreCase("true")){
 								Main.logger.info("converted color > prefixcolor");
+								}
 							} 
 								if(color.equalsIgnoreCase("9") || color.equalsIgnoreCase("Light_Blue")){
 									prefixcolor = ChatColor.BLUE;
+									if(getConfig().getString("debug").equalsIgnoreCase("true")){
 									Main.logger.info("converted color > prefixcolor");
+									}
 								} 
 									if(color.equalsIgnoreCase("A") || color.equalsIgnoreCase("Light_GREEN")){
 										prefixcolor = ChatColor.GREEN;
+										if(getConfig().getString("debug").equalsIgnoreCase("true")){
 										Main.logger.info("converted color > prefixcolor");
+										}
 									}
 										if(color.equalsIgnoreCase("B") || color.equalsIgnoreCase("Light_Cyan")){
 											prefixcolor = ChatColor.AQUA;
+											if(getConfig().getString("debug").equalsIgnoreCase("true")){
 											Main.logger.info("converted color > prefixcolor");
+											}
 										} 
 											if(color.equalsIgnoreCase("c") || color.equalsIgnoreCase("Light_Red")){
 												prefixcolor = ChatColor.RED;
+												if(getConfig().getString("debug").equalsIgnoreCase("true")){
 												Main.logger.info("converted color > prefixcolor");
+												}
 											} 
 												if(color.equalsIgnoreCase("d") || color.equalsIgnoreCase("Light_Purple")){
 													prefixcolor = ChatColor.LIGHT_PURPLE;
+													if(getConfig().getString("debug").equalsIgnoreCase("true")){
 													Main.logger.info("converted color > prefixcolor");
+													}
 												} 
 													if(color.equalsIgnoreCase("e") || color.equalsIgnoreCase("Light_Yellow")){
 														prefixcolor = ChatColor.GOLD;
+														if(getConfig().getString("debug").equalsIgnoreCase("true")){
 														Main.logger.info("converted color > prefixcolor");
+														}
 													}
 													if(color.equalsIgnoreCase("f") || color.equalsIgnoreCase("White")){
 														prefixcolor = ChatColor.WHITE;
+														if(getConfig().getString("debug").equalsIgnoreCase("true")){
 														Main.logger.info("converted color > prefixcolor");
+														}
 													}
 		}
 		@EventHandler
@@ -148,75 +198,104 @@ import org.bukkit.plugin.java.JavaPlugin;
 			color = getConfig().getString("Color");
 			if(color.equalsIgnoreCase("0") || color.equalsIgnoreCase("black")){
 				realcolor = ChatColor.BLACK;
+				if(getConfig().getString("debug").equalsIgnoreCase("true")){
 				Main.logger.info("converted color > realcolor");
-			
+				}
 			} 
 				if(color.equalsIgnoreCase("1") || color.equalsIgnoreCase("blue")){
 					realcolor = ChatColor.DARK_BLUE;
+					if(getConfig().getString("debug").equalsIgnoreCase("true")){
 					Main.logger.info("converted color > realcolor");
-				
+					}
 				}
 					if(color.equalsIgnoreCase("2") || color.equalsIgnoreCase("green")){
 						realcolor = ChatColor.DARK_GREEN;
+						if(getConfig().getString("debug").equalsIgnoreCase("true")){
 						Main.logger.info("converted color > realcolor");
+					}
 					}
 						if(color.equalsIgnoreCase("3") || color.equalsIgnoreCase("Cyan")){
 							realcolor = ChatColor.DARK_AQUA;
+							if(getConfig().getString("debug").equalsIgnoreCase("true")){
 							Main.logger.info("converted color > realcolor");
 						} 
+						}
 			if(color.equalsIgnoreCase("4") || color.equalsIgnoreCase("Red")){
 				realcolor = ChatColor.DARK_RED;
+				if(getConfig().getString("debug").equalsIgnoreCase("true")){
 				Main.logger.info("converted color > realcolor");
 			} 
+			}
 				if(color.equalsIgnoreCase("5") || color.equalsIgnoreCase("Purple")){
 					realcolor = ChatColor.DARK_PURPLE;
+					if(getConfig().getString("debug").equalsIgnoreCase("true")){
 					Main.logger.info("converted color > realcolor");
 				} 
+				}
 					if(color.equalsIgnoreCase("6") || color.equalsIgnoreCase("Yellow")){
 						realcolor = ChatColor.YELLOW;
+						if(getConfig().getString("debug").equalsIgnoreCase("true")){
 						Main.logger.info("converted color > realcolor");
 					} 
+					}
 						if(color.equalsIgnoreCase("7") || color.equalsIgnoreCase("Gray")){
 							realcolor = ChatColor.DARK_GRAY;
+							if(getConfig().getString("debug").equalsIgnoreCase("true")){
 							Main.logger.info("converted color > realcolor");
 						} 
+						}
 							if(color.equalsIgnoreCase("8") || color.equalsIgnoreCase("Light_Gray")){
 								realcolor = ChatColor.GRAY;
+								if(getConfig().getString("debug").equalsIgnoreCase("true")){
 								Main.logger.info("converted color > realcolor");
 							} 
+							}
 								if(color.equalsIgnoreCase("9") || color.equalsIgnoreCase("Light_Blue")){
 									realcolor = ChatColor.BLUE;
+									if(getConfig().getString("debug").equalsIgnoreCase("true")){
 									Main.logger.info("converted color > realcolor");
 								} 
+								}
 									if(color.equalsIgnoreCase("A") || color.equalsIgnoreCase("Light_GREEN")){
 										realcolor = ChatColor.GREEN;
+										if(getConfig().getString("debug").equalsIgnoreCase("true")){
 										Main.logger.info("converted color > realcolor");
+									}
 									}
 										if(color.equalsIgnoreCase("B") || color.equalsIgnoreCase("Light_Cyan")){
 											realcolor = ChatColor.AQUA;
+											if(getConfig().getString("debug").equalsIgnoreCase("true")){
 											Main.logger.info("converted color > realcolor");
 										} 
+										}
 											if(color.equalsIgnoreCase("c") || color.equalsIgnoreCase("Light_Red")){
 												realcolor = ChatColor.RED;
+												if(getConfig().getString("debug").equalsIgnoreCase("true")){
 												Main.logger.info("converted color > realcolor");
 											} 
+											}
 												if(color.equalsIgnoreCase("d") || color.equalsIgnoreCase("Light_Purple")){
 													realcolor = ChatColor.LIGHT_PURPLE;
+													if(getConfig().getString("debug").equalsIgnoreCase("true")){
 													Main.logger.info("converted color > realcolor");
 												} 
+												}
 													if(color.equalsIgnoreCase("e") || color.equalsIgnoreCase("Light_Yellow")){
 														realcolor = ChatColor.GOLD;
+														if(getConfig().getString("debug").equalsIgnoreCase("true")){
 														Main.logger.info("converted color > realcolor");
+													}
 													}
 													if(color.equalsIgnoreCase("f") || color.equalsIgnoreCase("White")){
 														realcolor = ChatColor.WHITE;
+														if(getConfig().getString("debug").equalsIgnoreCase("true")){
 														Main.logger.info("converted color > realcolor");
+														}
 													}
 		}
+		
 		@EventHandler
-		public void Main2(){
-			limit = getConfig().getInt("limit");
-			Main.logger.info("limit: "  + limit);
+		public void Broadcast(){
 			if(realcolor == null){
 				System.out.print("[AutoMessage] Error: Couldn't load the color fron config.yml!");
 				onDisable();
@@ -225,102 +304,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 				System.out.print("[AutoMessage] Error: Couldn't load the prefix-color fron config.yml!");
 				onDisable();
 			}
-			
+			final long d = getConfig().getLong("time");	
 			Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable(){
 				public void run(){
-					if(tick == 1){
-						if(limit > 0 ){
-					Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("one"));
+						if(d == getConfig().getLong("time")){
+					if(getConfig().getString("debug").equalsIgnoreCase("true")){
+					System.out.println("tick: " + tick);
+					System.out.println("realcolor: " + realcolor);
+					System.out.println("time: " + time);
+					}
+						if(getConfig().contains("msg" + tick)){
+					Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("msg" + tick));
 					tick++;
 						} else {
-							tick=1;
+							Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("msg1"));
+							tick=2;
 						}
-					} else
-					if(tick == 2){
-						if(limit > 1){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("two"));
-						tick++;
-						} else {
-							tick=1;
-						}
-					} else
-					if(tick == 3){
-						if(limit > 2){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("three"));
-						tick++;
-						} else {
-							tick=1;
-						}
-					} else
-					if(tick == 4){
-						if(limit > 3){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("four"));
-						tick++;
-						} else {
-							tick=1;
-						}
-					} else
-					if(tick == 5){
-						if(limit > 4){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("five"));
-						tick++;
-						} else {
-							tick=1;
-						}
-					} else
-					if(tick == 6){
-						if(limit > 5){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("six"));
-						tick++;
-						} else {
-								tick=1;
-							}
-						} else
-					if(tick == 7){
-						if(limit > 6){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("seven"));
-						tick++;
-						} else {
-						tick=1;
-						   }
-						} else
-						
-					if(tick == 8){
-						if(limit > 7){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("eight"));
-						tick++;
-						} else {
-						tick=1;
-						}
-						} else
-					if(tick == 9){
-						if(limit > 8){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + realcolor + getConfig().getString("nine"));
-						tick++;
-						} else {
-						  tick=1;
-						}
-						} else
-					if(tick == 10){
-						if(limit > 9){
-						Bukkit.broadcastMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + realcolor + getConfig().getString("ten"));
-						tick = 1;
-						} else {
-							tick=1;
-						}
-						} else
-							
-							
-						{
-						if(tick != 5 || tick != 4 || tick != 3 || tick != 2 || tick != 1){
-							Main.logger.warning("[AutoMessage] " + "Error: 303  " + "tick: " + tick);
-							
-							onError();
-							
-						}
+		
 					}
 				}
-			}, 50L, getConfig().getLong("time"));
+			}, 60L, d);
 			
 			
 			

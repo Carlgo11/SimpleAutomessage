@@ -1,39 +1,38 @@
    # Config for SimpleAutoMessage
    # SimpleAutoMessage was made by Carlgo11 
    # http://youtube.com/Carlgo11
+   # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. then pastie the config to a ticket.
+   debug: false
+   
    #
    # Prefix is the name that will show up as the sender
    Prefix: Server
+   
    #
-   #Prefix Color:
+   #Prefix Color: 
    # The Color of the Prefix.  
    # You can see what colors that is available on "Available colors:" in the config.yml!
    Prefix-Color: Light_Purple
+   
+   #
    # Time is the time between each message
    # 20 = 1 Second
    # Seconds multiplied with 20 = time
-   time: 400
-   #
-   # How many of the messages that will be shown 10 = all 
-   # 6 = every message from 1 to 6
-   limit: 10
+   time: 300
+   
    #
    # The messages that will be sent
-   one: one
-   two: two
-   three: three
-   four: four
-   five: five
-   six: six
-   seven: seven
-   eight: eight
-   nine: nine
-   ten: ten
-   #
+   # To add more messages just write 'msg<number>'
+   # don't use the same number on multiple messages!
+   msg1: Change this message in the config.yml
+   msg2: This message is from SimpleAutoMessage
+   msg3: Are you going to change this message?
+   msg4: <Delete this message and replace it with your own>
+   
    # Available colors: 
    # White/Black/Gray/Blue/Green/Cyan/Red/Purple/Yellow/
    # Light_Gray/Light_Blue/Light_Green/Light_Cyan/Light_Red/
    # Light_Purple/Light_Yellow.
    # You can also use the color codes (For example F = White)
-   Color: white
+   Color: White
    #
