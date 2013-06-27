@@ -1,9 +1,0 @@
-name: SimpleAutomessage
-main: com.carlgo11.automessage.main.Main
-version: 1.0.0
-description: Broadcasts a message to all players
-author: Carlgo11
-commands:
-   simpleautomessage:
-     aliases: [AutoMessage, Simplemsg]
-     description: Main command of SimpleAutoMessage.
