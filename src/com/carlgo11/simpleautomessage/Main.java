@@ -16,9 +16,6 @@ public class Main extends JavaPlugin {
 
     static int random = 0;
     public int tick = 1;
-    String color = null;
-    ChatColor realcolor = null;
-    ChatColor prefixcolor = null;
     int limit = 0;
     int x = 1;
     int z = 1;
@@ -46,8 +43,7 @@ public class Main extends JavaPlugin {
         } else {
             System.out.println("[" + getDescription().getName() + "] out-put is set to false! The creator won't get information about this plugin!");
         }
-        Prefixcolors();
-        colors();
+
         Broadcast();
         Time();
 
@@ -58,10 +54,9 @@ public class Main extends JavaPlugin {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        String prefix = prefixcolor + "[" + getConfig().getString("Prefix") + "]  ";
+        String prefix = "[" + getConfig().getString("Prefix") + "]  ";
         String badperm = prefix + ChatColor.RED + "Error: You don't have permission to use that command!";
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
-
 
             if (args.length == 0) {
                 if (sender.hasPermission("SimpleAutoMessage.cmd.main") || sender.hasPermission("SimpleAutoMessage.cmd.*")) {
@@ -74,12 +69,10 @@ public class Main extends JavaPlugin {
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("SimpleAutoMessage.cmd.reload")) {
-                        this.reloadConfig();
-                        Prefixcolors();
-                        colors();
-                        saveConfig();
+                       // this.reloadConfig();
                         Time();
                         Broadcast();
+                        String outmsg = getConfig().getString("msg"+tick);
 
                         sender.sendMessage(prefix + ChatColor.GREEN + "Automessage reloaded!");
                     } else {
@@ -105,219 +98,9 @@ public class Main extends JavaPlugin {
         }
     }
 
-    @EventHandler
-    public void Prefixcolors() {
-
-        color = getConfig().getString("Prefix-Color");
-        if (color.equalsIgnoreCase("0") || color.equalsIgnoreCase("black")) {
-            prefixcolor = ChatColor.BLACK;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("1") || color.equalsIgnoreCase("blue")) {
-            prefixcolor = ChatColor.DARK_BLUE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("2") || color.equalsIgnoreCase("green")) {
-            prefixcolor = ChatColor.DARK_GREEN;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("3") || color.equalsIgnoreCase("Cyan")) {
-            prefixcolor = ChatColor.DARK_AQUA;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("4") || color.equalsIgnoreCase("Red")) {
-            prefixcolor = ChatColor.DARK_RED;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("5") || color.equalsIgnoreCase("Purple")) {
-            prefixcolor = ChatColor.DARK_PURPLE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("6") || color.equalsIgnoreCase("Yellow")) {
-            prefixcolor = ChatColor.YELLOW;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("7") || color.equalsIgnoreCase("Gray")) {
-            prefixcolor = ChatColor.DARK_GRAY;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("8") || color.equalsIgnoreCase("Light_Gray")) {
-            prefixcolor = ChatColor.GRAY;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("9") || color.equalsIgnoreCase("Light_Blue")) {
-            prefixcolor = ChatColor.BLUE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("A") || color.equalsIgnoreCase("Light_GREEN")) {
-            prefixcolor = ChatColor.GREEN;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("B") || color.equalsIgnoreCase("Light_Cyan")) {
-            prefixcolor = ChatColor.AQUA;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("c") || color.equalsIgnoreCase("Light_Red")) {
-            prefixcolor = ChatColor.RED;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("d") || color.equalsIgnoreCase("Light_Purple")) {
-            prefixcolor = ChatColor.LIGHT_PURPLE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("e") || color.equalsIgnoreCase("Light_Yellow")) {
-            prefixcolor = ChatColor.GOLD;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("f") || color.equalsIgnoreCase("White")) {
-            prefixcolor = ChatColor.WHITE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > prefixcolor");
-            }
-        }
-    }
-
-    @EventHandler
-    public void colors() {
-        color = getConfig().getString("Color");
-        if (color.equalsIgnoreCase("0") || color.equalsIgnoreCase("black")) {
-            realcolor = ChatColor.BLACK;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("1") || color.equalsIgnoreCase("blue")) {
-            realcolor = ChatColor.DARK_BLUE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("2") || color.equalsIgnoreCase("green")) {
-            realcolor = ChatColor.DARK_GREEN;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("3") || color.equalsIgnoreCase("Cyan")) {
-            realcolor = ChatColor.DARK_AQUA;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("4") || color.equalsIgnoreCase("Red")) {
-            realcolor = ChatColor.DARK_RED;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("5") || color.equalsIgnoreCase("Purple")) {
-            realcolor = ChatColor.DARK_PURPLE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("6") || color.equalsIgnoreCase("Yellow")) {
-            realcolor = ChatColor.YELLOW;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("7") || color.equalsIgnoreCase("Gray")) {
-            realcolor = ChatColor.DARK_GRAY;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("8") || color.equalsIgnoreCase("Light_Gray")) {
-            realcolor = ChatColor.GRAY;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("9") || color.equalsIgnoreCase("Light_Blue")) {
-            realcolor = ChatColor.BLUE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("A") || color.equalsIgnoreCase("Light_GREEN")) {
-            realcolor = ChatColor.GREEN;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("B") || color.equalsIgnoreCase("Light_Cyan")) {
-            realcolor = ChatColor.AQUA;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("c") || color.equalsIgnoreCase("Light_Red")) {
-            realcolor = ChatColor.RED;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("d") || color.equalsIgnoreCase("Light_Purple")) {
-            realcolor = ChatColor.LIGHT_PURPLE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("e") || color.equalsIgnoreCase("Light_Yellow")) {
-            realcolor = ChatColor.GOLD;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-        if (color.equalsIgnoreCase("f") || color.equalsIgnoreCase("White")) {
-            realcolor = ChatColor.WHITE;
-            if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                Main.logger.info("converted color > realcolor");
-            }
-        }
-    }
 
     @EventHandler
     public void Broadcast() {
-        if (realcolor == null) {
-            System.out.print("[SimpleAutoMessage] Error: Couldn't load the color fron config.yml!");
-            onDisable();
-        }
-        if (prefixcolor == null) {
-            System.out.print("[SimpleAutoMessage] Error: Couldn't load the prefix-color fron config.yml!");
-            onDisable();
-        }
         final long d = getConfig().getLong("time");
         
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
@@ -325,34 +108,35 @@ public class Main extends JavaPlugin {
                 if (d == getConfig().getLong("time")) {
                     if (getConfig().getString("debug").equalsIgnoreCase("true")) {
                         System.out.println("tick: " + tick);
-                        System.out.println("realcolor: " + realcolor);
                         System.out.println("time: " + time);
                     }
-                    if (getConfig().contains("msg" + tick)) {
+                    if (getConfig().contains("msg"+tick)) {
                         String outmsg = getConfig().getString("msg"+tick);
-                        outmsg.replaceAll("&e", "ChatColor.YELLOW");
                         for (Player p : Bukkit.getOnlinePlayers()) {
 
                             if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                                p.sendMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + outmsg);
+                                p.sendMessage("[" + getConfig().getString("Prefix") + "]  " + getConfig().getString("msg"+tick));
                             }
                         }
                         if(getConfig().getBoolean("show-in-console") == true){
-                            System.out.println("[" + getConfig().getString("Prefix") + "]  "+outmsg);
+                            System.out.println("[" + getConfig().getString("Prefix") + "]  "+getConfig().getString("msg"+tick));
                         }
                         tick++;
                     } else {
+                        if(getConfig().contains("msg1")){
                         String outmsg = getConfig().getString("msg1");
-                        outmsg.replaceAll("&e", "ChatColor.YELLOW");
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                                p.sendMessage(prefixcolor + "[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + realcolor + getConfig().getString("msg1"));
+                                p.sendMessage("[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + getConfig().getString("msg1"));
                             }
                         }
                         if(getConfig().getBoolean("show-in-console") == true){
                             System.out.println("[" + getConfig().getString("Prefix") + "]  "+outmsg);
                         }
                         tick = 2;
+                        } else {
+                            System.out.println("[" + getConfig().getString("Prefix") + "] Error: No msg1 set in the config.yml!");
+                        }
                     }
 
                 }

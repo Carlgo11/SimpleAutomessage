@@ -3,9 +3,13 @@
    # http://youtube.com/Carlgo11
    #
    #
+   # Colors:
+   # When adding colors use the minecraft colorcodes and replace the '&' with a '§'.
+   # Example: §a = Green
+   #
    opt-out: false
    
-   # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. then pastie the config to a ticket.
+   # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. then pastie the server.log and config to us in a ticket.
    debug: false
    
    # Do you want the message to show up on the console and in the server.log? Then set show-in-console: to true
@@ -13,12 +17,6 @@
    #
    # Prefix is the name that will show up as the sender
    Prefix: Server
-   
-   #
-   #Prefix Color: 
-   # The Color of the Prefix.  
-   # You can see what colors that is available on "Available colors:" in the config.yml!
-   Prefix-Color: Light_Purple
    
    #
    # Time is the time between each message
@@ -30,15 +28,12 @@
    # The messages that will be sent
    # To add more messages just write 'msg<number>'
    # don't use the same number on multiple messages!
-   msg1: Change this message in the config.yml
-   msg2: This message is from SimpleAutoMessage
-   msg3: Are you going to change this message?
-   msg4: <Delete this message and replace it with your own>
    
-   # Available colors: 
-   # White/Black/Gray/Blue/Green/Cyan/Red/Purple/Yellow/
-   # Light_Gray/Light_Blue/Light_Green/Light_Cyan/Light_Red/
-   # Light_Purple/Light_Yellow.
-   # You can also use the color codes (For example F = White)
-   Color: White
-   #
+   #msg1: Remove the '#' infront of this msg to enable it!
+   #msg2: You can add how many msgs as you want!
+   #msg3: replace this message with your own!
+   
+   
+   
+   # Have any questions? Contact me on http://tiny.cc/simpleautomessage-irc
+   #  END OF CONFIG.YML! :)
