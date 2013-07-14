@@ -33,13 +33,13 @@ public class Main extends JavaPlugin {
             System.out.println("[SimpleAutoMessage] No config.yml detected, config.yml created");
         }
         getLogger().info(getDescription().getName() + getDescription().getVersion() + " Is Enabled!");
-        if(!getConfig().getBoolean("out-put") == true){
-        try {
-            Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (IOException e) {
-            System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
-        }
+        if (!getConfig().getBoolean("out-put") == true) {
+            try {
+                Metrics metrics = new Metrics(this);
+                metrics.start();
+            } catch (IOException e) {
+                System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
+            }
         } else {
             System.out.println("[" + getDescription().getName() + "] out-put is set to false! The creator won't get information about this plugin!");
         }
@@ -70,11 +70,11 @@ public class Main extends JavaPlugin {
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("SimpleAutoMessage.cmd.reload")) {
-                       // this.reloadConfig();
+                        // this.reloadConfig();
                         getServer().getPluginManager().disablePlugin(this);
                         getServer().getPluginManager().enablePlugin(this);
-                        
-                        
+
+
                         sender.sendMessage(prefix + ChatColor.GREEN + "Automessage reloaded!");
                     } else {
                         sender.sendMessage(badperm);
@@ -99,11 +99,10 @@ public class Main extends JavaPlugin {
         }
     }
 
-
     @EventHandler
     public void Broadcast() {
         final long d = getConfig().getLong("time");
-        
+
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
             public void run() {
                 if (d == getConfig().getLong("time")) {
@@ -111,30 +110,30 @@ public class Main extends JavaPlugin {
                         System.out.println("tick: " + tick);
                         System.out.println("time: " + time);
                     }
-                    if (getConfig().contains("msg"+tick)) {
-                        String outmsg = getConfig().getString("msg"+tick);
+                    if (getConfig().contains("msg" + tick)) {
+                        String outmsg = getConfig().getString("msg" + tick);
                         for (Player p : Bukkit.getOnlinePlayers()) {
 
                             if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                                p.sendMessage("[" + getConfig().getString("Prefix") + "]  " + getConfig().getString("msg"+tick));
+                                p.sendMessage("[" + getConfig().getString("Prefix") + "]  " + getConfig().getString("msg" + tick));
                             }
                         }
-                        if(getConfig().getBoolean("show-in-console") == true){
-                            System.out.println("[" + getConfig().getString("Prefix") + "]  "+getConfig().getString("msg"+tick));
+                        if (getConfig().getBoolean("show-in-console") == true) {
+                            System.out.println("[" + getConfig().getString("Prefix") + "]  " + getConfig().getString("msg" + tick));
                         }
                         tick++;
                     } else {
-                        if(getConfig().contains("msg1")){
-                        String outmsg = getConfig().getString("msg1");
-                        for (Player p : Bukkit.getOnlinePlayers()) {
-                            if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                                p.sendMessage("[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + getConfig().getString("msg1"));
+                        if (getConfig().contains("msg1")) {
+                            String outmsg = getConfig().getString("msg1");
+                            for (Player p : Bukkit.getOnlinePlayers()) {
+                                if (p.hasPermission("SimpleAutoMessage.seemsg")) {
+                                    p.sendMessage("[" + getConfig().getString("Prefix") + "]  " + ChatColor.RESET + getConfig().getString("msg1"));
+                                }
                             }
-                        }
-                        if(getConfig().getBoolean("show-in-console") == true){
-                            System.out.println("[" + getConfig().getString("Prefix") + "]  "+outmsg);
-                        }
-                        tick = 2;
+                            if (getConfig().getBoolean("show-in-console") == true) {
+                                System.out.println("[" + getConfig().getString("Prefix") + "]  " + outmsg);
+                            }
+                            tick = 2;
                         } else {
                             System.out.println("[" + getConfig().getString("Prefix") + "] Error: No msg1 set in the config.yml!");
                         }
@@ -143,9 +142,6 @@ public class Main extends JavaPlugin {
                 }
             }
         }, d, d);
-
-
-
     }
 
     public void onError() {
