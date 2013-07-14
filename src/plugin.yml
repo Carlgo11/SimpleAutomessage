@@ -1,6 +1,6 @@
 name: SimpleAutomessage
 main: com.carlgo11.simpleautomessage.Main
-version: 1.0.2
+version: 1.0.3
 description: Broadcasts a message to all players
 author: Carlgo11
 commands:

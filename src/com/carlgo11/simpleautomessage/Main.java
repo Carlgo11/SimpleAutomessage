@@ -44,6 +44,7 @@ public class Main extends JavaPlugin {
             System.out.println("[" + getDescription().getName() + "] out-put is set to false! The creator won't get information about this plugin!");
         }
 
+        this.reloadConfig();
         Broadcast();
         Time();
 
@@ -70,10 +71,10 @@ public class Main extends JavaPlugin {
                 if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("SimpleAutoMessage.cmd.reload")) {
                        // this.reloadConfig();
-                        Time();
-                        Broadcast();
-                        String outmsg = getConfig().getString("msg"+tick);
-
+                        getServer().getPluginManager().disablePlugin(this);
+                        getServer().getPluginManager().enablePlugin(this);
+                        
+                        
                         sender.sendMessage(prefix + ChatColor.GREEN + "Automessage reloaded!");
                     } else {
                         sender.sendMessage(badperm);
@@ -141,7 +142,7 @@ public class Main extends JavaPlugin {
 
                 }
             }
-        }, 60L, d);
+        }, d, d);
 
 
 
