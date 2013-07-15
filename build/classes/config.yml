@@ -3,10 +3,11 @@
    # http://youtube.com/Carlgo11
    #
    #
-   # Colors:
+   # COLORS:
    # When adding colors use the minecraft colorcodes and replace the '&' with a '§'.
    # Example: §a = Green
    #
+   # Leave opt-out as false!
    opt-out: false
    
    # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. then pastie the server.log and config to us in a ticket.
@@ -14,20 +15,20 @@
    
    # Do you want the message to show up on the console and in the server.log? Then set show-in-console: to true
    show-in-console: true
-   #
-   # Prefix is the name that will show up as the sender
-   Prefix: Server
    
-   #
+   # Prefix is the nick that will show up as the sender
+   Prefix: §dServer
+   
    # Time is the time between each message
    # 20 = 1 Second
    # Seconds multiplied with 20 = time
    time: 300
    
-   #
-   # The messages that will be sent
-   # To add more messages just write 'msg<number>'
-   # don't use the same number on multiple messages!
+   # Messages:
+   # Below is the messages that will be broadcastd
+   # To add more messages just write 'msg<number>'.
+   # DO NOT use the same number on multiple messages!
+   # Remove the '#' infron of the messages when you want to enable them!
    
    #msg1: Remove the '#' infront of this msg to enable it!
    #msg2: You can add how many msgs as you want!
@@ -36,4 +37,4 @@
    
    
    # Have any questions? Contact me on http://tiny.cc/simpleautomessage-irc
-   #  END OF CONFIG.YML! :)
+   # END OF CONFIG.YML! :)

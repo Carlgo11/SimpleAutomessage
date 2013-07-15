@@ -14,25 +14,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
-    static int random = 0;
     public int tick = 1;
-    int limit = 0;
-    int x = 1;
-    int z = 1;
-    int n = 1;
-    int intime = 1;
     int time = 0;
-    long ltime = 0;
-    long testtime = 40;
     public final static Logger logger = Logger.getLogger("Minercraft");
 
     public void onEnable() {
-        File config = new File(this.getDataFolder(), "config.yml");
-        if (!config.exists()) {
-            this.saveDefaultConfig();
-            System.out.println("[SimpleAutoMessage] No config.yml detected, config.yml created");
-        }
-        getLogger().info(getDescription().getName() + getDescription().getVersion() + " Is Enabled!");
+        getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
+        this.reloadConfig();
+        Broadcast();
+        Time();
+        checkConfig();
+        checkMetrics();
+    }
+
+    public void checkMetrics() {
         if (!getConfig().getBoolean("out-put") == true) {
             try {
                 Metrics metrics = new Metrics(this);
@@ -43,22 +38,24 @@ public class Main extends JavaPlugin {
         } else {
             System.out.println("[" + getDescription().getName() + "] out-put is set to false! The creator won't get information about this plugin!");
         }
+    }
 
-        this.reloadConfig();
-        Broadcast();
-        Time();
-
+    public void checkConfig() {
+        File config = new File(this.getDataFolder(), "config.yml");
+        if (!config.exists()) {
+            this.saveDefaultConfig();
+            System.out.println("[SimpleAutoMessage] No config.yml detected, config.yml created");
+        }
     }
 
     public void onDisable() {
-        getLogger().info(getDescription().getName() + getDescription().getVersion() + " is Disabled!");
+        getLogger().info(getDescription().getName() + getDescription().getVersion() + " is disabled!");
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         String prefix = "[" + getConfig().getString("Prefix") + "]  ";
         String badperm = prefix + ChatColor.RED + "Error: You don't have permission to use that command!";
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
-
             if (args.length == 0) {
                 if (sender.hasPermission("SimpleAutoMessage.cmd.main") || sender.hasPermission("SimpleAutoMessage.cmd.*")) {
                     sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + getConfig().getString("Prefix") + ChatColor.GREEN + " ======== ");
@@ -74,7 +71,6 @@ public class Main extends JavaPlugin {
                         getServer().getPluginManager().disablePlugin(this);
                         getServer().getPluginManager().enablePlugin(this);
 
-
                         sender.sendMessage(prefix + ChatColor.GREEN + "Automessage reloaded!");
                     } else {
                         sender.sendMessage(badperm);
@@ -85,7 +81,6 @@ public class Main extends JavaPlugin {
             } else if (args.length > 1) {
                 sender.sendMessage(prefix + ChatColor.RED + "Error: Unknown command!");
             }
-
         }
         return true;
     }
@@ -102,7 +97,6 @@ public class Main extends JavaPlugin {
     @EventHandler
     public void Broadcast() {
         final long d = getConfig().getLong("time");
-
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
             public void run() {
                 if (d == getConfig().getLong("time")) {
@@ -131,7 +125,9 @@ public class Main extends JavaPlugin {
                                 }
                             }
                             if (getConfig().getBoolean("show-in-console") == true) {
-                                System.out.println("[" + getConfig().getString("Prefix") + "]  " + outmsg);
+                                 String consoleprefix = getConfig().getString("Prefix");
+                                 consoleprefix.replaceAll("§1"+"§2"+"§d", "");
+                                System.out.println("[" + consoleprefix + "]  " + outmsg);
                             }
                             tick = 2;
                         } else {
@@ -147,6 +143,5 @@ public class Main extends JavaPlugin {
     public void onError() {
         Main.logger.warning("[SimpleAutoMessage] Error acurred! Plugin Disabeled!");
         Bukkit.getPluginManager().disablePlugin(this);
-
     }
 }
