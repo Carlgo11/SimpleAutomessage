@@ -5,8 +5,8 @@
    #
    # COLORS:
    # When adding colors use the minecraft colorcodes and replace the '&' with a '§'.
-   # Example: §a = Green
-   #
+   # Example: §a = green, §d = purple.
+   
    # Leave opt-out as false!
    opt-out: false
    
