@@ -2,6 +2,7 @@ package com.carlgo11.simpleautomessage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -18,14 +19,19 @@ public class Main extends JavaPlugin {
     int time = 0;
     public final static Logger logger = Logger.getLogger("Minercraft");
     public String debugmsg = null;
-
+    Updater updater = new Updater(this, "slug", this.getFile(), Updater.UpdateType.DEFAULT, true);
+    
     public void onEnable() {
-        this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
-        this.reloadConfig();
-        Broadcast();
-        Time();
-        checkConfig();
-        checkMetrics();
+            this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
+            this.reloadConfig();
+            Broadcast();
+            Time();
+            checkConfig();
+            checkMetrics();
+            try {
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void onDisable() {
