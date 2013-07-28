@@ -18,16 +18,16 @@ public class Main extends JavaPlugin {
     int time = 0;
     public final static Logger logger = Logger.getLogger("Minercraft");
     public String debugmsg = null;
-    Updater updater = new Updater(this, "slug", this.getFile(), Updater.UpdateType.DEFAULT, true);
-    
+
     public void onEnable() {
-            this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
-            this.reloadConfig();
-            Broadcast();
-            Time();
-            checkConfig();
-            checkMetrics();
-            try {
+        this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
+        this.reloadConfig();
+        checkVersion();
+        Time();
+        Broadcast();
+        checkConfig();
+        checkMetrics();
+        try {
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -35,6 +35,12 @@ public class Main extends JavaPlugin {
 
     public void onDisable() {
         this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is disabled!");
+    }
+
+    public void checkVersion() {
+        if (getConfig().getBoolean("auto-update") == true) {
+            Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.DEFAULT, true);
+        }
     }
 
     public void checkMetrics() {
@@ -77,7 +83,6 @@ public class Main extends JavaPlugin {
                         // this.reloadConfig();
                         getServer().getPluginManager().disablePlugin(this);
                         getServer().getPluginManager().enablePlugin(this);
-
                         sender.sendMessage(prefix + ChatColor.GREEN + "SimpleAutoMessage reloaded!");
                     } else {
                         sender.sendMessage(badperm);
@@ -95,67 +100,75 @@ public class Main extends JavaPlugin {
     @EventHandler
     public void Time() {
         time = getConfig().getInt("time");
+        time *= 20;
         debugmsg = "time: " + time;
         onDebug();
     }
 
     @EventHandler
     public void Broadcast() {
-        final long d = getConfig().getLong("time");
+        final long d = (long) (time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
             public void run() {
-                if (d == getConfig().getLong("time")) {
-                    if (getConfig().getString("debug").equalsIgnoreCase("true")) {
-                        debugmsg = "tick: " + tick;
-                        onDebug();
-                        debugmsg = "time: " + time;
-                        onDebug();
+                if (getConfig().getString("debug").equalsIgnoreCase("true")) {
+                    debugmsg = "tick: " + tick;
+                    onDebug();
+                    debugmsg = "time: " + d;
+                    onDebug();
+                }
+                String prefixtomc = getConfig().getString("Prefix").toString();
+                String prefixtoconsole = getConfig().getString("Prefix").toString();
+                if(getConfig().getString("Prefix").contains("Â")){
+                prefixtomc.replaceAll("Â", "");
+                prefixtoconsole.replaceAll("Â", "");
+                }
+                if (getConfig().contains("msg" + tick)) {
+                    String msgtomc = getConfig().getString("msg" + tick).toString();
+                    String msgtoconsole = getConfig().getString("msg" + tick).toString();
+                    if(getConfig().getString("msg"+tick).contains("Â")){
+                    msgtomc.replaceAll("Â", "");
+                    msgtoconsole.replaceAll("Â", "");
                     }
-                    String prefixtomc = getConfig().getString("Prefix").toString().replaceAll("Â", "");
-                    String prefixtoconsole = getConfig().getString("Prefix").toString().replaceAll("Â", "");
+                    for (Player p : Bukkit.getOnlinePlayers()) {
 
-                    if (getConfig().contains("msg" + tick)) {
-                        String msgtomc = getConfig().getString("msg" + tick).toString().replaceAll("Â", "");
-                        String msgtoconsole = getConfig().getString("msg" + tick).toString().replaceAll("Â", "");
+                        if (p.hasPermission("SimpleAutoMessage.seemsg")) {
+                            p.sendMessage("[" + prefixtomc + "]  " + ChatColor.RESET + msgtomc);
+                        }
+                    }
+
+                    if (getConfig().getBoolean("show-in-console") == true) {
+                        System.out.println("[" + prefixtoconsole + "]  " + msgtoconsole);
+                    }
+                    tick++;
+                } else {
+                    debugmsg = "no msg" + tick + " set in the config. calling msg1 instead.";
+                    onDebug();
+                    String msgtomc = getConfig().getString("msg1").toString();
+                    String msgtoconsole = getConfig().getString("msg1").toString();
+                    if(getConfig().getString("msg1").contains("Â")){
+                    msgtomc.replaceAll("Â", "");
+                    msgtoconsole.replaceAll("Â", "");
+                    }
+                    if (getConfig().contains("msg1")) {
                         for (Player p : Bukkit.getOnlinePlayers()) {
-
                             if (p.hasPermission("SimpleAutoMessage.seemsg")) {
                                 p.sendMessage("[" + prefixtomc + "]  " + ChatColor.RESET + msgtomc);
                             }
                         }
-
                         if (getConfig().getBoolean("show-in-console") == true) {
                             System.out.println("[" + prefixtoconsole + "]  " + msgtoconsole);
                         }
-                        tick++;
-
+                        tick = 2;
                     } else {
-                        debugmsg = "no msg" + tick + " set in the config. calling msg1 instead.";
-                        onDebug();
-                        String msgtomc = getConfig().getString("msg1").toString().replaceAll("Â", "");
-                        String msgtoconsole = getConfig().getString("msg1").toString().replaceAll("Â", "");
-                        if (getConfig().contains("msg1")) {
-                            for (Player p : Bukkit.getOnlinePlayers()) {
-                                if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                                    p.sendMessage("[" + prefixtomc + "]  " + ChatColor.RESET + msgtomc);
-                                }
-                            }
-                            if (getConfig().getBoolean("show-in-console") == true) {
-                                System.out.println("[" + prefixtoconsole + "]  " + msgtoconsole);
-                            }
-                            tick = 2;
-                        } else {
-                            System.out.println("[" + getConfig().getString("Prefix") + "] Error: No msg1 set in the config.yml!");
-                        }
+                        System.out.println("[" + getConfig().getString("Prefix") + "] Error: No msg1 set in the config.yml!");
                     }
-
                 }
             }
         }, d, d);
     }
 
     public void onError() {
-        Main.logger.warning("[SimpleAutoMessage] Error acurred! Plugin Disabeled!");
+        Main.logger.warning("[SimpleAutoMessage] Error acurred! Plugin disabeled!");
         Bukkit.getPluginManager().disablePlugin(this);
     }
 

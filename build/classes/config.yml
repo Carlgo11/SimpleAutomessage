@@ -2,37 +2,38 @@
    # SimpleAutoMessage was made by Carlgo11 
    # http://youtube.com/Carlgo11
    #
-   #
    # COLORS:
    # When adding colors use the minecraft colorcodes and replace the '&' with a '§'.
    # Example: §a = green, §d = purple.
    
+   # Do you want to automatically get updates and bug-fixes when available?
+   auto-update: true
+   
    # Leave opt-out as false!
    opt-out: false
    
-   # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. then pastie the server.log and config to us in a ticket.
+   # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. Then pastie the server.log and config to us in a ticket.
    debug: false
    
-   # Do you want the message to show up on the console and in the server.log? Then set show-in-console: to true
+   # Do you want the message to show up on the console and in the server.log? Then set show-in-console: to true.
    show-in-console: true
    
-   # Prefix is the nick that will show up as the sender
+   # Prefix is the nick that will show up as the sender.
    Prefix: §dServer
    
-   # Time is the time between each message
-   # 20 = 1 Second
-   # Seconds multiplied with 20 = time
+   # Time is the time between each message.
+   # TIME SHOULD BE IN SECONDS!
    time: 300
    
    # Messages:
-   # Below is the messages that will be broadcastd
+   # Below are the messages that will be broadcasted.
    # To add more messages just write 'msg<number>'.
    # DO NOT use the same number on multiple messages!
-   # Remove the '#' infron of the messages when you want to enable them!
+   # Remove the '#' in front of the messages when you want to enable them!
    
-   #msg1: Remove the '#' infront of this msg to enable it!
+   #msg1: Remove the '#' in front of this msg to enable it!
    #msg2: You can add how many msgs as you want!
-   #msg3: replace this message with your own!
+   #msg3: Replace this message with your own!
    
    
    

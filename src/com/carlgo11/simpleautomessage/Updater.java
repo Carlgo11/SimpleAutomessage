@@ -243,6 +243,7 @@ public class Updater
                 unzip(dFile.getCanonicalPath());
             }
             if(announce) plugin.getLogger().info("Finished updating.");
+            plugin.getLogger().info("Please restart the server to load the new version!");
         }
         catch (Exception ex)
         {
