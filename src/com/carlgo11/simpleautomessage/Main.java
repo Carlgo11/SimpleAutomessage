@@ -16,7 +16,7 @@ public class Main extends JavaPlugin {
 
     public int tick = 1;
     int time = 0;
-    public final static Logger logger = Logger.getLogger("Minercraft");
+    public final static Logger logger = Logger.getLogger("Minecraft");
     public String debugmsg = null;
 
     public void onEnable() {
@@ -30,10 +30,6 @@ public class Main extends JavaPlugin {
         Broadcast();
         checkConfig();
         checkMetrics();
-        try {
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public void onDisable() {
@@ -132,29 +128,18 @@ public class Main extends JavaPlugin {
                     debugmsg = "time: " + d;
                     onDebug();
                 }
-                String prefixtomc = getConfig().getString("Prefix").toString();
-                String prefixtoconsole = getConfig().getString("Prefix").toString();
-                if (getConfig().getString("Prefix").contains("Â")) {
-                    prefixtomc.replaceAll("Â", "");
-                    prefixtoconsole.replaceAll("Â", "");
-                }
-                
-                if (getConfig().contains("msg" + tick)) {
-                    String msgtomc = getConfig().getString("msg" + tick).toString();
-                    String msgtoconsole = ChatColor.stripColor(getConfig().getString("msg" + tick).toString());
-                    if (getConfig().getString("msg" + tick).contains("Â")) {
-                        msgtomc.replaceAll("Â", "");
-                        msgtoconsole.replaceAll("Â", "");
-                    }
-                    for (Player p : Bukkit.getOnlinePlayers()) {
+                String prefixToSend = getConfig().getString("Prefix");
+                String prefixToMC = ChatColor.translateAlternateColorCodes('&', prefixToSend);
+                String prefixToConsole = ChatColor.translateAlternateColorCodes('&', prefixToSend);
 
-                        if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                            p.sendMessage(prefixtomc + "  " + ChatColor.RESET + msgtomc);
-                        }
-                    }
+                if (getConfig().contains("msg" + tick)) {
+                    String messageToSend = getConfig().getString("msg" + tick);
+                    String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                    String msgToConsole = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                    getServer().broadcast("[" + prefixToMC + "]  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
 
                     if (getConfig().getBoolean("show-in-console") == true) {
-                        System.out.println(ChatColor.stripColor(prefixtoconsole) + "  " + msgtoconsole);
+                        System.out.println(ChatColor.stripColor(prefixToConsole) + "  " + msgToConsole);
                     }
                     tick++;
                 } else {
@@ -165,19 +150,12 @@ public class Main extends JavaPlugin {
 
                     if (getConfig().contains("msg1")) {
                         
-                        String msgtomc = getConfig().getString("msg1").toString();
-                        String msgtoconsole = getConfig().getString("msg1").toString();
-                        if (getConfig().getString("msg1").contains("Â")) {
-                            msgtomc.replaceAll("Â", "");
-                            msgtoconsole.replaceAll("Â", "");
-                        }
-                        for (Player p : Bukkit.getOnlinePlayers()) {
-                            if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                                p.sendMessage(prefixtomc + "  " + ChatColor.RESET + msgtomc);
-                            }
-                        }
+                        String messageToSend = getConfig().getString("msg1");
+                        String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                        String msgToConsole = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                        getServer().broadcast("[" + prefixToMC + "]  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                         if (getConfig().getBoolean("show-in-console") == true) {
-                            System.out.println(ChatColor.stripColor(prefixtoconsole) + "  " + msgtoconsole);
+                            System.out.println(ChatColor.stripColor(prefixToConsole) + "  " + msgToConsole);
                         }
                         tick = 2;
                     } else {
