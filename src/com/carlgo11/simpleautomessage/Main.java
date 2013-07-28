@@ -22,6 +22,9 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
         this.reloadConfig();
+        if(!getConfig().contains("auto-update")){
+            
+        }
         checkVersion();
         Time();
         Broadcast();
@@ -56,6 +59,7 @@ public class Main extends JavaPlugin {
                 System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
             }
         } else {
+           
             System.out.println("[" + getDescription().getName() + "] out-put is set to false! The creator won't get information about this plugin!");
         }
     }
@@ -87,15 +91,15 @@ public class Main extends JavaPlugin {
                         // this.reloadConfig();
                         getServer().getPluginManager().disablePlugin(this);
                         getServer().getPluginManager().enablePlugin(this);
-                        sender.sendMessage(prefix + ChatColor.GREEN + "SimpleAutoMessage reloaded!");
+                        sender.sendMessage(plainprefix + ChatColor.GREEN + "SimpleAutoMessage reloaded!");
                     } else {
                         sender.sendMessage(badperm);
                     }
                 } else {
-                    sender.sendMessage(prefix + ChatColor.RED + "Error: Unknown command!");
+                    sender.sendMessage(plainprefix + ChatColor.RED + "Error: Unknown command!");
                 }
             } else if (args.length > 1) {
-                sender.sendMessage(prefix + ChatColor.RED + "Error: Unknown command!");
+                sender.sendMessage(plainprefix + ChatColor.RED + "Error: Unknown command!");
             }
         }
         return true;
@@ -131,13 +135,13 @@ public class Main extends JavaPlugin {
                 String prefixtomc = getConfig().getString("Prefix").toString();
                 String prefixtoconsole = getConfig().getString("Prefix").toString();
                 if (getConfig().getString("Prefix").contains("Â")) {
-                    System.out.println("contains Â");
                     prefixtomc.replaceAll("Â", "");
                     prefixtoconsole.replaceAll("Â", "");
                 }
+                
                 if (getConfig().contains("msg" + tick)) {
                     String msgtomc = getConfig().getString("msg" + tick).toString();
-                    String msgtoconsole = getConfig().getString("msg" + tick).toString();
+                    String msgtoconsole = ChatColor.stripColor(getConfig().getString("msg" + tick).toString());
                     if (getConfig().getString("msg" + tick).contains("Â")) {
                         msgtomc.replaceAll("Â", "");
                         msgtoconsole.replaceAll("Â", "");
@@ -145,12 +149,12 @@ public class Main extends JavaPlugin {
                     for (Player p : Bukkit.getOnlinePlayers()) {
 
                         if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                            p.sendMessage("[" + prefixtomc + "]  " + ChatColor.RESET + msgtomc);
+                            p.sendMessage(prefixtomc + "  " + ChatColor.RESET + msgtomc);
                         }
                     }
 
                     if (getConfig().getBoolean("show-in-console") == true) {
-                        System.out.println("[" + prefixtoconsole + "]  " + msgtoconsole);
+                        System.out.println(ChatColor.stripColor(prefixtoconsole) + "  " + msgtoconsole);
                     }
                     tick++;
                 } else {
@@ -160,6 +164,7 @@ public class Main extends JavaPlugin {
 
 
                     if (getConfig().contains("msg1")) {
+                        
                         String msgtomc = getConfig().getString("msg1").toString();
                         String msgtoconsole = getConfig().getString("msg1").toString();
                         if (getConfig().getString("msg1").contains("Â")) {
@@ -168,15 +173,15 @@ public class Main extends JavaPlugin {
                         }
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             if (p.hasPermission("SimpleAutoMessage.seemsg")) {
-                                p.sendMessage("[" + prefixtomc + "]  " + ChatColor.RESET + msgtomc);
+                                p.sendMessage(prefixtomc + "  " + ChatColor.RESET + msgtomc);
                             }
                         }
                         if (getConfig().getBoolean("show-in-console") == true) {
-                            System.out.println("[" + prefixtoconsole + "]  " + msgtoconsole);
+                            System.out.println(ChatColor.stripColor(prefixtoconsole) + "  " + msgtoconsole);
                         }
                         tick = 2;
                     } else {
-                        System.out.println("[" + getConfig().getString("Prefix") + "] Error: No msg1 set in the config.yml!");
+                        System.out.println(getConfig().getString("Prefix") + " Error: No msg1 set in the config.yml!");
                     }
                 }
             }

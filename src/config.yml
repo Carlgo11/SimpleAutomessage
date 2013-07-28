@@ -19,7 +19,7 @@
    show-in-console: true
    
    # Prefix is the nick that will show up as the sender.
-   Prefix: §dServer
+   Prefix: §d[Server]
    
    # Time is the time between each message.
    # TIME SHOULD BE IN SECONDS!
