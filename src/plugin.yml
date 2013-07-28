@@ -10,7 +10,7 @@ commands:
      
 permissions:
   SimpleAutoMessage.seemsg:
-    default: true
+    default: op
     description: Permission to see the messages broadcasted by SimpleAutomessage
   SimpleAutoMessage.cmd.main:
     default: op

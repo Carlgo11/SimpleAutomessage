@@ -4,7 +4,7 @@
    #
    # COLORS:
    # When adding colors use the minecraft colorcodes and replace the '&' with a '§'.
-   # Example: §a = green, §d = purple.
+   # Example: &a = green, &d = purple.
    
    # Do you want to automatically get updates and bug-fixes when available?
    auto-update: true
@@ -14,9 +14,6 @@
    
    # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. Then pastie the server.log and config to us in a ticket.
    debug: false
-   
-   # Do you want the message to show up on the console and in the server.log? Then set show-in-console: to true.
-   show-in-console: true
    
    # Prefix is the nick that will show up as the sender.
    Prefix: §d[Server]
@@ -29,13 +26,15 @@
    # Below are the messages that will be broadcasted.
    # To add more messages just write 'msg<number>'.
    # DO NOT use the same number on multiple messages!
-   # Remove the '#' in front of the messages when you want to enable them!
+   # ALWAYS use '' outside a message! 
+   # Remove the '#' in front of the msg<number> when you want to enable them!
    
-   #msg1: Remove the '#' in front of this msg to enable it!
-   #msg2: You can add how many msgs as you want!
-   #msg3: §dYou can also use colorcodes! §aThis is GREEN §cThis is RED
+   #msg1: 'Remove the '#' in front of this msg to enable it!'
+   #msg2: 'You can add how many msgs as you want!'
+   #msg3: '&dYou can also use colorcodes! §aThis is GREEN §cThis is RED'
+   #msg4: 'Remember to alsways use '' outside the message!'
    
    
-   
-   # Have any questions? Contact me on http://tiny.cc/simpleautomessage-irc
+   # Have any questions? Post a comment on http://dev.bukkit.org/bukkit-plugins/simpleautomessage/
+   # You can also contact me on http://tiny.cc/simpleautomessage-irc
    # END OF CONFIG.YML! :)

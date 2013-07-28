@@ -2,13 +2,11 @@ package com.carlgo11.simpleautomessage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,8 +20,9 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
         this.reloadConfig();
-        if(!getConfig().contains("auto-update")){
-            
+        if (!getConfig().contains("auto-update")) {
+            this.getLogger().info("Config.yml outdated! Creating a new one.");
+            this.saveDefaultConfig();
         }
         checkVersion();
         Time();
@@ -55,7 +54,7 @@ public class Main extends JavaPlugin {
                 System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
             }
         } else {
-           
+
             System.out.println("[" + getDescription().getName() + "] out-put is set to false! The creator won't get information about this plugin!");
         }
     }
@@ -64,7 +63,7 @@ public class Main extends JavaPlugin {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
             this.saveDefaultConfig();
-            System.out.println("[SimpleAutoMessage] No config.yml detected, config.yml created");
+            System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
     }
 
@@ -87,7 +86,7 @@ public class Main extends JavaPlugin {
                         // this.reloadConfig();
                         getServer().getPluginManager().disablePlugin(this);
                         getServer().getPluginManager().enablePlugin(this);
-                        sender.sendMessage(plainprefix + ChatColor.GREEN + "SimpleAutoMessage reloaded!");
+                        sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(plainprefix) + ChatColor.GREEN + "SimpleAutoMessage reloaded!");
                     } else {
                         sender.sendMessage(badperm);
                     }
@@ -130,33 +129,21 @@ public class Main extends JavaPlugin {
                 }
                 String prefixToSend = getConfig().getString("Prefix");
                 String prefixToMC = ChatColor.translateAlternateColorCodes('&', prefixToSend);
-                String prefixToConsole = ChatColor.translateAlternateColorCodes('&', prefixToSend);
 
                 if (getConfig().contains("msg" + tick)) {
                     String messageToSend = getConfig().getString("msg" + tick);
                     String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
-                    String msgToConsole = ChatColor.translateAlternateColorCodes('&', messageToSend);
-                    getServer().broadcast("[" + prefixToMC + "]  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
-
-                    if (getConfig().getBoolean("show-in-console") == true) {
-                        System.out.println(ChatColor.stripColor(prefixToConsole) + "  " + msgToConsole);
-                    }
+                    getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                     tick++;
                 } else {
-
                     debugmsg = "no msg" + tick + " set in the config. calling msg1 instead.";
                     onDebug();
 
-
                     if (getConfig().contains("msg1")) {
-                        
+
                         String messageToSend = getConfig().getString("msg1");
                         String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
-                        String msgToConsole = ChatColor.translateAlternateColorCodes('&', messageToSend);
-                        getServer().broadcast("[" + prefixToMC + "]  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
-                        if (getConfig().getBoolean("show-in-console") == true) {
-                            System.out.println(ChatColor.stripColor(prefixToConsole) + "  " + msgToConsole);
-                        }
+                        getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                         tick = 2;
                     } else {
                         System.out.println(getConfig().getString("Prefix") + " Error: No msg1 set in the config.yml!");
