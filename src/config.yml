@@ -1,5 +1,5 @@
    # Config for SimpleAutoMessage
-   # SimpleAutoMessage was made by Carlgo11 
+   # SimpleAutoMessage is a Bukkit plugin created by Carlgo11.
    # http://youtube.com/Carlgo11
    #
    # COLORS:
@@ -23,7 +23,7 @@
    
    # Time is the time between each message.
    # TIME SHOULD BE IN SECONDS!
-   time: 300
+   Time: 10
    
    # Messages:
    # Below are the messages that will be broadcasted.
@@ -33,7 +33,7 @@
    
    #msg1: Remove the '#' in front of this msg to enable it!
    #msg2: You can add how many msgs as you want!
-   #msg3: Replace this message with your own!
+   #msg3: §dYou can also use colorcodes! §aThis is GREEN §cThis is RED
    
    
    

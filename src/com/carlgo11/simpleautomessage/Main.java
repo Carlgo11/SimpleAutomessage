@@ -39,7 +39,11 @@ public class Main extends JavaPlugin {
 
     public void checkVersion() {
         if (getConfig().getBoolean("auto-update") == true) {
+            debugmsg = "Calling Updater.java";
+            this.onDebug();
             Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.DEFAULT, true);
+        } else {
+            debugmsg = "auto-update: is set to false!";
         }
     }
 
@@ -99,8 +103,16 @@ public class Main extends JavaPlugin {
 
     @EventHandler
     public void Time() {
-        time = getConfig().getInt("time");
-        time *= 20;
+        time = getConfig().getInt("Time");
+        if (getConfig().contains("Time-setup")) {
+            debugmsg = "Time-setup: string found!";
+            onDebug();
+            if (getConfig().getString("Time-setup").equalsIgnoreCase("sec")) {
+                time *= 20;
+            }
+        } else {
+            time *= 20;
+        }
         debugmsg = "time: " + time;
         onDebug();
     }
@@ -118,16 +130,17 @@ public class Main extends JavaPlugin {
                 }
                 String prefixtomc = getConfig().getString("Prefix").toString();
                 String prefixtoconsole = getConfig().getString("Prefix").toString();
-                if(getConfig().getString("Prefix").contains("Â")){
-                prefixtomc.replaceAll("Â", "");
-                prefixtoconsole.replaceAll("Â", "");
+                if (getConfig().getString("Prefix").contains("Â")) {
+                    System.out.println("contains Â");
+                    prefixtomc.replaceAll("Â", "");
+                    prefixtoconsole.replaceAll("Â", "");
                 }
                 if (getConfig().contains("msg" + tick)) {
                     String msgtomc = getConfig().getString("msg" + tick).toString();
                     String msgtoconsole = getConfig().getString("msg" + tick).toString();
-                    if(getConfig().getString("msg"+tick).contains("Â")){
-                    msgtomc.replaceAll("Â", "");
-                    msgtoconsole.replaceAll("Â", "");
+                    if (getConfig().getString("msg" + tick).contains("Â")) {
+                        msgtomc.replaceAll("Â", "");
+                        msgtoconsole.replaceAll("Â", "");
                     }
                     for (Player p : Bukkit.getOnlinePlayers()) {
 
@@ -141,15 +154,18 @@ public class Main extends JavaPlugin {
                     }
                     tick++;
                 } else {
+
                     debugmsg = "no msg" + tick + " set in the config. calling msg1 instead.";
                     onDebug();
-                    String msgtomc = getConfig().getString("msg1").toString();
-                    String msgtoconsole = getConfig().getString("msg1").toString();
-                    if(getConfig().getString("msg1").contains("Â")){
-                    msgtomc.replaceAll("Â", "");
-                    msgtoconsole.replaceAll("Â", "");
-                    }
+
+
                     if (getConfig().contains("msg1")) {
+                        String msgtomc = getConfig().getString("msg1").toString();
+                        String msgtoconsole = getConfig().getString("msg1").toString();
+                        if (getConfig().getString("msg1").contains("Â")) {
+                            msgtomc.replaceAll("Â", "");
+                            msgtoconsole.replaceAll("Â", "");
+                        }
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             if (p.hasPermission("SimpleAutoMessage.seemsg")) {
                                 p.sendMessage("[" + prefixtomc + "]  " + ChatColor.RESET + msgtomc);
