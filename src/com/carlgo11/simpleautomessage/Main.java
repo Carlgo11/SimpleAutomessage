@@ -20,10 +20,6 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         this.getLogger().info(getDescription().getName() + getDescription().getVersion() + " is enabled!");
         this.reloadConfig();
-        if (!getConfig().contains("auto-update")) {
-            this.getLogger().info("Config.yml outdated! Creating a new one.");
-            this.saveDefaultConfig();
-        }
         checkVersion();
         Time();
         Broadcast();
@@ -65,16 +61,26 @@ public class Main extends JavaPlugin {
             this.saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
+//        if (getConfig().contains("version")) { Not needed at the moment. I'll see if I want to use this later on.
+//            if (getConfig().getString("version").equals(getDescription().getVersion())) {
+//            } else {
+//                this.getLogger().warning("Config.yml outdated! creating a new one!");
+//                this.saveDefaultConfig();
+//            }
+//        } else {
+//            this.getLogger().warning("Could not find a version strin in the config! config.yml will be reset to default!");
+//            this.saveDefaultConfig();
+//        }
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        String plainprefix = getConfig().getString("Prefix").toString().replaceAll("Â", "");
-        String prefix = "[" + plainprefix + "]  ";
+        String prefixToSend = getConfig().getString("prefix");
+        String prefix = ChatColor.translateAlternateColorCodes('&', prefixToSend);
         String badperm = prefix + ChatColor.RED + "Error: You don't have permission to use that command!";
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
                 if (sender.hasPermission("SimpleAutoMessage.cmd.main") || sender.hasPermission("SimpleAutoMessage.cmd.*")) {
-                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + plainprefix + ChatColor.GREEN + " ======== ");
+                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + prefix + ChatColor.GREEN + " ======== ");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + " Shows the commands");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + " Reloads the config.yml");
                 } else {
@@ -86,15 +92,15 @@ public class Main extends JavaPlugin {
                         // this.reloadConfig();
                         getServer().getPluginManager().disablePlugin(this);
                         getServer().getPluginManager().enablePlugin(this);
-                        sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(plainprefix) + ChatColor.GREEN + "SimpleAutoMessage reloaded!");
+                        sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(prefix) + ChatColor.GREEN + "SimpleAutoMessage reloaded!");
                     } else {
                         sender.sendMessage(badperm);
                     }
                 } else {
-                    sender.sendMessage(plainprefix + ChatColor.RED + "Error: Unknown command!");
+                    sender.sendMessage(prefix + ChatColor.RED + "Error: Unknown command!");
                 }
             } else if (args.length > 1) {
-                sender.sendMessage(plainprefix + ChatColor.RED + "Error: Unknown command!");
+                sender.sendMessage(prefix + ChatColor.RED + "Error: Unknown command!");
             }
         }
         return true;
@@ -102,7 +108,11 @@ public class Main extends JavaPlugin {
 
     @EventHandler
     public void Time() {
-        time = getConfig().getInt("Time");
+        if (!getConfig().contains("time")) {
+            debugmsg = "No time string found!";
+            onDebug();
+        }
+        time = getConfig().getInt("time");
         if (getConfig().contains("Time-setup")) {
             debugmsg = "Time-setup: string found!";
             onDebug();
@@ -127,7 +137,7 @@ public class Main extends JavaPlugin {
                     debugmsg = "time: " + d;
                     onDebug();
                 }
-                String prefixToSend = getConfig().getString("Prefix");
+                String prefixToSend = getConfig().getString("prefix");
                 String prefixToMC = ChatColor.translateAlternateColorCodes('&', prefixToSend);
 
                 if (getConfig().contains("msg" + tick)) {
@@ -146,7 +156,7 @@ public class Main extends JavaPlugin {
                         getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                         tick = 2;
                     } else {
-                        System.out.println(getConfig().getString("Prefix") + " Error: No msg1 set in the config.yml!");
+                        System.out.println(ChatColor.stripColor(prefixToMC) + " Error: No msg1 set in the config.yml! ");
                     }
                 }
             }

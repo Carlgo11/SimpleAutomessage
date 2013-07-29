@@ -1,11 +1,27 @@
+   ############################################################
+   # +------------------------------------------------------+ #
+   # |                       Notes                          | #
+   # +------------------------------------------------------+ #
+   ############################################################
    # Config for SimpleAutoMessage
    # SimpleAutoMessage is a Bukkit plugin created by Carlgo11.
    # http://youtube.com/Carlgo11
-   #
+   
    # COLORS:
-   # When adding colors use the minecraft colorcodes and replace the '&' with a '§'.
+   # When adding colors use the minecraft colorcodes.
    # Example: &a = green, &d = purple.
    
+   # When this config.yml is broken it's often because of the msg strings! ALWAYS USE '' AROUND A MESSAGE!
+   # Example: msg1: 'This is an example' 
+   
+   #Don't Change the version! If version is changed this config.yml will be deleted!
+   version: 1.0.3
+   
+   ############################################################
+   # +------------------------------------------------------+ #
+   # |                       Settings                       | #
+   # +------------------------------------------------------+ #
+   ############################################################
    # Do you want to automatically get updates and bug-fixes when available?
    auto-update: true
    
@@ -16,22 +32,27 @@
    debug: false
    
    # Prefix is the nick that will show up as the sender.
-   Prefix: §d[Server]
+   prefix: '&d[Server]'
    
    # Time is the time between each message.
    # TIME SHOULD BE IN SECONDS!
-   Time: 10
+   time: 10
    
-   # Messages:
+   ############################################################
+   # +------------------------------------------------------+ #
+   # |                       Messages                       | #
+   # +------------------------------------------------------+ #
+   ############################################################
+   # MESSAGES:
    # Below are the messages that will be broadcasted.
    # To add more messages just write 'msg<number>'.
    # DO NOT use the same number on multiple messages!
    # ALWAYS use '' outside a message! 
-   # Remove the '#' in front of the msg<number> when you want to enable them!
+   # Remove the '#' in front of the msg<number> when you want to enable it!
    
-   #msg1: 'Remove the '#' in front of this msg to enable it!'
+   #msg1: 'Remove the "#" in front of this msg to enable it!'
    #msg2: 'You can add how many msgs as you want!'
-   #msg3: '&dYou can also use colorcodes! §aThis is GREEN §cThis is RED'
+   #msg3: '&dYou can also use colorcodes! &aThis is GREEN &cAnd this is RED'
    #msg4: 'Remember to alsways use '' outside the message!'
    
    
