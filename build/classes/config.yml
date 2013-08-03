@@ -25,9 +25,6 @@
    # Do you want to automatically get updates and bug-fixes when available?
    auto-update: true
    
-   # Debug is good to enable if you need some help with SimpleAutoMessage. Set debug to 'true' restart your server and let it run for 10 minutes. Then pastie the server.log and config to us in a ticket.
-   debug: false
-   
    # Prefix is the nick that will show up as the sender.
    prefix: '&d[Server]'
    
