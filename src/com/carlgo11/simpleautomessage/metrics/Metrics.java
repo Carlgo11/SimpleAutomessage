@@ -1,4 +1,4 @@
-package com.carlgo11.simpleautomessage;
+package com.carlgo11.simpleautomessage.metrics;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;

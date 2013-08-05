@@ -4,7 +4,7 @@
  * This class provides the means to safetly and easily update a plugin, or check to see if it is updated using dev.bukkit.org
  */
 
-package com.carlgo11.simpleautomessage;
+package com.carlgo11.simpleautomessage.updater;
 
 import java.io.*;
 import java.lang.IllegalThreadStateException;

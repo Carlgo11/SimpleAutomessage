@@ -1,7 +1,10 @@
 package com.carlgo11.simpleautomessage;
 
+import com.carlgo11.simpleautomessage.updater.Updater;
+import com.carlgo11.simpleautomessage.metrics.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,17 +45,15 @@ public class Main extends JavaPlugin {
     }
 
     public void checkMetrics() {
-        if (!getConfig().getBoolean("out-put") == true) {
-            try {
-                Metrics metrics = new Metrics(this);
-                metrics.start();
-            } catch (IOException e) {
-                System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
-            }
-        } else {
-
-            System.out.println("[" + getDescription().getName() + "] out-put is set to false! The creator won't get information about this plugin!");
+        try {
+            Metrics metrics = new Metrics(this);
+            graph1(metrics);
+            metrics.start();
+        } catch (IOException e) {
+            System.out.println("[" + getDescription().getName() + "] Error Submitting stats!");
         }
+
+
     }
 
     public void checkConfig() {
@@ -61,16 +62,6 @@ public class Main extends JavaPlugin {
             this.saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] No config.yml detected, config.yml created");
         }
-//        if (getConfig().contains("version")) { Not needed at the moment. I'll see if I want to use this later on.
-//            if (getConfig().getString("version").equals(getDescription().getVersion())) {
-//            } else {
-//                this.getLogger().warning("Config.yml outdated! creating a new one!");
-//                this.saveDefaultConfig();
-//            }
-//        } else {
-//            this.getLogger().warning("Could not find a version strin in the config! config.yml will be reset to default!");
-//            this.saveDefaultConfig();
-//        }
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -107,7 +98,7 @@ public class Main extends JavaPlugin {
     }
 
     @EventHandler
-    public void Time() {
+    public void Time() { // Time string method. checks the delay between each message.
         if (!getConfig().contains("time")) {
             debugmsg = "No time string found!";
             onDebug();
@@ -127,7 +118,7 @@ public class Main extends JavaPlugin {
     }
 
     @EventHandler
-    public void Broadcast() {
+    public void Broadcast() { // Broadcast method
         final long d = (long) (time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
             public void run() {
@@ -163,14 +154,44 @@ public class Main extends JavaPlugin {
         }, d, d);
     }
 
-    public void onError() {
+    public void onError() { // Sends error msg to console and disables the plugin.
         Main.logger.warning("[SimpleAutoMessage] Error acurred! Plugin disabeled!");
         Bukkit.getPluginManager().disablePlugin(this);
     }
 
-    public void onDebug() {
+    public void onDebug() { // Debug message method
         if (getConfig().getBoolean("debug") == true) {
             Main.logger.info("[SimpleAutoMessage] " + debugmsg);
+        }
+    }
+
+    public void graph1(Metrics metrics) { // Custom Graph. Sends msg string data to mcstats.org
+
+        Metrics.Graph graph = metrics.createGraph("Messages");
+        graph.addPlotter(new SimplePlotter("Messages") {
+            @Override
+            public int getValue() {
+                int o = 0;
+                for (int i = 1; getConfig().contains("msg" + i); i++) {
+                    o = i;
+                }
+                debugmsg = "Metrics data sent";
+                onDebug();
+                return o;
+            }
+        });
+        metrics.start();
+    }
+
+    public class SimplePlotter extends Metrics.Plotter {
+
+        public SimplePlotter(final String name) {
+            super(name);
+        }
+
+        @Override
+        public int getValue() {
+            return 1;
         }
     }
 }
