@@ -22,6 +22,9 @@
    # |                       Settings                       | #
    # +------------------------------------------------------+ #
    ############################################################
+   # Add description?
+   debug: false
+   
    # Do you want to automatically get updates and bug-fixes when available?
    auto-update: true
    

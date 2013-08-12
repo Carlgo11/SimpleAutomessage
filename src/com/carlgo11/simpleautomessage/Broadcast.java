@@ -1,0 +1,56 @@
+package com.carlgo11.simpleautomessage;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+
+public class Broadcast implements Listener {
+
+    Main plugin;
+
+    public Broadcast(Main plug) {
+        super();
+        this.plugin = plug;
+        broadcast();
+    }
+   /* public Broadcast(){
+        broadcast();
+    }*/
+
+        public void broadcast() {
+        final long d = (long) (plugin.time);
+        Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
+            public void run() {
+                if (plugin.getConfig().getBoolean("debug") == true) {
+                    plugin.debugmsg = "tick: " + plugin.tick;
+                    plugin.onDebug();
+                    plugin.debugmsg = "time: " + d;
+                    plugin.onDebug();
+                }
+                String prefixToSend = plugin.getConfig().getString("prefix");
+                String prefixToMC = ChatColor.translateAlternateColorCodes('&', prefixToSend);
+
+                if (plugin.getConfig().contains("msg" + plugin.tick)) {
+                    String messageToSend = plugin.getConfig().getString("msg" + plugin.tick);
+                    String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                    plugin.getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
+                    plugin.tick++;
+                } else {
+                    plugin.debugmsg = "no msg" + plugin.tick + " set in the config. calling msg1 instead.";
+                    plugin.onDebug();
+
+                    if (plugin.getConfig().contains("msg1")) {
+
+                        String messageToSend = plugin.getConfig().getString("msg1");
+                        String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                        plugin.getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
+                        plugin.tick = 2;
+                    } else {
+                        System.out.println(ChatColor.stripColor(prefixToMC) + " Error: No msg1 set in the config.yml! ");
+                    }
+                }
+            }
+        }, d, d);
+    }
+}
