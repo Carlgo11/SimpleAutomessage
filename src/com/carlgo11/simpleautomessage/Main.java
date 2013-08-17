@@ -74,19 +74,14 @@ public class Main extends JavaPlugin {
 
     public void graph1(Metrics metrics) { // Custom Graph. Sends msg string data to mcstats.org
         try {
-            Metrics.Graph graph = metrics.createGraph("Messages");
-            graph.addPlotter(new SimplePlotter("msg") {
-                @Override
-                public int getValue() {
-                    int o = 0;
-                    for (int i = 1; getConfig().contains("msg" + i); i++) {
-                        o = i;
-                    }
-                    debugmsg = "Metrics data sent";
-                    onDebug();
-                    return o;
-                }
-            });
+            Metrics.Graph graph1 = metrics.createGraph("Messages");
+            int o = 0;
+            for (int i = 1; getConfig().contains("msg"+i); i++){
+            o = i;
+            }
+            graph1.addPlotter(new SimplePlotter(o+""));
+            debugmsg = "Metrics sent!";
+            onDebug();
             metrics.start();
         } catch (Exception e) {
             this.getLogger().warning(e.getMessage());
