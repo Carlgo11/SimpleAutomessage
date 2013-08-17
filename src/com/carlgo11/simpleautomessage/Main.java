@@ -84,7 +84,6 @@ public class Main extends JavaPlugin {
                     }
                     debugmsg = "Metrics data sent";
                     onDebug();
-                    System.out.println("o: " + o);
                     return o;
                 }
             });
