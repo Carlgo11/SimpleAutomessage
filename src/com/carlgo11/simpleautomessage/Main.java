@@ -35,10 +35,13 @@ public class Main extends JavaPlugin {
 
     public void checkVersion() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(getDescription().getVersion().startsWith("dev-")){
             this.getLogger().warning("You are using a development build! Keep in mind development builds might contain bugs!");
             this.getLogger().warning("If you want a fully working version please use a recommended build!");
         }
+=======
+>>>>>>> b1a9fb513bea8ef7836725adfc5b50d7d5ea4044
 =======
 >>>>>>> b1a9fb513bea8ef7836725adfc5b50d7d5ea4044
         if (getConfig().getBoolean("auto-update") == true) {
