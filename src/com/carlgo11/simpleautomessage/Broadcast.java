@@ -1,5 +1,6 @@
 package com.carlgo11.simpleautomessage;
 
+import com.carlgo11.simpleautomessage.language.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -14,11 +15,11 @@ public class Broadcast implements Listener {
         this.plugin = plug;
         broadcast();
     }
-   /* public Broadcast(){
-        broadcast();
-    }*/
+    /* public Broadcast(){
+     broadcast();
+     }*/
 
-        public void broadcast() {
+    public void broadcast() {
         final long d = (long) (plugin.time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
             public void run() {
@@ -41,13 +42,13 @@ public class Broadcast implements Listener {
                     plugin.onDebug();
 
                     if (plugin.getConfig().contains("msg1")) {
-
                         String messageToSend = plugin.getConfig().getString("msg1");
                         String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                         plugin.getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                         plugin.tick = 2;
                     } else {
-                        System.out.println(ChatColor.stripColor(prefixToMC) + " Error: No msg1 set in the config.yml! ");
+                        System.out.println(ChatColor.stripColor(prefixToMC) + " Error: " + Lang.NO_MSG1);
+
                     }
                 }
             }
