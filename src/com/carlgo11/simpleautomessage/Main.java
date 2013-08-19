@@ -25,7 +25,7 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
         this.reloadConfig();
-        loadLang();
+        getServer().getPluginManager().registerEvents(new loadLang(this), this);
         getServer().getPluginManager().registerEvents(new Time(this), this);
         checkVersion();
         checkConfig();
@@ -71,44 +71,7 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void loadLang() {
-        File lang = new File(getDataFolder(), "lang.yml");
-        if (!lang.exists()) {
-            try {
-                getDataFolder().mkdir();
-                lang.createNewFile();
-                InputStream defConfigStream = this.getResource("lang.yml");
-                if (defConfigStream != null) {
-                    YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-                    defConfig.save(lang);
-                    Lang.setFile(defConfig);
-                    return;
-                }
-            } catch (IOException e) {
-                e.printStackTrace(); 
-                this.getLogger().warning("["+getDescription().getName()+"] "+"Couldn't create language file.");
-                this.getLogger().warning("["+getDescription().getName()+"] "+"This is a fatal error. Now disabling");
-                this.setEnabled(false); // Without it loaded, we can't send them messages
-            }
-        }
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(lang);
-        for (Lang item : Lang.values()) {
-            if (conf.getString(item.getPath()) == null) {
-                conf.set(item.getPath(), item.getDefault());
-            }
-        }
-        Lang.setFile(conf);
-        Main.LANG = conf;
-        Main.LANG_FILE = lang;
-        try {
-            conf.save(getLangFile());
-        } catch (IOException e) {
-            this.getLogger().warning("["+getDescription().getName()+"] "+"Failed to save lang.yml.");
-            this.getLogger().warning("["+getDescription().getName()+"] "+"Report this stack trace to <your name>.");
-            e.printStackTrace();
-        }
-
-    }
+    
 
     public YamlConfiguration getLang() {
         return LANG;

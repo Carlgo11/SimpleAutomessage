@@ -22,6 +22,9 @@
    # |                       Settings                       | #
    # +------------------------------------------------------+ #
    ############################################################
+   # You can set an translation or make a own.
+   language: EN
+   
    # Add description?
    debug: false
    
