@@ -22,7 +22,9 @@
    # |                       Settings                       | #
    # +------------------------------------------------------+ #
    ############################################################
+   
    # You can set an translation or make a own.
+   # There's currently EN, NL, FR, SE translations. If you want to help us translate to your language please contact us via our IRC!
    language: EN
    
    # Add description?

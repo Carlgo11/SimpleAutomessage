@@ -1,9 +1,0 @@
-# EN translation file for SimpleAutoMessage
-plugin-enabled: is enabled!
-plugin-disabled: is disabled!
-mcstats-error: Error Submitting stats!
-no-config: No config.yml detected, config.yml created
-bad-perms: You don't have permission to use that command!
-plugin-reloaded: SimpleAutoMessage reloaded!
-unknown-command: Unknown command!
-no-msg1: No msg1 set in the config.yml!

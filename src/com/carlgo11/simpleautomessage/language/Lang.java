@@ -6,7 +6,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public enum Lang {
-    PREFIX("prefix", "[SimpleAutoMessage]"),
+    
+    PREFIX("prefix", "§f§r[SimpleAutoMessage]"),
     ENABLED("plugin-enabled", "is enabled!"),
     DISABLED("plugin-disabled", "is disabled!"),
     CALLUPDATE("call-update", "Calling Updater.java"),

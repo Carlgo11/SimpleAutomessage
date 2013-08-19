@@ -25,18 +25,18 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
         this.reloadConfig();
-        getServer().getPluginManager().registerEvents(new loadLang(this), this);
         getServer().getPluginManager().registerEvents(new Time(this), this);
         checkVersion();
         checkConfig();
         checkMetrics();
+        getServer().getPluginManager().registerEvents(new loadLang(this), this);
         getCommand("simpleautomessage").setExecutor(new SimpleautomessageCommand(this));
         getServer().getPluginManager().registerEvents(new Broadcast(this), this);
-        this.getLogger().info(getDescription().getName() + getDescription().getVersion() + Lang.ENABLED);
+        this.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
     }
 
     public void onDisable() {
-        this.getLogger().info(getDescription().getName() + getDescription().getVersion() + Lang.DISABLED);
+        this.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.DISABLED);
     }
 
     public void checkVersion() {
@@ -67,11 +67,14 @@ public class Main extends JavaPlugin {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
             this.saveDefaultConfig();
-            System.out.println("[" + getDescription().getName() + "] "+Lang.NO_CONFIG);
+            File locale = new File(this.getDataFolder() + "/language");
+            if (locale.exists()) {
+                System.out.println("[" + getDescription().getName() + "] " + Lang.NO_CONFIG);
+            } else {
+                System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
+            }
         }
     }
-
-    
 
     public YamlConfiguration getLang() {
         return LANG;
@@ -91,29 +94,43 @@ public class Main extends JavaPlugin {
             Main.logger.info("[SimpleAutoMessage] " + debugmsg);
         }
     }
-
     public void graphs(Metrics metrics) { // Custom Graphs. Sends data to mcstats.org
         try {
             //Graph1
-            Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the user has.
+            Metrics.Graph graph1 = metrics.createGraph("auto-update"); //Sends data about how many msg strings the user has.
             int o = 0;
             for (int i = 1; getConfig().contains("msg" + i); i++) {
                 o = i;
             }
             graph1.addPlotter(new SimplePlotter(o + ""));
 
-            //Graph2
+            //graph2
             Metrics.Graph graph2 = metrics.createGraph("auto-update"); //Sends auto-update data. if auto-update: is true it returns 'enabled'.
             if (getConfig().getBoolean("auto-update") == true) {
                 graph2.addPlotter(new SimplePlotter("enabled"));
             } else {
                 graph2.addPlotter(new SimplePlotter("disabled"));
             }
+
+            //Graph3
+            Metrics.Graph graph3 = metrics.createGraph("language");
+            if (getConfig().getString("language").equalsIgnoreCase("EN") || getConfig().getString("language").isEmpty()) {
+                graph3.addPlotter(new SimplePlotter("English"));
+            }
+            if (getConfig().getString("language").equalsIgnoreCase("FR")) {
+                graph3.addPlotter(new SimplePlotter("French"));
+            }
+            if (getConfig().getString("language").equalsIgnoreCase("NL")) {
+                graph3.addPlotter(new SimplePlotter("Dutch"));
+            }
+            if (getConfig().getString("language").equalsIgnoreCase("SE")) {
+                graph3.addPlotter(new SimplePlotter("Swedish"));
+            }
             debugmsg = "Metrics sent!";
             onDebug();
             metrics.start();
         } catch (Exception e) {
-            this.getLogger().warning(e.getMessage());
+            Main.logger.warning(e.getMessage());
         }
     }
 
@@ -128,4 +145,6 @@ public class Main extends JavaPlugin {
             return 1;
         }
     }
+
+    
 }

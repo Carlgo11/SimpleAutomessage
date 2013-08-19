@@ -47,7 +47,7 @@ public class Broadcast implements Listener {
                         plugin.getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                         plugin.tick = 2;
                     } else {
-                        System.out.println(ChatColor.stripColor(prefixToMC) + " Error: " + Lang.NO_MSG1);
+                        System.out.println(ChatColor.stripColor(prefixToMC) + " " + Lang.NO_MSG1);
 
                     }
                 }

@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class Time implements Listener {
+
     Main plugin;
 
     public Time(Main plug) {
@@ -34,5 +35,4 @@ public class Time implements Listener {
      * 
      * Time() checks the time int and sets transfers the delay into seconds. Then returns the value to the Main.time int.
      */
-    
 }
