@@ -94,6 +94,7 @@ public class Main extends JavaPlugin {
             Main.logger.info("[SimpleAutoMessage] " + debugmsg);
         }
     }
+
     public void graphs(Metrics metrics) { // Custom Graphs. Sends data to mcstats.org
         try {
             //Graph1
@@ -145,6 +146,4 @@ public class Main extends JavaPlugin {
             return 1;
         }
     }
-
-    
 }

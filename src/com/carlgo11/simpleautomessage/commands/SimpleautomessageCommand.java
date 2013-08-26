@@ -25,16 +25,16 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + " Shows the commands");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + " Reloads the config.yml");
                 } else {
-                    sender.sendMessage(Lang.BAD_PERMS+"");
+                    sender.sendMessage(Lang.BAD_PERMS + "");
                 }
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("SimpleAutoMessage.cmd.reload")) {
                         plugin.getServer().getPluginManager().disablePlugin(plugin);
                         plugin.getServer().getPluginManager().enablePlugin(plugin);
-                        sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(prefix) + " " + Lang.PL_RELOADED);
+                        sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(prefix) + ChatColor.GREEN + " " + Lang.PL_RELOADED);
                     } else {
-                        sender.sendMessage(Lang.BAD_PERMS+"");
+                        sender.sendMessage(Lang.BAD_PERMS + "");
                     }
                 } else {
                     sender.sendMessage(prefix + " " + Lang.UNKNOWN_CMD);

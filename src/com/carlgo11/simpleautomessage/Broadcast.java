@@ -15,9 +15,6 @@ public class Broadcast implements Listener {
         this.plugin = plug;
         broadcast();
     }
-    /* public Broadcast(){
-     broadcast();
-     }*/
 
     public void broadcast() {
         final long d = (long) (plugin.time);
@@ -54,4 +51,9 @@ public class Broadcast implements Listener {
             }
         }, d, d);
     }
+    /* What does this do? 
+     * 
+     * This class sends the broadcast messages.
+     * 
+     */
 }
