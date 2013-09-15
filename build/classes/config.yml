@@ -30,15 +30,15 @@
    # Add description?
    debug: false
    
-   # Do you want to automatically get updates and bug-fixes when available?
+   # Automatically download patches and bug-fixes?
    auto-update: true
    
-   # Prefix is the nick that will show up as the sender.
+   # The name that will broadcast the messages.
    prefix: '&d[Server]'
    
    # Time is the time between each message.
    # TIME SHOULD BE IN SECONDS!
-   time: 10
+   time: 20
    
    ############################################################
    # +------------------------------------------------------+ #

@@ -3,7 +3,6 @@ package com.carlgo11.simpleautomessage;
 import com.carlgo11.simpleautomessage.language.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class Broadcast implements Listener {
@@ -15,8 +14,11 @@ public class Broadcast implements Listener {
         this.plugin = plug;
         broadcast();
     }
+    int errormaxmsgs = 5;
+    int errormsgs = 0;
 
     public void broadcast() {
+
         final long d = (long) (plugin.time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
             public void run() {
@@ -44,7 +46,10 @@ public class Broadcast implements Listener {
                         plugin.getServer().broadcast("" + prefixToMC + "  " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                         plugin.tick = 2;
                     } else {
-                        System.out.println(ChatColor.stripColor(prefixToMC) + " " + Lang.NO_MSG1);
+                        if (errormsgs != errormaxmsgs) {
+                            System.out.println(ChatColor.stripColor(prefixToMC) + " " + Lang.NO_MSG1);
+                            errormsgs++;
+                        }
 
                     }
                 }

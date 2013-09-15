@@ -2,15 +2,14 @@ package com.carlgo11.simpleautomessage;
 
 import com.carlgo11.simpleautomessage.commands.SimpleautomessageCommand;
 import com.carlgo11.simpleautomessage.updater.Updater;
-import com.carlgo11.simpleautomessage.metrics.*;
 import com.carlgo11.simpleautomessage.language.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.Metrics;
 
 public class Main extends JavaPlugin {
 
