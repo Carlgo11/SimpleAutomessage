@@ -1,7 +1,6 @@
 # Dutch translation for SimpleAutoMessage
 plugin-enabled: 'is ingeschakeld!'
 plugin-disabled: 'is uitgeschakeld!'
-mcstats-error: 'fout met het indienen van de statistieken!'
 no-config: 'Geen config.yml gevonden, Config,yml aangemaakt.'
 bad-perms: "&cError: je hebt geen toestemming voor deze command!"
 plugin-reloaded: '&aSimpleAutoMessage is geladen!'

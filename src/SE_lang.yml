@@ -1,7 +1,6 @@
 # SWEDISH translation for SimpleAutoMessage
 plugin-enabled: 'är aktiverat!'
 plugin-disabled: 'är inaktiverat!'
-mcstats-error: 'Ett fel inträffade! Kunde inte skicka stats!'
 no-config: 'Ingen config.yml upptäckt, skapar config.yml.'
 bad-perms: "&cFel: Du har inte behörighet för att använda det kommandot!"
 plugin-reloaded: '&aSimpleAutoMessage omladdad!'
