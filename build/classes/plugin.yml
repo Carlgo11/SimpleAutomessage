@@ -1,11 +1,11 @@
 name: SimpleAutomessage
 main: com.carlgo11.simpleautomessage.Main
-version: dev-(1.0.5).0
+version: dev-(1.0.5).1
 description: Auto-announcer plugin
 author: Carlgo11
 commands:
    SimpleAutomessage:
-     aliases: [AutoMessage, Simplemsg]
+     aliases: [AutoMessage, Simplemsg, automsg]
      description: Main command of SimpleAutoMessage.
      
 permissions:

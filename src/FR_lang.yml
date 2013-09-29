@@ -1,6 +1,7 @@
 # FRENCH translation for SimpleAutoMessage
 plugin-enabled: 'est activé!'
 plugin-disabled: 'est désactivé!'
+mcstats-error: 'Erreur pendant la soumission des statistiques'
 no-config: 'Pas de config.yml détecté, config.yml crée.'
 bad-perms: "&cErreur: Vous n'avez pas la permission d'utiliser cette commande!"
 plugin-reloaded: '&aSimpleAutoMessage rechargé!'

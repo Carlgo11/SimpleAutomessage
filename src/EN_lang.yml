@@ -1,6 +1,7 @@
 # ENGLISH translation for SimpleAutoMessage
 plugin-enabled: 'is enabled!'
 plugin-disabled: 'is disabled!'
+mcstats-error: 'Error Submitting stats!'
 no-config: 'No config.yml detected, config.yml created.'
 bad-perms: "&cError: You don't have permission to use that command!"
 plugin-reloaded: '&aSimpleAutoMessage reloaded!'

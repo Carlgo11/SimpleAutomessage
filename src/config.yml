@@ -14,8 +14,8 @@
    # When this config.yml is broken it's often because of the msg strings! ALWAYS USE '' AROUND A MESSAGE!
    # Example: msg1: 'This is an example' 
    
-   #Don't Change the version! If version is changed this config.yml will be deleted!
-   version: 1.0.4
+   #Don't Change the version! If the version is changed this config.yml will be deleted!
+   version: 1.0.5
    
    ############################################################
    # +------------------------------------------------------+ #
@@ -33,8 +33,17 @@
    # Automatically download patches and bug-fixes?
    auto-update: true
    
-   # The name that will broadcast the messages.
-   prefix: '&d[Server]'
+   # The minimal amount of players that has to be online for a message to broadcast.
+   min-players: 0
+   
+   # The the sender.
+   sender: '&d[Server]&r '
+   
+   # The prefix of the sender.
+   prefix: ''
+      
+   # The suffix of the sender.
+   suffix: ''
    
    # Time is the time between each message.
    # TIME SHOULD BE IN SECONDS!
@@ -54,7 +63,7 @@
    
    #msg1: 'Remove the "#" in front of this msg to enable it!'
    #msg2: 'You can add how many msgs as you want!'
-   #msg3: '&dYou can also use colorcodes! &aThis is GREEN &cAnd this is RED'
+   #msg3: '&dYou can also use colorcodes! &aThis is GREEN &cand this is RED'
    #msg4: 'Remember to alsways use '' outside the message!'
    
    
