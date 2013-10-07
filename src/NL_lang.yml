@@ -2,10 +2,12 @@
 plugin-enabled: 'is ingeschakeld!'
 plugin-disabled: 'is uitgeschakeld!'
 mcstats-error: 'fout met het indienen van de statistieken!'
-no-config: 'Geen config.yml gevonden, Config,yml aangemaakt.'
 bad-perms: "&cError: je hebt geen toestemming voor deze command!"
 plugin-reloaded: '&aSimpleAutoMessage is geladen!'
 unknown-command: '&cError: Unknown command!'
 no-msg1: 'Error: geen msg1 ingesteld in de config.yml! '
+simplemsg-main: ' Laat de commands zien'
+simplemsg-reload: ' Herlaad de config.yml'
+simplemsg-list: ' Lijst van alle actieve berichten'
 # Vertaalt van het engels door Grayhutner4. || Translated from English by Grayhunter4.
 # This text might contain typos. Please inform us if you find a typo!

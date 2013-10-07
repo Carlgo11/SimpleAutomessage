@@ -17,15 +17,19 @@ public class SimpleautomessageCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        String senderToSend = plugin.getConfig().getString("sender");
+        String sender0 = ChatColor.translateAlternateColorCodes('&', senderToSend);
         String prefixToSend = plugin.getConfig().getString("prefix");
         String prefix = ChatColor.translateAlternateColorCodes('&', prefixToSend);
+        String suffixToSend = plugin.getConfig().getString("suffix");
+        String suffix = ChatColor.translateAlternateColorCodes('&', prefixToSend);
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
                 if (sender.hasPermission("SimpleAutoMessage.simpleautomessage") || sender.hasPermission("SimpleAutoMessage.*")) {
-                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + prefix + ChatColor.GREEN + " ======== ");
-                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + " Shows the commands");
-                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + " Reloads the config.yml");
-                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage List" + ChatColor.YELLOW + " Lists all the enabled messages");
+                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + Lang.Simplemsg_Main);
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage List" + ChatColor.YELLOW + Lang.Simplemsg_List);
                 } else {
                     sender.sendMessage(Lang.BAD_PERMS + "");
                 }
@@ -34,16 +38,40 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     if (sender.hasPermission("SimpleAutoMessage.simpleautomessage.reload") || sender.hasPermission("SimpleAutoMessage.*")) {
                         plugin.getServer().getPluginManager().disablePlugin(plugin);
                         plugin.getServer().getPluginManager().enablePlugin(plugin);
-                        sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(prefix) + ChatColor.GREEN + " " + Lang.PL_RELOADED);
+                        sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(sender0) + ChatColor.GREEN + " " + Lang.PL_RELOADED);
                     } else {
                         sender.sendMessage(Lang.BAD_PERMS + "");
                     }
                 } else {
-                    
-                    sender.sendMessage(prefix + " " + Lang.UNKNOWN_CMD);
+                    if (args[0].equalsIgnoreCase("list")) {
+                        if (sender.hasPermission("SimpleAutoMessage.simpleautomessage.reload") || sender.hasPermission("SimpleAutoMessage.*")) {
+                            sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
+                            sender.sendMessage(ChatColor.GRAY + "min-players" + ": " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
+                            sender.sendMessage(ChatColor.GRAY + "time" + ": " + ChatColor.RESET + plugin.getConfig().getInt("time"));
+                            sender.sendMessage(ChatColor.GRAY + "prefix" + ": " + ChatColor.RESET + prefix);
+                            sender.sendMessage(ChatColor.GRAY + "sender" + ": " + ChatColor.RESET + sender0);
+                            sender.sendMessage(ChatColor.GRAY + "suffix" + ": " + ChatColor.RESET + suffix);
+                            int err = 0;
+                            for (int i = 1; err != 1; i++) {
+                                if (plugin.getConfig().contains("msg" + i)) {
+                                    String messageToSend = plugin.getConfig().getString("msg" + i);
+                                    String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                                    sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
+                                    plugin.debugmsg = "Found msg" + i;
+                                    plugin.onDebug();
+                                } else {
+                                    err++;
+                                    plugin.debugmsg = "Did not find msg" + i;
+                                    plugin.onDebug();
+                                }
+                            }
+                        }
+                    } else {
+                        sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
+                    }
                 }
             } else if (args.length > 1) {
-                sender.sendMessage(prefix + " " + Lang.UNKNOWN_CMD);
+                sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
             }
         }
         return true;

@@ -6,6 +6,7 @@ import com.carlgo11.simpleautomessage.language.*;
 import com.carlgo11.simpleautomessage.metrics.Metrics;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -29,11 +30,11 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new loadLang(this), this);
         getServer().getPluginManager().registerEvents(new Broadcast(this), this);
         commands();
-        this.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
+        this.getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.DISABLED});
     }
 
     public void onDisable() {
-        this.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.DISABLED);
+        this.getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.DISABLED});
     }
 
     public void commands() {
@@ -69,12 +70,7 @@ public class Main extends JavaPlugin {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
             this.saveDefaultConfig();
-            File locale = new File(this.getDataFolder() + "/language");
-            if (locale.exists()) {
-                System.out.println("[" + getDescription().getName() + "] " + Lang.NO_CONFIG);
-            } else {
                 System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
-            }
         }
         if (!getConfig().getString("version").equals("1.0.5")) {
             config.renameTo(new File(this.getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
@@ -97,7 +93,7 @@ public class Main extends JavaPlugin {
 
     public void onDebug() { // Debug message method
         if (getConfig().getBoolean("debug") == true) {
-            Main.logger.info("[SimpleAutoMessage] " + debugmsg);
+            Main.logger.log(Level.INFO, "[SimpleAutoMessage] {0}", debugmsg);
         }
     }
 

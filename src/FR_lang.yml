@@ -2,10 +2,12 @@
 plugin-enabled: 'est activé!'
 plugin-disabled: 'est désactivé!'
 mcstats-error: 'Erreur pendant la soumission des statistiques'
-no-config: 'Pas de config.yml détecté, config.yml crée.'
 bad-perms: "&cErreur: Vous n'avez pas la permission d'utiliser cette commande!"
 plugin-reloaded: '&aSimpleAutoMessage rechargé!'
 unknown-command: '&cErreur: Commande inconnue!'
 no-msg1: 'Erreur: Pas de msg1 défini dans la configuration.'
+simplemsg-main: ' Cette commande vous montre tous les commandes de ce logiciel'
+simplemsg-reload: " Cette commande rafraîchir la feuille qui s'appelle config.yml"
+simplemsg-list: " Cette commande rafraîchir la feuille qui s'appelle config.yml"
 # Texte traduit de l'anglai par psgs || Translated from English by psgs.
 # This text might contain typos. Please inform us if you find a typo!

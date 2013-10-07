@@ -13,7 +13,6 @@ public enum Lang {
     CALLUPDATE("call-update", "Calling Updater.java"),
     AUTOUPDATE_FALSE("auto-update-false", "auto-update: is set to false!"),
     STATS_ERROR("mcstats-error", "Error Submitting stats!"),
-    NO_CONFIG("no-config", "No config.yml detected, config.yml created"),
     BAD_PERMS("bad-perms", "Error: You don't have permission to use that command!"),
     PL_RELOADED("plugin-reloaded", "SimpleAutoMessage reloaded!"),
     UNKNOWN_CMD("unknown-command", "Error: Unknown command!"),
@@ -21,7 +20,10 @@ public enum Lang {
     NO_TIME_SETUP("time-setup", "Time-setup: string found!"),
     NO_MSG_TICK("no-msgtick", "no msg %tick% set in the config. calling msg1 instead."),
     NO_MSG1("no-msg1", "Error: No msg1 set in the config.yml!"),
-    ERROR("error", "Error acurred! Plugin disabeled!");
+    ERROR("error", "Error acurred! Plugin disabeled!"),
+    Simplemsg_Main("simplemsg-main"," Shows the commands"),
+    Simplemsg_Reload("simplemsg-reload", " Reloads the config.yml"),
+    Simplemsg_List("simplemsg-list", " Lists all the enabled messages");
     private String path;
     private String def;
     private static YamlConfiguration LANG;

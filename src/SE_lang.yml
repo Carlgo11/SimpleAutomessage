@@ -2,10 +2,12 @@
 plugin-enabled: 'är aktiverat!'
 plugin-disabled: 'är inaktiverat!'
 mcstats-error: 'Ett fel inträffade! Kunde inte skicka stats!'
-no-config: 'Ingen config.yml upptäckt, skapar config.yml.'
 bad-perms: "&cFel: Du har inte behörighet för att använda det kommandot!"
 plugin-reloaded: '&aSimpleAutoMessage omladdad!'
 unknown-command: '&cFel: Okänt kommando!'
 no-msg1: 'Fel: Ingen msg1 hittades i configen!'
+simplemsg-main: ' visar alla kommandon för pluginet'
+simplemsg-reload: ' startar om pluginet'
+simplemsg-list: ' visar alla aktiva medelanden'
 # Översatt från engelska av Carlgo11. || Translated from English by Carlgo11.
 # This text might contain typos. Please inform us if you find a typo!
