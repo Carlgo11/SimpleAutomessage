@@ -43,7 +43,6 @@ public class Broadcast implements Listener {
                     } else {
                         plugin.debugmsg = "no msg" + plugin.tick + " set in the config. calling msg1 instead.";
                         plugin.onDebug();
-
                         if (plugin.getConfig().contains("msg1")) {
                             String messageToSend = plugin.getConfig().getString("msg1");
                             String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);

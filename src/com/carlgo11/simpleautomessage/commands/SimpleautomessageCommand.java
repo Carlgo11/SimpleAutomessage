@@ -44,7 +44,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     }
                 } else {
                     if (args[0].equalsIgnoreCase("list")) {
-                        if (sender.hasPermission("SimpleAutoMessage.simpleautomessage.reload") || sender.hasPermission("SimpleAutoMessage.*")) {
+                        if (sender.hasPermission("SimpleAutoMessage.simpleautomessage.list") || sender.hasPermission("SimpleAutoMessage.*")) {
                             sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
                             sender.sendMessage(ChatColor.GRAY + "min-players" + ": " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
                             sender.sendMessage(ChatColor.GRAY + "time" + ": " + ChatColor.RESET + plugin.getConfig().getInt("time"));
@@ -65,6 +65,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
                                     plugin.onDebug();
                                 }
                             }
+                        }else{
+                            sender.sendMessage(Lang.BAD_PERMS + "");
                         }
                     } else {
                         sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
