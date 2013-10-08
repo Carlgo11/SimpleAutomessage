@@ -25,7 +25,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
         String suffix = ChatColor.translateAlternateColorCodes('&', prefixToSend);
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
-                if (sender.hasPermission("SimpleAutoMessage.simpleautomessage") || sender.hasPermission("SimpleAutoMessage.*")) {
+                if (sender.hasPermission("simpleAutoMessage.simpleautomessage") || sender.hasPermission("simpleAutoMessage.*")) {
                     sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + Lang.Simplemsg_Main);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
@@ -35,7 +35,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 }
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
-                    if (sender.hasPermission("SimpleAutoMessage.simpleautomessage.reload") || sender.hasPermission("SimpleAutoMessage.*")) {
+                    if (sender.hasPermission("simpleAutoMessage.simpleautomessage.reload") || sender.hasPermission("simpleAutoMessage.*")) {
                         plugin.getServer().getPluginManager().disablePlugin(plugin);
                         plugin.getServer().getPluginManager().enablePlugin(plugin);
                         sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(sender0) + ChatColor.GREEN + " " + Lang.PL_RELOADED);
@@ -44,7 +44,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     }
                 } else {
                     if (args[0].equalsIgnoreCase("list")) {
-                        if (sender.hasPermission("SimpleAutoMessage.simpleautomessage.list") || sender.hasPermission("SimpleAutoMessage.*")) {
+                        if (sender.hasPermission("simpleAutoMessage.simpleautomessage.list") || sender.hasPermission("simpleAutoMessage.*")) {
                             sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
                             sender.sendMessage(ChatColor.GRAY + "min-players" + ": " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
                             sender.sendMessage(ChatColor.GRAY + "time" + ": " + ChatColor.RESET + plugin.getConfig().getInt("time"));

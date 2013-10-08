@@ -22,7 +22,11 @@ public class Broadcast implements Listener {
         final long d = (long) (plugin.time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
             public void run() {
-                if (Bukkit.getServer().getOnlinePlayers().length > plugin.getConfig().getInt("min-players")) {
+                int minP = plugin.getConfig().getInt("min-players");
+                int onlineP = Bukkit.getServer().getOnlinePlayers().length;
+                onlineP++;
+                        
+                if (onlineP > minP) {
                     if (plugin.getConfig().getBoolean("debug") == true) {
                         plugin.debugmsg = "tick: " + plugin.tick;
                         plugin.onDebug();
