@@ -17,7 +17,7 @@ public class Broadcast implements Listener {
     int errormaxmsgs = 5;
     int errormsgs = 0;
 
-        public void broadcast() {
+    public void broadcast() {
 
         final long d = (long) (plugin.time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
@@ -26,7 +26,7 @@ public class Broadcast implements Listener {
                 int onlineP = Bukkit.getServer().getOnlinePlayers().length;
                 int realonlineP = onlineP;
                 onlineP++;
-                        
+
                 if (onlineP > minP) {
                     if (plugin.getConfig().getBoolean("debug") == true) {
                         plugin.debugmsg = "tick: " + plugin.tick;
@@ -58,11 +58,10 @@ public class Broadcast implements Listener {
                                 System.out.println(ChatColor.stripColor(prefixToMC) + ChatColor.stripColor(senderToMC) + ChatColor.stripColor(suffixToMC) + " " + Lang.NO_MSG1);
                                 errormsgs++;
                             }
-
                         }
                     }
-                }else{
-                    plugin.debugmsg = "Error: minP:"+minP+" realOnlineP: "+realonlineP;
+                } else {
+                    plugin.debugmsg = "Error: minP:" + minP + " realOnlineP: " + realonlineP;
                     plugin.onDebug();
                 }
             }

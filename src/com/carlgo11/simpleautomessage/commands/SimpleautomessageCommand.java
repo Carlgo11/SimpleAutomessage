@@ -22,7 +22,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
         String prefixToSend = plugin.getConfig().getString("prefix");
         String prefix = ChatColor.translateAlternateColorCodes('&', prefixToSend);
         String suffixToSend = plugin.getConfig().getString("suffix");
-        String suffix = ChatColor.translateAlternateColorCodes('&', prefixToSend);
+        String suffix = ChatColor.translateAlternateColorCodes('&', suffixToSend);
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
                 if (sender.hasPermission("simpleAutoMessage.simpleautomessage") || sender.hasPermission("simpleAutoMessage.*")) {
@@ -65,7 +65,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                                     plugin.onDebug();
                                 }
                             }
-                        }else{
+                        } else {
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }
                     } else {

@@ -70,7 +70,7 @@ public class Main extends JavaPlugin {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
             this.saveDefaultConfig();
-                System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
+            System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
         }
         if (!getConfig().getString("version").equals("1.0.5")) {
             config.renameTo(new File(this.getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
@@ -84,11 +84,6 @@ public class Main extends JavaPlugin {
 
     public File getLangFile() {
         return LANG_FILE;
-    }
-
-    public void onError() { // Sends error msg to console and disables the plugin.
-        Main.logger.warning("[SimpleAutoMessage] Error acurred! Plugin disabeled!");
-        Bukkit.getPluginManager().disablePlugin(this);
     }
 
     public void onDebug() { // Debug message method
@@ -128,6 +123,9 @@ public class Main extends JavaPlugin {
             }
             if (getConfig().getString("language").equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Swedish"));
+            }
+            if (!getConfig().getString("language").equalsIgnoreCase("EN") && !getConfig().getString("language").equalsIgnoreCase("FR") && !getConfig().getString("language").equalsIgnoreCase("NL") && !getConfig().getString("language").equalsIgnoreCase("SE")) {
+                graph3.addPlotter(new SimplePlotter("Other"));
             }
             debugmsg = "Metrics sent!";
             onDebug();
