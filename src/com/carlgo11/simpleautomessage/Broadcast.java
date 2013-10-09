@@ -24,6 +24,7 @@ public class Broadcast implements Listener {
             public void run() {
                 int minP = plugin.getConfig().getInt("min-players");
                 int onlineP = Bukkit.getServer().getOnlinePlayers().length;
+                int realonlineP = onlineP;
                 onlineP++;
                         
                 if (onlineP > minP) {
@@ -60,6 +61,9 @@ public class Broadcast implements Listener {
 
                         }
                     }
+                }else{
+                    plugin.debugmsg = "Error: minP:"+minP+" realOnlineP: "+realonlineP;
+                    plugin.onDebug();
                 }
             }
         }, d, d);
