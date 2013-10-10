@@ -1,6 +1,5 @@
 package com.carlgo11.simpleautomessage;
 
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class Time implements Listener {
