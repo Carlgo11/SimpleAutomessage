@@ -1,1 +1,12 @@
 language: java
+jdk:
+  - oraclejdk7
+  - openjdk7
+  - openjdk6
+script: ant collect
+notifications:
+  email:
+    recipients:
+      - "carlgo11@carlgo11.com"
+    on_success: change
+    on_failure: always
