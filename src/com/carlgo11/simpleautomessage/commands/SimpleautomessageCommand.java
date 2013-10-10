@@ -2,7 +2,6 @@ package com.carlgo11.simpleautomessage.commands;
 
 import com.carlgo11.simpleautomessage.Main;
 import com.carlgo11.simpleautomessage.language.Lang;
-import com.carlgo11.simpleautomessage.updater.Updater;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
