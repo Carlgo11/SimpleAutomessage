@@ -2,10 +2,12 @@ package com.carlgo11.simpleautomessage.commands;
 
 import com.carlgo11.simpleautomessage.Main;
 import com.carlgo11.simpleautomessage.language.Lang;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class SimpleautomessageCommand implements CommandExecutor {
 
@@ -22,6 +24,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
         String prefix = ChatColor.translateAlternateColorCodes('&', prefixToSend);
         String suffixToSend = plugin.getConfig().getString("suffix");
         String suffix = ChatColor.translateAlternateColorCodes('&', suffixToSend);
+        String pn = sender.getName();
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
                 if (sender.hasPermission("simpleAutoMessage.simpleautomessage")) {
@@ -67,9 +70,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }
                     } else if(args[0].equalsIgnoreCase("update")){
-                            String up = Lang.UPDATING.toString().replaceAll("%prefix%", plugin.getDescription().getName());
-                            sender.sendMessage(sender0 + " " + up);
-                            plugin.forceUpdate();
+                            plugin.forceUpdate(Bukkit.getPlayer(pn), sender0);
                         }else{
                         sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
                         }

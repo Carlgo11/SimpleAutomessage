@@ -22,6 +22,7 @@ public enum Lang {
     NO_MSG1("no-msg1", "Error: No msg1 set in the config.yml!"),
     ERROR("error", "Error acurred! Plugin disabeled!"),
     UPDATING("updating", "Updating %prefix%..."),
+    UPDATED("updated", "Done. Restart the server to load the new patch."),
     Simplemsg_Main("simplemsg-main"," Shows the commands"),
     Simplemsg_Reload("simplemsg-reload", " Reloads the config.yml"),
     Simplemsg_Update("simplemsg-update", " Will force an update"),

@@ -4,11 +4,13 @@ import com.carlgo11.simpleautomessage.commands.*;
 import com.carlgo11.simpleautomessage.updater.*;
 import com.carlgo11.simpleautomessage.language.*;
 import com.carlgo11.simpleautomessage.metrics.*;
+import com.carlgo11.simpleautomessage.player.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -18,6 +20,7 @@ public class Main extends JavaPlugin {
     public final static Logger logger = Logger.getLogger("Minecraft");
     public static YamlConfiguration LANG;
     public static File LANG_FILE;
+    public boolean update = false;
 
     public void onEnable()
     {
@@ -28,8 +31,10 @@ public class Main extends JavaPlugin {
         checkMetrics();
         getServer().getPluginManager().registerEvents(new loadLang(this), this);
         getServer().getPluginManager().registerEvents(new Broadcast(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         commands();
         this.getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.ENABLED});
+
     }
 
     public void onDisable()
@@ -52,6 +57,8 @@ public class Main extends JavaPlugin {
         if (getConfig().getBoolean("auto-update") == true) {
             this.onDebug("Calling Updater.java");
             Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.DEFAULT, true);
+            update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
+
         } else {
             this.onDebug("auto-update: is set to false!");
         }
@@ -101,8 +108,14 @@ public class Main extends JavaPlugin {
             this.getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
     }
-    public void forceUpdate(){
+
+    public void forceUpdate(Player p, String sender0)
+    {
+        String up = Lang.UPDATING.toString().replaceAll("%prefix%", this.getDescription().getName());
+        String updone = Lang.UPDATED.toString().replaceAll("%prefix%", this.getDescription().getName());
+        p.sendMessage(sender0 + " " + up);
         Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
+        p.sendMessage(sender0 + " " + updone);
     }
 
     public void graphs(Metrics metrics)

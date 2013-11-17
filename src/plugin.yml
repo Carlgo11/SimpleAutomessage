@@ -1,6 +1,7 @@
 name: SimpleAutoMessage
 main: com.carlgo11.simpleautomessage.Main
-version: dev-(1.0.6).0
+version: 1.0.4
+#dev-(1.0.6).0
 description: Auto-announcer plugin
 author: Carlgo11
 website: http://www.carlgo11.com/
