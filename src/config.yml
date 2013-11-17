@@ -40,7 +40,7 @@ warn-update: perm
 # The minimal amount of players that has to be online for a message to broadcast. set to -1 to disable this feature.
 min-players: 1
 
-# The the sender.
+# The sender of the messages.
 sender: '&d[Server]&r '
 
 # The prefix of the sender.
