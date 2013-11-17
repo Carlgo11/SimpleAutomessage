@@ -21,8 +21,10 @@ public enum Lang {
     NO_MSG_TICK("no-msgtick", "no msg %tick% set in the config. calling msg1 instead."),
     NO_MSG1("no-msg1", "Error: No msg1 set in the config.yml!"),
     ERROR("error", "Error acurred! Plugin disabeled!"),
+    UPDATING("updating", "Updating %prefix%..."),
     Simplemsg_Main("simplemsg-main"," Shows the commands"),
     Simplemsg_Reload("simplemsg-reload", " Reloads the config.yml"),
+    Simplemsg_Update("simplemsg-update", " Will force an update"),
     Simplemsg_List("simplemsg-list", " Lists all the enabled messages");
     private String path;
     private String def;

@@ -6,8 +6,10 @@ bad-perms: "&cErreur: Vous n'avez pas la permission d'utiliser cette commande!"
 plugin-reloaded: '&aSimpleAutoMessage rechargé!'
 unknown-command: '&cErreur: Commande inconnue!'
 no-msg1: 'Erreur: Pas de msg1 défini dans la configuration.'
+updating: 'Updating %prefix%...'
 simplemsg-main: ' Affiche les commandes'
 simplemsg-reload: " Recharge la configuration"
 simplemsg-list: " Affiche toutes les commandes actif"
+simplemsg-update: ' Will force an update'
 # Texte traduit de l'anglai par psgs || Translated from English by psgs.
 # This text might contain typos. Please inform us if you find a typo!

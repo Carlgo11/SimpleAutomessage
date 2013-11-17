@@ -11,13 +11,11 @@ public class SimpleautomessageCommand implements CommandExecutor {
 
     private Main plugin;
 
-    public SimpleautomessageCommand(Main plug)
-    {
+    public SimpleautomessageCommand(Main plug) {
         this.plugin = plug;
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
-    {
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         String senderToSend = plugin.getConfig().getString("sender");
         String sender0 = ChatColor.translateAlternateColorCodes('&', senderToSend);
         String prefixToSend = plugin.getConfig().getString("prefix");
@@ -30,6 +28,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + Lang.Simplemsg_Main);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage List" + ChatColor.YELLOW + Lang.Simplemsg_List);
                 } else {
                     sender.sendMessage(Lang.BAD_PERMS + "");
@@ -67,9 +66,13 @@ public class SimpleautomessageCommand implements CommandExecutor {
                         } else {
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }
-                    } else {
+                    } else if(args[0].equalsIgnoreCase("update")){
+                            String up = Lang.UPDATING.toString().replaceAll("%prefix%", plugin.getDescription().getName());
+                            sender.sendMessage(sender0 + " " + up);
+                            plugin.forceUpdate();
+                        }else{
                         sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
-                    }
+                        }
                 }
             } else if (args.length > 1) {
                 sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);

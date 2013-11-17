@@ -6,8 +6,10 @@ bad-perms: "&cFel: Du har inte behörighet för att använda det kommandot!"
 plugin-reloaded: '&aSimpleAutoMessage omladdad!'
 unknown-command: '&cFel: Okänt kommando!'
 no-msg1: 'Fel: Ingen msg1 hittades i configen!'
+updating: 'Updaterar %prefix%...'
 simplemsg-main: ' visar alla kommandon för pluginet'
 simplemsg-reload: ' startar om pluginet'
 simplemsg-list: ' visar alla aktiva medelanden'
+simplemsg-update: ' Kommer updatera pluginet'
 # Översatt från engelska av Carlgo11. || Translated from English by Carlgo11.
 # This text might contain typos. Please inform us if you find a typo!

@@ -101,6 +101,9 @@ public class Main extends JavaPlugin {
             this.getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
     }
+    public void forceUpdate(){
+        Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
+    }
 
     public void graphs(Metrics metrics)
     { // Custom Graphs. Sends data to mcstats.org
