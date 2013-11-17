@@ -56,12 +56,10 @@ public class SimpleautomessageCommand implements CommandExecutor {
                                     String messageToSend = plugin.getConfig().getString("msg" + i);
                                     String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                                     sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
-                                    plugin.debugmsg = "Found msg" + i;
-                                    plugin.onDebug();
+                                    plugin.onDebug("Found msg" + i);
                                 } else {
                                     err++;
-                                    plugin.debugmsg = "Did not find msg" + i;
-                                    plugin.onDebug();
+                                    plugin.onDebug("Did not find msg" + i);
                                 }
                             }
                         } else {

@@ -16,7 +16,6 @@ public class Main extends JavaPlugin {
     public int tick = 1; // msg+<tick> int
     public int time = 0; // the delay
     public final static Logger logger = Logger.getLogger("Minecraft");
-    public String debugmsg = null;
     public static YamlConfiguration LANG;
     public static File LANG_FILE;
 
@@ -47,11 +46,10 @@ public class Main extends JavaPlugin {
         }
 
         if (getConfig().getBoolean("auto-update") == true) {
-            debugmsg = "Calling Updater.java";
-            this.onDebug();
+            this.onDebug("Calling Updater.java");
             Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.DEFAULT, true);
         } else {
-            debugmsg = "auto-update: is set to false!";
+            this.onDebug("auto-update: is set to false!");
         }
     }
 
@@ -85,9 +83,9 @@ public class Main extends JavaPlugin {
         return LANG_FILE;
     }
 
-    public void onDebug() { // Debug message method
+    public void onDebug(String s) { // Debug message method
         if (getConfig().getBoolean("debug") == true) {
-            Main.logger.log(Level.INFO, "[SimpleAutoMessage] {0}", debugmsg);
+            Main.logger.log(Level.INFO, this.getDescription().getName()+" {0}", s);
         }
     }
 
@@ -126,8 +124,7 @@ public class Main extends JavaPlugin {
             if (!getConfig().getString("language").equalsIgnoreCase("EN") && !getConfig().getString("language").equalsIgnoreCase("FR") && !getConfig().getString("language").equalsIgnoreCase("NL") && !getConfig().getString("language").equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Other"));
             }
-            debugmsg = "Metrics sent!";
-            onDebug();
+            onDebug("Calling Updater.java");
             metrics.start();
         } catch (Exception e) {
             Main.logger.warning(e.getMessage());

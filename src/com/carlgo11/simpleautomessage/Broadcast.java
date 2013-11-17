@@ -29,10 +29,8 @@ public class Broadcast implements Listener {
 
                 if (onlineP > minP) {
                     if (plugin.getConfig().getBoolean("debug") == true) {
-                        plugin.debugmsg = "tick: " + plugin.tick;
-                        plugin.onDebug();
-                        plugin.debugmsg = "time: " + d;
-                        plugin.onDebug();
+                        plugin.onDebug("tick: " + plugin.tick);
+                        plugin.onDebug("time: " + d);
                     }
                     String senderToSend = plugin.getConfig().getString("sender");
                     String senderToMC = ChatColor.translateAlternateColorCodes('&', senderToSend);
@@ -46,8 +44,7 @@ public class Broadcast implements Listener {
                         plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                         plugin.tick++;
                     } else {
-                        plugin.debugmsg = "no msg" + plugin.tick + " set in the config. calling msg1 instead.";
-                        plugin.onDebug();
+                        plugin.onDebug("no msg" + plugin.tick + " set in the config. calling msg1 instead.");
                         if (plugin.getConfig().contains("msg1")) {
                             String messageToSend = plugin.getConfig().getString("msg1");
                             String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
@@ -61,8 +58,7 @@ public class Broadcast implements Listener {
                         }
                     }
                 } else {
-                    plugin.debugmsg = "Error: minP:" + minP + " realOnlineP: " + realonlineP;
-                    plugin.onDebug();
+                    plugin.onDebug("Error: minP:" + minP + " realOnlineP: " + realonlineP);
                 }
             }
         }, d, d);
