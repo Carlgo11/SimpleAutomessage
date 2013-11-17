@@ -5,7 +5,6 @@
 ############################################################
 # Config for SimpleAutoMessage
 # SimpleAutoMessage is a Bukkit plugin created by Carlgo11.
-# http://youtube.com/Carlgo11
 
 # COLORS:
 # When adding colors use the minecraft colorcodes.
@@ -15,7 +14,7 @@
 # Example: msg1: 'This is an example' 
 
 #Don't Change the version! If the version is changed this config.yml will be deleted!
-version: 1.0.5
+version: 1.0.6
 
 ############################################################
 # +------------------------------------------------------+ #

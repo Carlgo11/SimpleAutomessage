@@ -69,9 +69,13 @@ public class Main extends JavaPlugin {
             this.saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
         }
-        if (!getConfig().getString("version").equals("1.0.5")) {
+        if (!getConfig().getString("version").equals(getDescription().getVersion())) {
+            if(!getDescription().getVersion().startsWith("dev-")){
             config.renameTo(new File(this.getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
             this.saveDefaultConfig();
+            }else{
+                this.onDebug("The plugin's version is a dev-build. Will not try to reload the config.");
+            }
         }
     }
 
@@ -85,7 +89,7 @@ public class Main extends JavaPlugin {
 
     public void onDebug(String s) { // Debug message method
         if (getConfig().getBoolean("debug") == true) {
-            Main.logger.log(Level.INFO, this.getDescription().getName()+" {0}", s);
+            Main.logger.log(Level.INFO, "["+"Debug"+"]"+" {0}", s);
         }
     }
 
