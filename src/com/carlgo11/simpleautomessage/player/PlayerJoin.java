@@ -20,18 +20,18 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e)
     {
-        if (plugin.getConfig().getBoolean("auto-update") == false) {
+        if (plugin.getConfig().getBoolean("auto-update") == false && !plugin.getDescription().getVersion().startsWith("dev-")) {
             String upd = plugin.getConfig().getString("warn-update");
             Player p = e.getPlayer();
             String pn = e.getPlayer().getName();
             String prefix = ChatColor.LIGHT_PURPLE + "[" + plugin.getDescription().getName() + "]" + ChatColor.RESET;
             if (upd.equalsIgnoreCase("op")) {
                 if (p.isOp() && plugin.update) {
-                    p.sendMessage(prefix + ChatColor.GREEN + " An update is available! \nType " + ChatColor.BLUE + ChatColor.BOLD + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
+                    p.sendMessage(prefix + ChatColor.GREEN + " An update is available!\nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
                 }
             } else if (upd.equalsIgnoreCase("perm")) {
                 if (p.hasPermission("simpleautomessage.recive-updates")) {
-                    p.sendMessage(prefix + "" + ChatColor.GREEN + " An update is available! \nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
+                    p.sendMessage(prefix + "" + ChatColor.GREEN + " An update is available!\nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
                 }
             }
         }

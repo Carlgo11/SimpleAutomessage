@@ -104,7 +104,7 @@ public class Main extends JavaPlugin {
 
     public void onDebug(String s)
     { // Debug message method
-        if (getConfig().getBoolean("debug") == true) {
+        if (getConfig().getBoolean("debug")) {
             this.getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
     }

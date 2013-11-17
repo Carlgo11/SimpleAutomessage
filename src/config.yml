@@ -13,7 +13,7 @@
 # When this config.yml is broken it's often because of the msg strings! ALWAYS USE '' AROUND A MESSAGE!
 # Example: msg1: 'This is an example' 
 
-#Don't Change the version! If the version is changed this config.yml will be deleted!
+# Don't Change the version! If the version is changed this config.yml will be deleted!
 version: 1.0.6
 
 ############################################################
