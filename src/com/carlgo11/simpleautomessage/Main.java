@@ -1,9 +1,9 @@
 package com.carlgo11.simpleautomessage;
 
-import com.carlgo11.simpleautomessage.commands.SimpleautomessageCommand;
-import com.carlgo11.simpleautomessage.updater.Updater;
+import com.carlgo11.simpleautomessage.commands.*;
+import com.carlgo11.simpleautomessage.updater.*;
 import com.carlgo11.simpleautomessage.language.*;
-import com.carlgo11.simpleautomessage.metrics.Metrics;
+import com.carlgo11.simpleautomessage.metrics.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
