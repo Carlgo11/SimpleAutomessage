@@ -11,11 +11,13 @@ public class SimpleautomessageCommand implements CommandExecutor {
 
     private Main plugin;
 
-    public SimpleautomessageCommand(Main plug) {
+    public SimpleautomessageCommand(Main plug)
+    {
         this.plugin = plug;
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+    {
         String senderToSend = plugin.getConfig().getString("sender");
         String sender0 = ChatColor.translateAlternateColorCodes('&', senderToSend);
         String prefixToSend = plugin.getConfig().getString("prefix");
