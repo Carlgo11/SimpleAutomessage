@@ -19,7 +19,8 @@ public class Main extends JavaPlugin {
     public static YamlConfiguration LANG;
     public static File LANG_FILE;
 
-    public void onEnable() {
+    public void onEnable()
+    {
         this.reloadConfig();
         getServer().getPluginManager().registerEvents(new Time(this), this);
         checkVersion();
@@ -31,15 +32,18 @@ public class Main extends JavaPlugin {
         this.getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.ENABLED});
     }
 
-    public void onDisable() {
+    public void onDisable()
+    {
         this.getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.DISABLED});
     }
 
-    public void commands() {
+    public void commands()
+    {
         getCommand("simpleautomessage").setExecutor(new SimpleautomessageCommand(this));
     }
 
-    public void checkVersion() {
+    public void checkVersion()
+    {
         if (getDescription().getVersion().startsWith("dev-")) {
             this.getLogger().warning("You are using a development build! Keep in mind development builds might contain bugs!");
             this.getLogger().warning("If you want a fully working version please use a recommended build!");
@@ -53,7 +57,8 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void checkMetrics() {
+    public void checkMetrics()
+    {
         try {
             Metrics metrics = new Metrics(this);
             graphs(metrics);
@@ -63,37 +68,42 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void checkConfig() {
+    public void checkConfig()
+    {
         File config = new File(this.getDataFolder(), "config.yml");
         if (!config.exists()) {
             this.saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
         }
         if (!getConfig().getString("version").equals(getDescription().getVersion())) {
-            if(!getDescription().getVersion().startsWith("dev-")){
-            config.renameTo(new File(this.getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
-            this.saveDefaultConfig();
-            }else{
+            if (!getDescription().getVersion().startsWith("dev-")) {
+                config.renameTo(new File(this.getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
+                this.saveDefaultConfig();
+            } else {
                 this.onDebug("The plugin's version is a dev-build. Will not try to reload the config.");
             }
         }
     }
 
-    public YamlConfiguration getLang() {
+    public YamlConfiguration getLang()
+    {
         return LANG;
     }
 
-    public File getLangFile() {
+    public File getLangFile()
+    {
         return LANG_FILE;
     }
 
-    public void onDebug(String s) { // Debug message method
+    public void onDebug(String s)
+    { // Debug message method
         if (getConfig().getBoolean("debug") == true) {
-            Main.logger.log(Level.INFO, "["+"Debug"+"]"+" {0}", s);
+            Main.logger.log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
     }
 
-    public void graphs(Metrics metrics) { // Custom Graphs. Sends data to mcstats.org
+    public void graphs(Metrics metrics)
+    { // Custom Graphs. Sends data to mcstats.org
         try {
             //Graph1
             Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the user has.
@@ -101,7 +111,7 @@ public class Main extends JavaPlugin {
             for (int i = 1; getConfig().contains("msg" + i); i++) {
                 o = i;
             }
-            graph1.addPlotter(new SimplePlotter(o + ""));
+            graph1.addPlotter(new SimplePlotter("" + o));
 
             //graph2
             Metrics.Graph graph2 = metrics.createGraph("auto-update"); //Sends auto-update data. if auto-update: is true it returns 'enabled'.
@@ -128,7 +138,9 @@ public class Main extends JavaPlugin {
             if (!getConfig().getString("language").equalsIgnoreCase("EN") && !getConfig().getString("language").equalsIgnoreCase("FR") && !getConfig().getString("language").equalsIgnoreCase("NL") && !getConfig().getString("language").equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Other"));
             }
-            onDebug("Calling Updater.java");
+            Metrics.Graph graph4 = metrics.createGraph("min-players");
+            graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
+            onDebug("Sending metrics data...");
             metrics.start();
         } catch (Exception e) {
             Main.logger.warning(e.getMessage());
@@ -137,12 +149,14 @@ public class Main extends JavaPlugin {
 
     public class SimplePlotter extends Metrics.Plotter {
 
-        public SimplePlotter(final String name) {
+        public SimplePlotter(final String name)
+        {
             super(name);
         }
 
         @Override
-        public int getValue() {
+        public int getValue()
+        {
             return 1;
         }
     }

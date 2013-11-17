@@ -9,7 +9,8 @@ public class Broadcast implements Listener {
 
     Main plugin;
 
-    public Broadcast(Main plug) {
+    public Broadcast(Main plug)
+    {
         super();
         this.plugin = plug;
         broadcast();
@@ -17,11 +18,13 @@ public class Broadcast implements Listener {
     int errormaxmsgs = 5;
     int errormsgs = 0;
 
-    public void broadcast() {
+    public void broadcast()
+    {
 
         final long d = (long) (plugin.time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
-            public void run() {
+            public void run()
+            {
                 int minP = plugin.getConfig().getInt("min-players");
                 int onlineP = Bukkit.getServer().getOnlinePlayers().length;
                 int realonlineP = onlineP;

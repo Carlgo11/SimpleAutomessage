@@ -6,13 +6,15 @@ public class Time implements Listener {
 
     Main plugin;
 
-    public Time(Main plug) {
+    public Time(Main plug)
+    {
         super();
         this.plugin = plug;
         Time();
     }
 
-    public final void Time() {
+    public final void Time()
+    {
         if (!plugin.getConfig().contains("time")) {
             plugin.onDebug("No time string found!");
         }
