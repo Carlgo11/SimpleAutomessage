@@ -24,7 +24,7 @@ public class Main extends JavaPlugin {
 
     public void onEnable()
     {
-        this.reloadConfig();
+        reloadConfig();
         getServer().getPluginManager().registerEvents(new Time(this), this);
         checkVersion();
         checkConfig();
@@ -33,13 +33,13 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Broadcast(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         commands();
-        this.getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.ENABLED});
+        getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.ENABLED});
 
     }
 
     public void onDisable()
     {
-        this.getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.DISABLED});
+        getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.DISABLED});
     }
 
     public void commands()
@@ -50,17 +50,17 @@ public class Main extends JavaPlugin {
     public void checkVersion()
     {
         if (getDescription().getVersion().startsWith("dev-")) {
-            this.getLogger().warning("You are using a development build! Keep in mind development builds may contain bugs!");
-            this.getLogger().warning("If you want a fully working version please use a recommended build!");
+            getLogger().warning("You are using a development build! Keep in mind development builds may contain bugs!");
+            getLogger().warning("If you want a fully working version please use a recommended build!");
         }
 
         if (getConfig().getBoolean("auto-update") == true) {
-            this.onDebug("Calling Updater.java");
-            Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.DEFAULT, true);
+            onDebug("Calling Updater.java");
+            Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.DEFAULT, true);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
 
         } else {
-            this.onDebug("auto-update: is set to false!");
+            onDebug("auto-update: is set to false!");
         }
     }
 
@@ -77,17 +77,17 @@ public class Main extends JavaPlugin {
 
     public void checkConfig()
     {
-        File config = new File(this.getDataFolder(), "config.yml");
+        File config = new File(getDataFolder(), "config.yml");
         if (!config.exists()) {
-            this.saveDefaultConfig();
+            saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
         }
         if (!getConfig().getString("version").equals(getDescription().getVersion())) {
             if (!getDescription().getVersion().startsWith("dev-")) {
-                config.renameTo(new File(this.getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
-                this.saveDefaultConfig();
+                config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
+                saveDefaultConfig();
             } else {
-                this.onDebug("The plugin's version is a dev-build. Will not try to reload the config.");
+                onDebug("The plugin's version is a dev-build. Will not try to reload the config.");
             }
         }
     }
@@ -105,16 +105,16 @@ public class Main extends JavaPlugin {
     public void onDebug(String s)
     { // Debug message method
         if (getConfig().getBoolean("debug")) {
-            this.getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
+            getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
     }
 
     public void forceUpdate(Player p, String sender0)
     {
-        String up = Lang.UPDATING.toString().replaceAll("%prefix%", this.getDescription().getName());
-        String updone = Lang.UPDATED.toString().replaceAll("%prefix%", this.getDescription().getName());
+        String up = Lang.UPDATING.toString().replaceAll("%prefix%", getDescription().getName());
+        String updone = Lang.UPDATED.toString().replaceAll("%prefix%", getDescription().getName());
         p.sendMessage(sender0 + " " + up);
-        Updater updater = new Updater(this, "simpleautomessage/", this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
+        Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
         p.sendMessage(sender0 + " " + updone);
     }
 
