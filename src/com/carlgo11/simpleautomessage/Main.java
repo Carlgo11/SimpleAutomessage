@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
     public void checkVersion()
     {
         if (getDescription().getVersion().startsWith("dev-")) {
-            this.getLogger().warning("You are using a development build! Keep in mind development builds might contain bugs!");
+            this.getLogger().warning("You are using a development build! Keep in mind development builds may contain bugs!");
             this.getLogger().warning("If you want a fully working version please use a recommended build!");
         }
 
