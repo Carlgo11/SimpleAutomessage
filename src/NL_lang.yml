@@ -11,6 +11,6 @@ updated: 'Done. Restart the server to load the new patch.'
 simplemsg-main: ' Laat de commands zien'
 simplemsg-reload: ' Herlaad de config.yml'
 simplemsg-list: ' Lijst van alle actieve berichten'
-simplemsg-update: ' Will force an update'
+simplemsg-update: 'Zal hem updaten'
 # Vertaalt van het engels door Grayhutner4. || Translated from English by Grayhunter4.
-# This text might contain typos. Please inform us if you find a typo!
+# Deze tekst kan typfouten hebben. Laat het ons weten als je typfouten vind!
