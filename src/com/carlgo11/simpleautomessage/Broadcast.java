@@ -6,9 +6,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 
 public class Broadcast implements Listener {
-
+    
     Main plugin;
-
+    
     public Broadcast(Main plug)
     {
         super();
@@ -17,9 +17,19 @@ public class Broadcast implements Listener {
     }
     int errormaxmsgs = 5;
     int errormsgs = 0;
-
+    int ra = 0;
+    
     public void broadcast()
     {
+        int a = 0;
+        int b = 1;
+        for (int i = 1; a != b; i++) {
+            if (plugin.getConfig().contains("msg" + i)) {
+            } else {
+                a++;
+                ra = i;
+            }
+        }
 
         final long d = (long) (plugin.time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
@@ -29,11 +39,12 @@ public class Broadcast implements Listener {
                 int onlineP = Bukkit.getServer().getOnlinePlayers().length;
                 int realonlineP = onlineP;
                 onlineP++;
-
+                
                 if (onlineP > minP) {
                     if (plugin.getConfig().getBoolean("debug") == true) {
                         plugin.onDebug("tick: " + plugin.tick);
                         plugin.onDebug("time: " + d);
+                        plugin.onDebug("ra: " + ra);
                     }
                     String senderToSend = plugin.getConfig().getString("sender");
                     String senderToMC = ChatColor.translateAlternateColorCodes('&', senderToSend);
@@ -41,25 +52,36 @@ public class Broadcast implements Listener {
                     String prefixToMC = ChatColor.translateAlternateColorCodes('&', prefixToSend);
                     String suffixToSend = plugin.getConfig().getString("suffix");
                     String suffixToMC = ChatColor.translateAlternateColorCodes('&', suffixToSend);
-                    if (plugin.getConfig().contains("msg" + plugin.tick)) {
-                        String messageToSend = plugin.getConfig().getString("msg" + plugin.tick);
-                        String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
-                        plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
-                        plugin.tick++;
-                    } else {
-                        plugin.onDebug("no msg" + plugin.tick + " set in the config. calling msg1 instead.");
-                        if (plugin.getConfig().contains("msg1")) {
-                            String messageToSend = plugin.getConfig().getString("msg1");
+                    if (plugin.getConfig().getBoolean("random")) {
+                        RandomishInt.onInt(ra);
+                        if (plugin.getConfig().contains("msg" + RandomishInt.a)) {
+                            String messageToSend = plugin.getConfig().getString("msg" + RandomishInt.a);
                             String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                             plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
-                            plugin.tick = 2;
+                            RandomishInt.a++;
+                        }                        
+                    } else {
+                        if (plugin.getConfig().contains("msg" + plugin.tick)) {
+                            String messageToSend = plugin.getConfig().getString("msg" + plugin.tick);
+                            String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                            plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
+                            plugin.tick++;
                         } else {
-                            if (errormsgs != errormaxmsgs) {
-                                System.out.println(ChatColor.stripColor(prefixToMC) + ChatColor.stripColor(senderToMC) + ChatColor.stripColor(suffixToMC) + " " + Lang.NO_MSG1);
-                                errormsgs++;
+                            plugin.onDebug("no msg" + plugin.tick + " set in the config. calling msg1 instead.");
+                            if (plugin.getConfig().contains("msg1")) {
+                                String messageToSend = plugin.getConfig().getString("msg1");
+                                String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                                plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
+                                plugin.tick = 2;
+                            } else {
+                                if (errormsgs != errormaxmsgs) {
+                                    System.out.println(ChatColor.stripColor(prefixToMC) + ChatColor.stripColor(senderToMC) + ChatColor.stripColor(suffixToMC) + " " + Lang.NO_MSG1);
+                                    errormsgs++;
+                                }
                             }
                         }
                     }
+                    
                 } else {
                     plugin.onDebug("Error: minP:" + minP + " realOnlineP: " + realonlineP);
                 }

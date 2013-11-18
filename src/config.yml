@@ -58,6 +58,9 @@ time: 20
 # |                       Messages                       | #
 # +------------------------------------------------------+ #
 ############################################################
+# Want to broadcast the messages randomly?
+random: false
+
 # MESSAGES:
 # Below are the messages that will be broadcasted.
 # To add more messages just write 'msg<number>'.
