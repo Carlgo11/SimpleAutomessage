@@ -6,9 +6,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 
 public class Broadcast implements Listener {
-    
+
     Main plugin;
-    
+
     public Broadcast(Main plug)
     {
         super();
@@ -18,7 +18,7 @@ public class Broadcast implements Listener {
     int errormaxmsgs = 5;
     int errormsgs = 0;
     int ra = 0;
-    
+
     public void broadcast()
     {
         int a = 0;
@@ -39,12 +39,14 @@ public class Broadcast implements Listener {
                 int onlineP = Bukkit.getServer().getOnlinePlayers().length;
                 int realonlineP = onlineP;
                 onlineP++;
-                
+
                 if (onlineP > minP) {
-                    if (plugin.getConfig().getBoolean("debug") == true) {
-                        plugin.onDebug("tick: " + plugin.tick);
-                        plugin.onDebug("time: " + d);
+                    plugin.onDebug("time: " + d);
+                    if (plugin.getConfig().getBoolean("random")) {
                         plugin.onDebug("ra: " + ra);
+                        plugin.onDebug("a: " + RandomishInt.a);
+                    } else {
+                        plugin.onDebug("tick: " + plugin.tick);
                     }
                     String senderToSend = plugin.getConfig().getString("sender");
                     String senderToMC = ChatColor.translateAlternateColorCodes('&', senderToSend);
@@ -59,7 +61,12 @@ public class Broadcast implements Listener {
                             String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                             plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                             RandomishInt.a++;
-                        }                        
+                        } else {
+                            if (errormsgs != errormaxmsgs) {
+                                System.out.println(ChatColor.stripColor(prefixToMC) + ChatColor.stripColor(senderToMC) + ChatColor.stripColor(suffixToMC) + " " + Lang.NO_MSG1);
+                                errormsgs++;
+                            }
+                        }
                     } else {
                         if (plugin.getConfig().contains("msg" + plugin.tick)) {
                             String messageToSend = plugin.getConfig().getString("msg" + plugin.tick);
@@ -81,7 +88,7 @@ public class Broadcast implements Listener {
                             }
                         }
                     }
-                    
+
                 } else {
                     plugin.onDebug("Error: minP:" + minP + " realOnlineP: " + realonlineP);
                 }

@@ -12,11 +12,13 @@ public class SimpleautomessageCommand implements CommandExecutor {
 
     private Main plugin;
 
-    public SimpleautomessageCommand(Main plug) {
+    public SimpleautomessageCommand(Main plug)
+    {
         this.plugin = plug;
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+    {
         String senderToSend = plugin.getConfig().getString("sender");
         String sender0 = ChatColor.translateAlternateColorCodes('&', senderToSend);
         String prefixToSend = plugin.getConfig().getString("prefix");
@@ -50,6 +52,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                             sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
                             sender.sendMessage(ChatColor.GRAY + "min-players" + ": " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
                             sender.sendMessage(ChatColor.GRAY + "time" + ": " + ChatColor.RESET + plugin.getConfig().getInt("time"));
+                            sender.sendMessage(ChatColor.GRAY + "random" + ": " + ChatColor.RESET + plugin.getConfig().getBoolean("random"));
                             sender.sendMessage(ChatColor.GRAY + "prefix" + ": " + ChatColor.RESET + prefix);
                             sender.sendMessage(ChatColor.GRAY + "sender" + ": " + ChatColor.RESET + sender0);
                             sender.sendMessage(ChatColor.GRAY + "suffix" + ": " + ChatColor.RESET + suffix);
@@ -68,11 +71,11 @@ public class SimpleautomessageCommand implements CommandExecutor {
                         } else {
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }
-                    } else if(args[0].equalsIgnoreCase("update")){
-                            plugin.forceUpdate(Bukkit.getPlayer(pn), sender0);
-                        }else{
+                    } else if (args[0].equalsIgnoreCase("update")) {
+                        plugin.forceUpdate(Bukkit.getPlayer(pn), sender0);
+                    } else {
                         sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
-                        }
+                    }
                 }
             } else if (args.length > 1) {
                 sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
