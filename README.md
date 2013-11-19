@@ -10,4 +10,4 @@ Read more at http://dev.bukkit.org/server-mods/simpleautomessage/
 License
 =========
 The plugin is under GNU general public License version 3 (GPLv3)
-http://dev.bukkit.org/licenses/7-gnu-general-public-license-version-3-gplv3/
+https://github.com/Carlgo11/SimpleAutomessage/blob/1.0.6/LICENSE
