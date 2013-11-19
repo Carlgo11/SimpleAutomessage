@@ -29,7 +29,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
                 if (sender.hasPermission("simpleAutoMessage.simpleautomessage")) {
-                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
+                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + "["+plugin.getDescription().getName()+"]" + ChatColor.GREEN + " ======== ");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + Lang.Simplemsg_Main);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
