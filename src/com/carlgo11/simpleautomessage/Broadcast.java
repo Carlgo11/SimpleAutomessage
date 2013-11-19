@@ -19,6 +19,7 @@ public class Broadcast implements Listener {
     int errormsgs = 0;
     int ra = 0;
     int rb = 0;
+
     public void broadcast()
     {
         int a = 0;
@@ -57,8 +58,8 @@ public class Broadcast implements Listener {
                     String suffixToMC = ChatColor.translateAlternateColorCodes('&', suffixToSend);
                     if (plugin.getConfig().getBoolean("random")) {
                         RandomishInt.onInt(ra);
-                        while(RandomishInt.use == false){
-                            
+                        while (RandomishInt.use == false) {
+
                         }
                         if (plugin.getConfig().contains("msg" + RandomishInt.a)) {
                             String messageToSend = plugin.getConfig().getString("msg" + RandomishInt.a);

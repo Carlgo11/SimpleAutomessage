@@ -7,6 +7,7 @@ public class RandomishInt {
     static int a = 0;
     static int qwe = 0;
     static boolean use = true;
+
     public static void onInt(int asd)
     {
         use = false;
@@ -15,9 +16,9 @@ public class RandomishInt {
             Random n = new Random();
             int num = 0;
             for (int count = 1; count <= 2; count++) {
-                num = 1 + n.nextInt(asd); 
+                num = 1 + n.nextInt(asd);
             }
-        sendtoA(num);
+            sendtoA(num);
         } else {
             Random n = new Random();
             int num = 0;
@@ -31,8 +32,10 @@ public class RandomishInt {
         }
         use = true;
     }
-    public static void sendtoA(int b){ // For future debug purposes. 
-        a=b;
+
+    public static void sendtoA(int b)
+    { // For future debug purposes. 
+        a = b;
     }
 
 }
