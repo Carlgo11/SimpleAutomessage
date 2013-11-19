@@ -18,7 +18,7 @@ public class Broadcast implements Listener {
     int errormaxmsgs = 5;
     int errormsgs = 0;
     int ra = 0;
-
+    int rb = 0;
     public void broadcast()
     {
         int a = 0;
@@ -30,6 +30,7 @@ public class Broadcast implements Listener {
                 ra = i;
             }
         }
+        ra--;
 
         final long d = (long) (plugin.time);
         Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
@@ -56,17 +57,20 @@ public class Broadcast implements Listener {
                     String suffixToMC = ChatColor.translateAlternateColorCodes('&', suffixToSend);
                     if (plugin.getConfig().getBoolean("random")) {
                         RandomishInt.onInt(ra);
+                        while(RandomishInt.use == false){
+                            
+                        }
                         if (plugin.getConfig().contains("msg" + RandomishInt.a)) {
                             String messageToSend = plugin.getConfig().getString("msg" + RandomishInt.a);
                             String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                             plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
-                            RandomishInt.a++;
                         } else {
                             if (errormsgs != errormaxmsgs) {
                                 System.out.println(ChatColor.stripColor(prefixToMC) + ChatColor.stripColor(senderToMC) + ChatColor.stripColor(suffixToMC) + " " + Lang.NO_MSG1);
                                 errormsgs++;
                             }
                         }
+                        rb = RandomishInt.a;
                     } else {
                         if (plugin.getConfig().contains("msg" + plugin.tick)) {
                             String messageToSend = plugin.getConfig().getString("msg" + plugin.tick);
