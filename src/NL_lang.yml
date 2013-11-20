@@ -11,6 +11,6 @@ updated: 'Klaar. Herstart de server om de nieuwste patch te laden.'
 simplemsg-main: ' Laat de commands zien'
 simplemsg-reload: ' Herlaad de config.yml'
 simplemsg-list: ' Lijst van alle actieve berichten'
-simplemsg-update: 'Zal hem updaten'
-# Vertaalt van het engels door Grayhutner4. || Translated from English by Grayhunter4.
+simplemsg-update: ' Zal hem updaten'
+# Vertaalt van het engels door TheRespawner. || Translated from English by TheRespawner.
 # This text might contain typos. Please inform us if you find a typo!
