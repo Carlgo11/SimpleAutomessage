@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -114,9 +115,9 @@ public class Main extends JavaPlugin {
     {
         String up = Lang.UPDATING.toString().replaceAll("%prefix%", getDescription().getName());
         String updone = Lang.UPDATED.toString().replaceAll("%prefix%", getDescription().getName());
-        p.sendMessage(sender0 + " " + up);
+        p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
         Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
-        p.sendMessage(sender0 + " " + updone);
+        p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
     }
 
     public void graphs(Metrics metrics)
@@ -155,6 +156,7 @@ public class Main extends JavaPlugin {
             if (!getConfig().getString("language").equalsIgnoreCase("EN") && !getConfig().getString("language").equalsIgnoreCase("FR") && !getConfig().getString("language").equalsIgnoreCase("NL") && !getConfig().getString("language").equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Other"));
             }
+            //Graph4
             Metrics.Graph graph4 = metrics.createGraph("min-players");
             graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
             onDebug("Sending metrics data...");
