@@ -1,7 +1,6 @@
 package com.carlgo11.simpleautomessage.player;
 
 import com.carlgo11.simpleautomessage.Main;
-import com.carlgo11.simpleautomessage.language.Lang;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
