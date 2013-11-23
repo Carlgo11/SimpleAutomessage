@@ -1,12 +1,15 @@
 package com.carlgo11.simpleautomessage.commands;
 
 import com.carlgo11.simpleautomessage.Main;
+import com.carlgo11.simpleautomessage.NothingHere;
 import com.carlgo11.simpleautomessage.language.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class SimpleautomessageCommand implements CommandExecutor {
 
@@ -29,11 +32,11 @@ public class SimpleautomessageCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
                 if (sender.hasPermission("simpleAutoMessage.simpleautomessage")) {
-                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + "["+plugin.getDescription().getName()+"]" + ChatColor.GREEN + " ======== ");
-                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage" + ChatColor.YELLOW + Lang.Simplemsg_Main);
-                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
-                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
-                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + "SimpleAutoMessage List" + ChatColor.YELLOW + Lang.Simplemsg_List);
+                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + "]" + ChatColor.GREEN + " ======== ");
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + ChatColor.YELLOW + Lang.Simplemsg_Main);
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
+                    sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.Simplemsg_List);
                 } else {
                     sender.sendMessage(Lang.BAD_PERMS + "");
                 }
@@ -73,6 +76,9 @@ public class SimpleautomessageCommand implements CommandExecutor {
                         }
                     } else if (args[0].equalsIgnoreCase("update")) {
                         plugin.forceUpdate(Bukkit.getPlayer(pn), sender0);
+                    } else if (args[0].equalsIgnoreCase("moo")) {
+                        sender.sendMessage(NothingHere.playerMoo);
+                        Bukkit.getPlayer(pn).getWorld().playSound(Bukkit.getPlayer(pn).getLocation(), Sound.COW_IDLE, 1, 0);
                     } else {
                         sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
                     }
@@ -83,4 +89,5 @@ public class SimpleautomessageCommand implements CommandExecutor {
         }
         return true;
     }
+    
 }
