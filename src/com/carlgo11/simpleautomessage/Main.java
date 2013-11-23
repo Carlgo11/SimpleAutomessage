@@ -162,9 +162,9 @@ public class Main extends JavaPlugin {
             //Graph5
             Metrics.Graph graph5 = metrics.createGraph("random");
             if(getConfig().getBoolean("random")){
-                graph5.addPlotter(new SimplePlotter("true"));
+                graph5.addPlotter(new SimplePlotter("enabled"));
             }else{
-                graph5.addPlotter(new SimplePlotter("false"));
+                graph5.addPlotter(new SimplePlotter("disabled"));
             }
             onDebug("Sending metrics data...");
             metrics.start();
