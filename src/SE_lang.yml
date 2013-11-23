@@ -8,9 +8,9 @@ unknown-command: '&cFel: Okänt kommando!'
 no-msg1: 'Fel: Ingen msg1 hittades i configen!'
 updating: 'Uppdaterar %prefix%...'
 updated: 'Klart. Starta om servern för att ladda den nya uppdateringen'
-simplemsg-main: ' visar alla kommandon för pluginet'
-simplemsg-reload: ' startar om pluginet'
-simplemsg-list: ' visar alla aktiva medelanden'
+simplemsg-main: ' Visar alla kommandon för pluginet'
+simplemsg-reload: ' Startar om pluginet'
+simplemsg-list: ' Visar alla aktiva medelanden'
 simplemsg-update: ' Kommer updatera pluginet'
 # Översatt från engelska av Carlgo11. || Translated from English by Carlgo11.
 # This text might contain typos. Please inform us if you find a typo!

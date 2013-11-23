@@ -159,6 +159,13 @@ public class Main extends JavaPlugin {
             //Graph4
             Metrics.Graph graph4 = metrics.createGraph("min-players");
             graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
+            //Graph5
+            Metrics.Graph graph5 = metrics.createGraph("random");
+            if(getConfig().getBoolean("random")){
+                graph5.addPlotter(new SimplePlotter("true"));
+            }else{
+                graph5.addPlotter(new SimplePlotter("false"));
+            }
             onDebug("Sending metrics data...");
             metrics.start();
         } catch (Exception e) {
