@@ -22,7 +22,7 @@ version: 1.0.6
 # +------------------------------------------------------+ #
 ############################################################
 
-# You can set an translation or make a own.
+# You can set a translation or make your own.
 # There's currently EN, NL, FR, SE translations. If you want to help us translate to your language please contact us via our IRC!
 language: EN
 
@@ -58,6 +58,7 @@ time: 20
 # |                       Messages                       | #
 # +------------------------------------------------------+ #
 ############################################################
+
 # Want to broadcast the messages randomly?
 random: false
 
