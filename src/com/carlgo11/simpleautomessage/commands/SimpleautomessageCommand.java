@@ -9,7 +9,6 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 public class SimpleautomessageCommand implements CommandExecutor {
 
@@ -75,16 +74,20 @@ public class SimpleautomessageCommand implements CommandExecutor {
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }
                     } else if (args[0].equalsIgnoreCase("update")) {
+                        if(sender.hasPermission("simpleAutoMessage.simpleautomessage.update")){
                         plugin.forceUpdate(Bukkit.getPlayer(pn), sender0);
+                        }else{
+                            sender.sendMessage(Lang.BAD_PERMS + "");
+                        }
                     } else if (args[0].equalsIgnoreCase("moo")) {
                         sender.sendMessage(NothingHere.playerMoo);
                         Bukkit.getPlayer(pn).getWorld().playSound(Bukkit.getPlayer(pn).getLocation(), Sound.COW_IDLE, 1, 0);
                     } else {
-                        sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
+                        sender.sendMessage(""+Lang.UNKNOWN_CMD);
                     }
                 }
             } else if (args.length > 1) {
-                sender.sendMessage(sender0 + " " + Lang.UNKNOWN_CMD);
+                sender.sendMessage(""+Lang.UNKNOWN_CMD);
             }
         }
         return true;
