@@ -166,6 +166,15 @@ public class Main extends JavaPlugin {
             }else{
                 graph5.addPlotter(new SimplePlotter("disabled"));
             }
+            //Graph6
+            Metrics.Graph graph6 = metrics.createGraph("warn-update");
+            if(getConfig().getString("warn-update").equalsIgnoreCase("op")){
+                graph6.addPlotter(new SimplePlotter("op"));
+            }else if(getConfig().getString("warn-update").equalsIgnoreCase("perm")){
+                graph6.addPlotter(new SimplePlotter("perm"));
+            }else {
+                graph6.addPlotter(new SimplePlotter("none"));
+            }
             onDebug("Sending metrics data...");
             metrics.start();
         } catch (Exception e) {
