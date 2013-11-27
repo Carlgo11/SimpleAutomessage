@@ -1,6 +1,6 @@
 name: SimpleAutoMessage
 main: com.carlgo11.simpleautomessage.Main
-version: dev-(1.0.6).0
+version: 1.0.6
 description: Auto-announcer plugin
 author: Carlgo11
 website: http://www.carlgo11.com/
@@ -15,18 +15,22 @@ permissions:
     description: Permission to see the messages broadcasted by SimpleAutomessage
   simpleAutoMessage.simpleautomessage:
     default: op
-    description: permission to use /simpleautomessage 
+    description: Permission to use /simpleautomessage 
   simpleAutoMessage.simpleautomessage.reload:
     default: op
-    description: permission to use /simpleautomessage reload
+    description: Permission to use /simpleautomessage reload
   simpleAutoMessage.simpleautomessage.list:
     default: op
-    description: permission to use /simpleautomessage reload
+    description: Permission to use /simpleautomessage reload
+  simpleAutoMessage.notify:
+    defaylt: op
+    description: Player will be notified on login when a new update is avible.
   simpleAutoMessage.*:
     default: op
-    description: gives the player all the SimpleAutoMessage permissions
+    description: Gives the player all the SimpleAutoMessage permissions
     children:
       simpleAutoMessage.simpleautomessage: true
       simpleAutoMessage.simpleautomessage.reload: true
       simpleAutoMessage.simpleautomessage.list: true
       simpleAutoMessage.seemsg: true
+      simpleAutoMessage.notify: true

@@ -29,7 +29,7 @@ public class PlayerJoin implements Listener {
                     p.sendMessage(prefix + ChatColor.GREEN + " An update is available!\nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
                 }
             } else if (upd.equalsIgnoreCase("perm")) {
-                if (p.hasPermission("simpleautomessage.recive-updates")) {
+                if (p.hasPermission("simpleAutoMessage.notify")) {
                     p.sendMessage(prefix + "" + ChatColor.GREEN + " An update is available!\nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
                 }
             }
