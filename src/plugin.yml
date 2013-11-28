@@ -22,6 +22,9 @@ permissions:
   simpleAutoMessage.simpleautomessage.list:
     default: op
     description: Permission to use /simpleautomessage reload
+  simpleAutoMessage.simpleautomessage.update:
+    default: op
+    description: Permission to use /simpleautomessage update
   simpleAutoMessage.notify:
     defaylt: op
     description: Player will be notified on login when a new update is avible.
@@ -32,5 +35,6 @@ permissions:
       simpleAutoMessage.simpleautomessage: true
       simpleAutoMessage.simpleautomessage.reload: true
       simpleAutoMessage.simpleautomessage.list: true
+      simpleAutoMessage.simpleautomessage.update: true
       simpleAutoMessage.seemsg: true
       simpleAutoMessage.notify: true
