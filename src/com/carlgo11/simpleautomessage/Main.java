@@ -61,7 +61,10 @@ public class Main extends JavaPlugin {
             Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.DEFAULT, true);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
 
-        } else {
+        } else if(!getConfig().getString("warn-update").equalsIgnoreCase("none")) {
+            Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
+            update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
+        }else{
             onDebug("auto-update: is set to false!");
         }
     }
