@@ -27,8 +27,8 @@ public class Main extends JavaPlugin {
     {
         reloadConfig();
         getServer().getPluginManager().registerEvents(new Time(this), this);
-        checkVersion();
         checkConfig();
+        checkVersion();
         checkMetrics();
         getServer().getPluginManager().registerEvents(new loadLang(this), this);
         getServer().getPluginManager().registerEvents(new Broadcast(this), this);
@@ -58,11 +58,11 @@ public class Main extends JavaPlugin {
 
         if (getConfig().getBoolean("auto-update") == true) {
             onDebug("Calling Updater.java");
-            Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.DEFAULT, true);
+            Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.DEFAULT, true);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
 
         } else if(!getConfig().getString("warn-update").equalsIgnoreCase("none")) {
-            Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
+            Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
         }else{
             onDebug("auto-update: is set to false!");
@@ -119,7 +119,7 @@ public class Main extends JavaPlugin {
         String up = Lang.UPDATING.toString().replaceAll("%prefix%", getDescription().getName());
         String updone = Lang.UPDATED.toString().replaceAll("%prefix%", getDescription().getName());
         p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
-        Updater updater = new Updater(this, "simpleautomessage/", getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
+        Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
         p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
     }
 
