@@ -75,7 +75,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                         }
                     } else if (args[0].equalsIgnoreCase("update")) {
                         if(sender.hasPermission("simpleAutoMessage.simpleautomessage.update")){
-                        plugin.forceUpdate(Bukkit.getPlayer(pn), sender0);
+                        plugin.forceUpdate(sender, sender0);
                         }else{
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }

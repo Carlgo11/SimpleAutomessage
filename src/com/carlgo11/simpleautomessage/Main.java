@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,13 +35,13 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Broadcast(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         commands();
-        getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.ENABLED});
+        getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
 
     }
 
     public void onDisable()
     {
-        getLogger().log(Level.INFO, "{0} {1} {2}", new Object[]{getDescription().getName(), getDescription().getVersion(), Lang.DISABLED});
+        getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.DISABLED);
     }
 
     public void commands()
@@ -61,10 +62,10 @@ public class Main extends JavaPlugin {
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.DEFAULT, true);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
 
-        } else if(!getConfig().getString("warn-update").equalsIgnoreCase("none")) {
+        } else if (!getConfig().getString("warn-update").equalsIgnoreCase("none")) {
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
-        }else{
+        } else {
             onDebug("auto-update: is set to false!");
         }
     }
@@ -114,7 +115,7 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void forceUpdate(Player p, String sender0)
+    public void forceUpdate(CommandSender p, String sender0)
     {
         String up = Lang.UPDATING.toString().replaceAll("%prefix%", getDescription().getName());
         String updone = Lang.UPDATED.toString().replaceAll("%prefix%", getDescription().getName());
@@ -164,18 +165,18 @@ public class Main extends JavaPlugin {
             graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
             //Graph5
             Metrics.Graph graph5 = metrics.createGraph("random");
-            if(getConfig().getBoolean("random")){
+            if (getConfig().getBoolean("random")) {
                 graph5.addPlotter(new SimplePlotter("enabled"));
-            }else{
+            } else {
                 graph5.addPlotter(new SimplePlotter("disabled"));
             }
             //Graph6
             Metrics.Graph graph6 = metrics.createGraph("warn-update");
-            if(getConfig().getString("warn-update").equalsIgnoreCase("op")){
+            if (getConfig().getString("warn-update").equalsIgnoreCase("op")) {
                 graph6.addPlotter(new SimplePlotter("op"));
-            }else if(getConfig().getString("warn-update").equalsIgnoreCase("perm")){
+            } else if (getConfig().getString("warn-update").equalsIgnoreCase("perm")) {
                 graph6.addPlotter(new SimplePlotter("perm"));
-            }else {
+            } else {
                 graph6.addPlotter(new SimplePlotter("none"));
             }
             onDebug("Sending metrics data...");
