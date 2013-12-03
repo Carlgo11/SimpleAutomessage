@@ -1,0 +1,16 @@
+# ENGLISH translation for SimpleAutoMessage
+plugin-enabled: 'is enabled!'
+plugin-disabled: 'is disabled!'
+mcstats-error: 'Error Submitting stats!'
+bad-perms: "&cError: You don't have permission to use that command!"
+plugin-reloaded: '&aSimpleAutoMessage reloaded!'
+unknown-command: '&cError: Unknown command!'
+no-msg1: 'Error: No msg1 set in the config.yml!'
+updating: 'Updating %prefix%...'
+updated: 'Done. Restart the server to load the new patch.'
+simplemsg-main: ' Shows the commands'
+simplemsg-reload: ' Reloads the config.yml'
+simplemsg-list: ' Lists all the active messages'
+simplemsg-update: ' Will force an update'
+# Original text written by Carlgo11.
+# This text might contain typos. Please inform us if you find a typo!

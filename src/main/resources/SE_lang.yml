@@ -1,0 +1,16 @@
+# SWEDISH translation for SimpleAutoMessage
+plugin-enabled: 'är aktiverat!'
+plugin-disabled: 'är inaktiverat!'
+mcstats-error: 'Ett fel inträffade! Kunde inte skicka stats!'
+bad-perms: "&cFel: Du har inte behörighet för att använda det kommandot!"
+plugin-reloaded: '&aSimpleAutoMessage omladdad!'
+unknown-command: '&cFel: Okänt kommando!'
+no-msg1: 'Fel: Ingen msg1 hittades i configen!'
+updating: 'Uppdaterar %prefix%...'
+updated: 'Klart. Starta om servern för att ladda den nya uppdateringen'
+simplemsg-main: ' Visar alla kommandon för pluginet'
+simplemsg-reload: ' Startar om pluginet'
+simplemsg-list: ' Visar alla aktiva medelanden'
+simplemsg-update: ' Kommer updatera pluginet'
+# Översatt från engelska av Carlgo11. || Translated from English by Carlgo11.
+# This text might contain typos. Please inform us if you find a typo!

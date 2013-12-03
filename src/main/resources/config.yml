@@ -1,0 +1,80 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                       Notes                          | #
+# +------------------------------------------------------+ #
+############################################################
+# Config for SimpleAutoMessage
+# SimpleAutoMessage is a Bukkit plugin developed by Carlgo11.
+
+# COLORS:
+# When adding colors use the minecraft colorcodes.
+# Example: &a = green, &d = purple.
+
+# When this config.yml is broken it's often because of the msg strings! ALWAYS USE '' AROUND A MESSAGE!
+# Example: msg1: 'This is an example' 
+
+# Don't Change the version! If the version is changed this config.yml will be deleted!
+version: 1.0.6
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Settings                       | #
+# +------------------------------------------------------+ #
+############################################################
+
+# You can set a translation or make your own.
+# There's currently EN, NL, FR, SE translations. If you want to help us translate to your language please contact us via our IRC!
+language: EN
+
+# Set this to true when having issues with this plugin. Then give the server.log to us on http://tiny.cc/simpleautomessage-irc and wait for a reply.
+# For more information go to http://tiny.cc/simplemsg-debug
+debug: false
+
+# Automatically download patches and bug-fixes? This means you'll never have to download any new versions from dev.bukkit.org!
+auto-update: true
+
+# If auto-update is set to false. Who should recive information when a new update is available?
+# Available options: op, perm, none
+warn-update: perm
+
+# The minimal amount of players that has to be online for a message to broadcast. set to 0 to disable this feature.
+min-players: 1
+
+# The sender of the messages.
+sender: '&d[Server]&r '
+
+# The prefix of the sender.
+prefix: ''
+
+# The suffix of the sender.
+suffix: ''
+
+# Time is the time between each message.
+# TIME SHOULD BE IN SECONDS!
+time: 20
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Messages                       | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Want to broadcast the messages randomly?
+random: false
+
+# MESSAGES:
+# Below are the messages that will be broadcasted.
+# To add more messages just write 'msg<number>'.
+# DO NOT use the same number on multiple messages!
+# ALWAYS use '' outside a message! 
+# Remove the '#' in front of the msg<number> when you want to enable it!
+
+#msg1: 'Remove the "#" in front of this msg to enable it!'
+#msg2: 'You can add how many msgs as you want!'
+#msg3: '&dYou can also use colorcodes! &aThis is GREEN &cand this is RED'
+#msg4: 'Remember to alsways use '' outside the message!'
+
+
+# Have any questions? Post a comment on http://dev.bukkit.org/bukkit-plugins/simpleautomessage/
+# You can also contact me on http://tiny.cc/simpleautomessage-irc
+# END OF CONFIG.YML! :)
