@@ -1,6 +1,6 @@
 SimpleAutomessage
 =================
-
+[![Build Status](https://travis-ci.org/Carlgo11/SimpleAutomessage.png)](https://travis-ci.org/Carlgo11/SimpleAutomessage)
 + **IRC:** tiny.cc/simplemsg-irc
 
 + **Dev.Bukkit.org:** http://dev.bukkit.org/server-mods/simpleautomessage/
@@ -11,10 +11,6 @@ Description
 =========
 Simple AutoMessage is a plugin that will announce a custom message to the server.
 You are able to change the time between each message in the config.yml along with the prefix and color of the messages!
-
-Read more at http://dev.bukkit.org/server-mods/simpleautomessage/
-
-.Jar file at http://dev.bukkit.org/server-mods/simpleautomessage/files/
 
 Developing
 =========
