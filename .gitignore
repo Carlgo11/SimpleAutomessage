@@ -36,8 +36,8 @@ local.properties
 /nbproject
 
 # maven
-#/target
-#*/target
+/target
+*/target
 
 # vim
 .*.sw[a-p]
