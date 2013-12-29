@@ -1,7 +1,7 @@
 SimpleAutomessage
 =================
 [![Build Status](https://travis-ci.org/Carlgo11/SimpleAutomessage.png)](https://travis-ci.org/Carlgo11/SimpleAutomessage)
-+ **IRC:** tiny.cc/simplemsg-irc
++ **IRC:** http://tiny.cc/simplemsg-irc
 
 + **Dev.Bukkit.org:** http://dev.bukkit.org/server-mods/simpleautomessage/
 
