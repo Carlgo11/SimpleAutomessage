@@ -1,7 +1,5 @@
 package com.carlgo11.simpleautomessage.language;
- 
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.YamlConfiguration;
+
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 

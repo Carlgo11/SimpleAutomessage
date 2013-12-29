@@ -22,7 +22,6 @@ public class PlayerJoin implements Listener {
         if (plugin.getConfig().getBoolean("auto-update") == false && !plugin.getDescription().getVersion().startsWith("dev-")) {
             String upd = plugin.getConfig().getString("warn-update");
             Player p = e.getPlayer();
-            String pn = e.getPlayer().getName();
             String prefix = ChatColor.LIGHT_PURPLE + "[" + plugin.getDescription().getName() + "]" + ChatColor.RESET;
             if (upd.equalsIgnoreCase("op")) {
                 if (p.isOp() && plugin.update) {
