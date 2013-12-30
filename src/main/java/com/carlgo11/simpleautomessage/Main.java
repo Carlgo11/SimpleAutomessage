@@ -3,7 +3,6 @@ package com.carlgo11.simpleautomessage;
 import com.carlgo11.simpleautomessage.commands.*;
 import com.carlgo11.simpleautomessage.updater.*;
 import com.carlgo11.simpleautomessage.language.*;
-import com.carlgo11.simpleautomessage.metrics.*;
 import com.carlgo11.simpleautomessage.player.*;
 import java.io.File;
 import java.io.IOException;
@@ -12,8 +11,8 @@ import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.Metrics;
 
 public class Main extends JavaPlugin {
 
@@ -66,7 +65,7 @@ public class Main extends JavaPlugin {
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
         } else {
-            onDebug("auto-update: is set to false!");
+            onDebug("update is set to false!");
         }
     }
 
