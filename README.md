@@ -5,7 +5,7 @@ SimpleAutomessage
 
 + **Dev.Bukkit.org:** http://dev.bukkit.org/server-mods/simpleautomessage/
 
-+ **Jenkins (ci):** http://ci.carlgo11.com/job/SimpleAutomessage/
++ **Jenkins (ci):** http://ci.kamino.in/job/SimpleAutomessage/
 
 Description
 =========
