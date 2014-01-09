@@ -26,7 +26,7 @@ version: 1.0.6
 # There's currently EN, NL, FR, SE translations. If you want to help us translate to your language please contact us via our IRC!
 language: EN
 
-# Set this to true when having issues with this plugin. Then give the server.log to us on http://tiny.cc/simpleautomessage-irc and wait for a reply.
+# Set this to true when having issues with this plugin. Then give the server.log to us on http://tiny.cc/simpleautomessage-irc and wait for a reply. (Recommended: 'false')
 # For more information go to http://tiny.cc/simplemsg-debug
 debug: false
 

@@ -79,7 +79,7 @@ public class Broadcast implements Listener {
                             plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                             plugin.tick++;
                         } else {
-                            plugin.onDebug("no msg" + plugin.tick + " set in the config. calling msg1 instead.");
+                            plugin.onDebug("no msg" + plugin.tick + " set in the config. Calling msg1 instead.");
                             if (plugin.getConfig().contains("msg1")) {
                                 String messageToSend = plugin.getConfig().getString("msg1");
                                 String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
