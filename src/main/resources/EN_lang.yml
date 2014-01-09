@@ -12,5 +12,5 @@ simplemsg-main: ' Shows the commands'
 simplemsg-reload: ' Reloads the config.yml'
 simplemsg-list: ' Lists all the active messages'
 simplemsg-update: ' Will force an update'
-# Original text written by Carlgo11.
+# Written by Carlgo11.
 # This text might contain typos. Please inform us if you find a typo!
