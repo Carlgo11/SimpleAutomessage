@@ -449,7 +449,14 @@ public class Updater {
 
             if (title.split(" v").length == 2) {
                 final String remoteVersion = title.split(" v")[1].split(" ")[0]; // Get the newest file's version number
-                if (this.hasTag(version) || version.equalsIgnoreCase(remoteVersion)) {
+                int remVer = -1, curVer = 0;
+                try {
+                    remVer = this.calVer(remoteVersion);
+                    curVer = this.calVer(version);
+                } catch (final NumberFormatException nfe) {
+                    remVer = -1;
+                }
+                if (this.hasTag(version) || version.equalsIgnoreCase(remoteVersion) || (curVer >= remVer)) {
                     // We already have the latest version, or this build is tagged for no-update
                     this.result = Updater.UpdateResult.NO_UPDATE;
                     return false;
@@ -465,6 +472,24 @@ public class Updater {
             }
         }
         return true;
+    }
+
+    /**
+     * Used to calculate the version string as an Integer
+     */
+    private Integer calVer(String s) throws NumberFormatException
+    {
+        if (s.contains(".")) {
+            final StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < s.length(); i++) {
+                final Character c = s.charAt(i);
+                if (Character.isLetterOrDigit(c)) {
+                    sb.append(c);
+                }
+            }
+            return Integer.parseInt(sb.toString());
+        }
+        return Integer.parseInt(s);
     }
 
     /**
