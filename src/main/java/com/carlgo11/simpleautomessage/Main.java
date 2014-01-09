@@ -66,7 +66,7 @@ public class Main extends JavaPlugin {
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
         } else {
-            onDebug("update is set to false!");
+            onDebug("auto-update & warn-update is set to false!");
         }
     }
 
@@ -93,7 +93,7 @@ public class Main extends JavaPlugin {
                 config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
                 saveDefaultConfig();
             } else {
-                onDebug("The plugin's version is a dev-build. Will not try to reload the config.");
+                onDebug("The plugin-version is a dev-build. Will not try to reload the config.");
             }
         }
     }
