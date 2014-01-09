@@ -37,6 +37,9 @@ auto-update: true
 # Available options: op, perm, none
 warn-update: perm
 
+# Backup the current config and replace it with a new one when a new version is downloaded. (Recommened: 'true')
+update-config: true
+
 # The minimal amount of players that has to be online for a message to broadcast. set to 0 to disable this feature.
 min-players: 1
 

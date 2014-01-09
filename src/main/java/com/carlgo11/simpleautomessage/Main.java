@@ -87,13 +87,17 @@ public class Main extends JavaPlugin {
             saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
         }
-        if (!getConfig().getString("version").equals(this.configv)) {
-            if (!getDescription().getVersion().startsWith("dev")) {
-                config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
-                saveDefaultConfig();
-            } else {
-                onDebug("The plugin-version is a dev-build. Will not try to reload the config.");
+        if (getConfig().getBoolean("update-config")) {
+            if (!getConfig().getString("version").equals(this.configv)) {
+                if (!getDescription().getVersion().startsWith("dev")) {
+                    config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
+                    saveDefaultConfig();
+                } else {
+                    onDebug("The plugin-version is a dev-build. Will not try to reload the config.");
+                }
             }
+        }else{
+            onDebug("update-config is set to false.");
         }
     }
 
@@ -162,7 +166,7 @@ public class Main extends JavaPlugin {
             //Graph4
             Metrics.Graph graph4 = metrics.createGraph("min-players");
             graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
-            
+
             //Graph5
             Metrics.Graph graph5 = metrics.createGraph("random");
             if (getConfig().getBoolean("random")) {
