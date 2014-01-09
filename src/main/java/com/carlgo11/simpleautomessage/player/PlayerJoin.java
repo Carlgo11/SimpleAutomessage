@@ -23,13 +23,14 @@ public class PlayerJoin implements Listener {
             String upd = plugin.getConfig().getString("warn-update");
             Player p = e.getPlayer();
             String prefix = ChatColor.LIGHT_PURPLE + "[" + plugin.getDescription().getName() + "]" + ChatColor.RESET;
+            String updateav = prefix + ChatColor.GREEN + " An update is available!\nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.";
             if (upd.equalsIgnoreCase("op")) {
                 if (p.isOp() && plugin.update) {
-                    p.sendMessage(prefix + ChatColor.GREEN + " An update is available!\nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
+                    p.sendMessage(updateav);
                 }
             } else if (upd.equalsIgnoreCase("perm")) {
                 if (p.hasPermission("simpleAutoMessage.notify") && plugin.update) {
-                    p.sendMessage(prefix + "" + ChatColor.GREEN + " An update is available!\nType " + ChatColor.BLUE + ChatColor.ITALIC + "/simpleautomessage update" + ChatColor.RESET + ChatColor.GREEN + " to update the plugin.");
+                    p.sendMessage(updateav);
                 }
             }
         }

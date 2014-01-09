@@ -28,10 +28,11 @@ public class SimpleautomessageCommand implements CommandExecutor {
         String suffixToSend = plugin.getConfig().getString("suffix");
         String suffix = ChatColor.translateAlternateColorCodes('&', suffixToSend);
         String pn = sender.getName();
+        String topic = ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + "]" + ChatColor.GREEN + " ======== ";
         if (cmd.getName().equalsIgnoreCase("simpleautomessage")) {
             if (args.length == 0) {
                 if (sender.hasPermission("simpleAutoMessage.simpleautomessage")) {
-                    sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + "]" + ChatColor.GREEN + " ======== ");
+                    sender.sendMessage(topic);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + ChatColor.YELLOW + Lang.Simplemsg_Main);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
                     if (sender.hasPermission("simpleAutoMessage.simpleautomessage.update")) {
@@ -59,7 +60,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 } else {
                     if (args[0].equalsIgnoreCase("list")) {
                         if (sender.hasPermission("simpleAutoMessage.simpleautomessage.list")) {
-                            sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + sender0 + ChatColor.GREEN + " ======== ");
+                            sender.sendMessage(topic);
                             sender.sendMessage(ChatColor.GRAY + "min-players" + ": " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
                             sender.sendMessage(ChatColor.GRAY + "time" + ": " + ChatColor.RESET + plugin.getConfig().getInt("time"));
                             sender.sendMessage(ChatColor.GRAY + "random" + ": " + ChatColor.RESET + plugin.getConfig().getBoolean("random"));
