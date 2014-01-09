@@ -34,6 +34,13 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     sender.sendMessage(ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + "]" + ChatColor.GREEN + " ======== ");
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + ChatColor.YELLOW + Lang.Simplemsg_Main);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
+                    if (sender.hasPermission("simpleAutoMessage.simpleautomessage.update")) {
+                        if (plugin.update) {
+                            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.GREEN + cmd.getName() + " Update" + ChatColor.GREEN + Lang.Simplemsg_Update);
+                        } else {
+                            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
+                        }
+                    }
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.Simplemsg_List);
                 } else {
@@ -74,23 +81,23 @@ public class SimpleautomessageCommand implements CommandExecutor {
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }
                     } else if (args[0].equalsIgnoreCase("update")) {
-                        if(sender.hasPermission("simpleAutoMessage.simpleautomessage.update")){
-                        plugin.forceUpdate(sender, sender0);
-                        }else{
+                        if (sender.hasPermission("simpleAutoMessage.simpleautomessage.update")) {
+                            plugin.forceUpdate(sender, sender0);
+                        } else {
                             sender.sendMessage(Lang.BAD_PERMS + "");
                         }
                     } else if (args[0].equalsIgnoreCase("moo")) {
                         sender.sendMessage(NothingHere.playerMoo);
                         Bukkit.getPlayer(pn).getWorld().playSound(Bukkit.getPlayer(pn).getLocation(), Sound.COW_IDLE, 1, 0);
                     } else {
-                        sender.sendMessage(""+Lang.UNKNOWN_CMD);
+                        sender.sendMessage("" + Lang.UNKNOWN_CMD);
                     }
                 }
             } else if (args.length > 1) {
-                sender.sendMessage(""+Lang.UNKNOWN_CMD);
+                sender.sendMessage("" + Lang.UNKNOWN_CMD);
             }
         }
         return true;
     }
-    
+
 }
