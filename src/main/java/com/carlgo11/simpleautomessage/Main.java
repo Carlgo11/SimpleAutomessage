@@ -22,6 +22,7 @@ public class Main extends JavaPlugin {
     public static YamlConfiguration LANG;
     public static File LANG_FILE;
     public boolean update = false;
+    public boolean debugm;
     public String configv = "1.0.6";
 
     public void onEnable()
@@ -29,6 +30,7 @@ public class Main extends JavaPlugin {
         reloadConfig();
         getServer().getPluginManager().registerEvents(new Time(this), this);
         checkConfig();
+        checkDebugMode();
         checkVersion();
         checkMetrics();
         getServer().getPluginManager().registerEvents(new loadLang(this), this);
@@ -56,7 +58,7 @@ public class Main extends JavaPlugin {
             getLogger().warning("Type /simpleautomessage update to download the latest recommended build.");
         }
 
-        if (getConfig().getBoolean("auto-update") == true) {
+        if (getConfig().getBoolean("auto-update")) {
             onDebug("Calling Updater.java");
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.DEFAULT, true);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
@@ -75,8 +77,8 @@ public class Main extends JavaPlugin {
             Metrics metrics = new Metrics(this);
             graphs(metrics);
             metrics.start();
-        } catch (IOException e) {
-            System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR);
+        } catch (IOException ex) {
+            System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
         }
     }
 
@@ -96,7 +98,7 @@ public class Main extends JavaPlugin {
                     onDebug("The plugin-version is a dev-build. Will not try to reload the config.");
                 }
             }
-        }else{
+        } else {
             onDebug("update-config is set to false.");
         }
     }
@@ -113,8 +115,15 @@ public class Main extends JavaPlugin {
 
     public void onDebug(String s)
     { // Debug message method
-        if (getConfig().getBoolean("debug")) {
+        if (debugm) {
             getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
+        }
+    }
+
+    public void checkDebugMode()
+    {
+        if (getConfig().getBoolean("debug")) {
+            debugm = true;
         }
     }
 
