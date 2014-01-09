@@ -30,17 +30,17 @@ language: EN
 # For more information go to http://tiny.cc/simplemsg-debug
 debug: false
 
-# Automatically download patches and bug-fixes? This means you'll never have to download any new versions from dev.bukkit.org!
+# Automatically download patches and bug-fixes? This means you'll never have to download any new versions from dev.bukkit.org! (Recommended: 'true')
 auto-update: true
 
-# If auto-update is set to false. Who should recive information when a new update is available?
+# If auto-update is set to false. Who should recive information when a new update is available? (Recommended: 'perm')
 # Available options: op, perm, none
 warn-update: perm
 
-# Backup the current config and replace it with a new one when a new version is downloaded. (Recommened: 'true')
+# Backup the current config and replace it with a new one when a new version is downloaded. (Recommended: 'true')
 update-config: true
 
-# The minimal amount of players that has to be online for a message to broadcast. set to 0 to disable this feature.
+# The minimal amount of players that has to be online for a message to broadcast. set to 0 to disable this feature. (Recommended: '1')
 min-players: 1
 
 # The sender of the messages.
