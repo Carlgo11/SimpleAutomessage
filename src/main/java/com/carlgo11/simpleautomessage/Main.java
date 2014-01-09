@@ -172,6 +172,7 @@ public class Main extends JavaPlugin {
             if (!getConfig().getString("language").equalsIgnoreCase("EN") && !getConfig().getString("language").equalsIgnoreCase("FR") && !getConfig().getString("language").equalsIgnoreCase("NL") && !getConfig().getString("language").equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Other"));
             }
+            
             //Graph4
             Metrics.Graph graph4 = metrics.createGraph("min-players");
             graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
@@ -183,6 +184,7 @@ public class Main extends JavaPlugin {
             } else {
                 graph5.addPlotter(new SimplePlotter("disabled"));
             }
+            
             //Graph6
             Metrics.Graph graph6 = metrics.createGraph("warn-update");
             if (!getConfig().getBoolean("auto-update")) {
