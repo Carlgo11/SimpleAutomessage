@@ -14,7 +14,7 @@ permissions:
     default: true
     description: Permission to see the messages broadcasted by SimpleAutomessage
   simpleAutoMessage.simpleautomessage:
-    default: op
+    default: true
     description: Permission to use /simpleautomessage 
   simpleAutoMessage.simpleautomessage.reload:
     default: op
