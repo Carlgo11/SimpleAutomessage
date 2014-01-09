@@ -46,7 +46,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     }
                     sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.Simplemsg_List);
                 } else {
-                    sender.sendMessage(Lang.BAD_PERMS + "");
+                    sender.sendMessage("" + Lang.BAD_PERMS);
                 }
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
@@ -55,7 +55,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                         plugin.getServer().getPluginManager().enablePlugin(plugin);
                         sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(sender0) + ChatColor.GREEN + " " + Lang.PL_RELOADED);
                     } else {
-                        sender.sendMessage(Lang.BAD_PERMS + "");
+                        sender.sendMessage("" + Lang.BAD_PERMS);
                     }
                 } else {
                     if (args[0].equalsIgnoreCase("list")) {
@@ -73,20 +73,19 @@ public class SimpleautomessageCommand implements CommandExecutor {
                                     String messageToSend = plugin.getConfig().getString("msg" + i);
                                     String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                                     sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
-                                    plugin.onDebug("Found msg" + i);
                                 } else {
                                     err++;
                                     plugin.onDebug("Did not find msg" + i);
                                 }
                             }
                         } else {
-                            sender.sendMessage(Lang.BAD_PERMS + "");
+                            sender.sendMessage("" + Lang.BAD_PERMS);
                         }
                     } else if (args[0].equalsIgnoreCase("update")) {
                         if (sender.hasPermission("simpleAutoMessage.simpleautomessage.update")) {
                             plugin.forceUpdate(sender, sender0);
                         } else {
-                            sender.sendMessage(Lang.BAD_PERMS + "");
+                            sender.sendMessage("" + Lang.BAD_PERMS);
                         }
                     } else if (args[0].equalsIgnoreCase("moo")) {
                         sender.sendMessage(NothingHere.playerMoo);
