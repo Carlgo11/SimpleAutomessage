@@ -22,6 +22,7 @@ public class Main extends JavaPlugin {
     public static YamlConfiguration LANG;
     public static File LANG_FILE;
     public boolean update = false;
+    public String configv = "1.0.6";
 
     public void onEnable()
     {
@@ -50,7 +51,7 @@ public class Main extends JavaPlugin {
 
     public void checkVersion()
     {
-        if (getDescription().getVersion().startsWith("dev-")) {
+        if (getDescription().getVersion().startsWith("dev")) {
             getLogger().warning("You are using a development build! Keep in mind development builds may contain bugs!");
             getLogger().warning("If you want a fully working version please use a recommended build!");
             getLogger().warning("Type /simpleautomessage update to download the latest recommended build.");
@@ -87,8 +88,8 @@ public class Main extends JavaPlugin {
             saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
         }
-        if (!getConfig().getString("version").equals(getDescription().getVersion())) {
-            if (!getDescription().getVersion().startsWith("dev-")) {
+        if (!getConfig().getString("version").equals(this.configv)) {
+            if (!getDescription().getVersion().startsWith("dev")) {
                 config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
                 saveDefaultConfig();
             } else {
