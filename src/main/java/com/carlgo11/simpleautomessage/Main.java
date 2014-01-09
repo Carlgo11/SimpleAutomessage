@@ -36,7 +36,6 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         commands();
         getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
-
     }
 
     public void onDisable()
@@ -163,6 +162,7 @@ public class Main extends JavaPlugin {
             //Graph4
             Metrics.Graph graph4 = metrics.createGraph("min-players");
             graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
+            
             //Graph5
             Metrics.Graph graph5 = metrics.createGraph("random");
             if (getConfig().getBoolean("random")) {
@@ -172,12 +172,14 @@ public class Main extends JavaPlugin {
             }
             //Graph6
             Metrics.Graph graph6 = metrics.createGraph("warn-update");
-            if (getConfig().getString("warn-update").equalsIgnoreCase("op")) {
-                graph6.addPlotter(new SimplePlotter("op"));
-            } else if (getConfig().getString("warn-update").equalsIgnoreCase("perm")) {
-                graph6.addPlotter(new SimplePlotter("perm"));
-            } else {
-                graph6.addPlotter(new SimplePlotter("none"));
+            if (!getConfig().getBoolean("auto-update")) {
+                if (getConfig().getString("warn-update0").equalsIgnoreCase("op")) {
+                    graph6.addPlotter(new SimplePlotter("op"));
+                } else if (getConfig().getString("warn-update").equalsIgnoreCase("perm")) {
+                    graph6.addPlotter(new SimplePlotter("perm"));
+                } else {
+                    graph6.addPlotter(new SimplePlotter("none"));
+                }
             }
             onDebug("Sending metrics data...");
             metrics.start();
