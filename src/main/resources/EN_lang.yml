@@ -13,6 +13,6 @@ simplemsg-reload: ' Reloads the config.yml'
 simplemsg-list: ' Lists all the active messages'
 simplemsg-update: ' Will force an update'
 simplemsg-report: ' Upload a report to pastebin'
-simplemsg-support: ' Get help by a developer via IRC'
+simplemsg-support: ' Get help by a developer'
 # Written by Carlgo11.
 # This text might contain typos. Please inform us if you find a typo!
