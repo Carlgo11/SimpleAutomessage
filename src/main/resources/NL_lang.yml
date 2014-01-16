@@ -12,5 +12,7 @@ simplemsg-main: ' Laat de commands zien'
 simplemsg-reload: ' Herlaad de config.yml'
 simplemsg-list: ' Lijst van alle actieve berichten'
 simplemsg-update: ' Zal hem updaten'
+simplemsg-report: ''
+simplemsg-support: ''
 # Vertaalt van het engels door TheRespawner. || Translated from English by TheRespawner.
 # This text might contain typos. Please inform us if you find a typo!

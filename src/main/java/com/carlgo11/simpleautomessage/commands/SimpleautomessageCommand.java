@@ -76,6 +76,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
             }
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.Simplemsg_List);
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Support" + ChatColor.YELLOW + Lang.Simplemsg_Support);
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Report" + ChatColor.YELLOW + Lang.Simplemsg_Report);
         } else {
             sender.sendMessage(Lang.BAD_PERMS + "");
         }

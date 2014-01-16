@@ -12,5 +12,7 @@ simplemsg-main: ' Visar alla kommandon för pluginet'
 simplemsg-reload: ' Startar om pluginet'
 simplemsg-list: ' Visar alla aktiva medelanden'
 simplemsg-update: ' Kommer updatera pluginet'
+simplemsg-report: ' Ladda upp en raport på pastebin'
+simplemsg-support: ' Få hjälp av en developer via IRC'
 # Översatt från engelska av Carlgo11. || Translated from English by Carlgo11.
 # This text might contain typos. Please inform us if you find a typo!
