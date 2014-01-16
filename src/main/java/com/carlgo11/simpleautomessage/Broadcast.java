@@ -43,12 +43,12 @@ public class Broadcast implements Listener {
                 onlineP++;
 
                 if (onlineP > minP) {
-                    plugin.onDebug("time: " + d);
+                    plugin.debug("time: " + d);
                     if (plugin.getConfig().getBoolean("random")) {
-                        plugin.onDebug("ra: " + ra);
-                        plugin.onDebug("a: " + RandomishInt.a);
+                        plugin.debug("ra: " + ra);
+                        plugin.debug("a: " + RandomishInt.a);
                     } else {
-                        plugin.onDebug("tick: " + plugin.tick);
+                        plugin.debug("tick: " + plugin.tick);
                     }
                     String senderToSend = plugin.getConfig().getString("sender");
                     String senderToMC = ChatColor.translateAlternateColorCodes('&', senderToSend);
@@ -79,7 +79,7 @@ public class Broadcast implements Listener {
                             plugin.getServer().broadcast(prefixToMC + senderToMC + suffixToMC + " " + ChatColor.RESET + msgToMC, "SimpleAutoMessage.seemsg");
                             plugin.tick++;
                         } else {
-                            plugin.onDebug("no msg" + plugin.tick + " set in the config. Calling msg1 instead.");
+                            plugin.debug("no msg" + plugin.tick + " set in the config. Calling msg1 instead.");
                             if (plugin.getConfig().contains("msg1")) {
                                 String messageToSend = plugin.getConfig().getString("msg1");
                                 String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
@@ -95,7 +95,7 @@ public class Broadcast implements Listener {
                     }
 
                 } else {
-                    plugin.onDebug("Error: minP:" + minP + " realOnlineP: " + realonlineP);
+                    plugin.debug("Error: minP:" + minP + " realOnlineP: " + realonlineP);
                 }
             }
         }, d, d);

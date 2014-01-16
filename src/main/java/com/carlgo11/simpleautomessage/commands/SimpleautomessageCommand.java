@@ -110,10 +110,10 @@ public class SimpleautomessageCommand implements CommandExecutor {
                     String messageToSend = plugin.getConfig().getString("msg" + i);
                     String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                     sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
-                    plugin.onDebug("Found msg" + i);
+                    plugin.debug("Found msg" + i);
                 } else {
                     err++;
-                    plugin.onDebug("Did not find msg" + i);
+                    plugin.debug("Did not find msg" + i);
                 }
             }
         } else {
@@ -138,7 +138,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 sender.sendMessage("" + Lang.PREFIX + ChatColor.GREEN + "Here's your log: " + pastebin);
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage("Error: " + ex.toString());
-                plugin.onDebug(ex.toString());
+                plugin.debug(ex.toString());
             }
         } else {
             sender.sendMessage(Lang.BAD_PERMS + "");
@@ -156,7 +156,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.YELLOW + "Here's your log: " + ChatColor.BLUE + pastebin + ChatColor.GREEN + ".\nPlease give the developers the log.");
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage("Error: " + ex.toString());
-                plugin.onDebug(ex.toString());
+                plugin.debug(ex.toString());
             }
         } else {
             sender.sendMessage(Lang.BAD_PERMS + "");

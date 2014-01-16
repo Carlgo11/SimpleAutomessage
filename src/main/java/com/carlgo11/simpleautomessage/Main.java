@@ -12,7 +12,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import com.carlgo11.simpleautomessage.metrics.Metrics;
+import com.carlgo11.simpleautomessage.metrics.*;
 
 public class Main extends JavaPlugin {
 
@@ -59,7 +59,7 @@ public class Main extends JavaPlugin {
         }
 
         if (getConfig().getBoolean("auto-update")) {
-            onDebug("Calling Updater.java");
+            debug("Calling Updater.java");
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.DEFAULT, true);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
 
@@ -67,7 +67,7 @@ public class Main extends JavaPlugin {
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
         } else {
-            onDebug("auto-update & warn-update is set to false!");
+            debug("auto-update & warn-update is set to false!");
         }
     }
 
@@ -75,7 +75,7 @@ public class Main extends JavaPlugin {
     {
         try {
             Metrics metrics = new Metrics(this);
-            graphs(metrics);
+            CustomGraphs.graphs(metrics, this);
             metrics.start();
         } catch (IOException ex) {
             System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
@@ -95,11 +95,11 @@ public class Main extends JavaPlugin {
                     config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
                     saveDefaultConfig();
                 } else {
-                    onDebug("The plugin-version is a dev-build. Will not try to reload the config.");
+                    debug("The plugin-version is a dev-build. Will not try to reload the config.");
                 }
             }
         } else {
-            onDebug("update-config is set to false.");
+            debug("update-config is set to false.");
         }
     }
 
@@ -113,7 +113,7 @@ public class Main extends JavaPlugin {
         return LANG_FILE;
     }
 
-    public void onDebug(String s)
+    public void debug(String s)
     { // Debug message method
         if (debugm) {
             getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
@@ -134,86 +134,5 @@ public class Main extends JavaPlugin {
         p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
         Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
         p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
-    }
-
-    public void graphs(Metrics metrics)
-    { // Custom Graphs. Sends data to mcstats.org
-        try {
-            //Graph1
-            Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the user has.
-            int o = 0;
-            for (int i = 1; getConfig().contains("msg" + i); i++) {
-                o = i;
-            }
-            graph1.addPlotter(new SimplePlotter("" + o));
-
-            //graph2
-            Metrics.Graph graph2 = metrics.createGraph("auto-update"); //Sends auto-update data. if auto-update: is true it returns 'enabled'.
-            if (getConfig().getBoolean("auto-update") == true) {
-                graph2.addPlotter(new SimplePlotter("enabled"));
-            } else {
-                graph2.addPlotter(new SimplePlotter("disabled"));
-            }
-
-            //Graph3
-            Metrics.Graph graph3 = metrics.createGraph("language");
-            if (getConfig().getString("language").equalsIgnoreCase("EN") || getConfig().getString("language").isEmpty()) {
-                graph3.addPlotter(new SimplePlotter("English"));
-            }
-            if (getConfig().getString("language").equalsIgnoreCase("FR")) {
-                graph3.addPlotter(new SimplePlotter("French"));
-            }
-            if (getConfig().getString("language").equalsIgnoreCase("NL")) {
-                graph3.addPlotter(new SimplePlotter("Dutch"));
-            }
-            if (getConfig().getString("language").equalsIgnoreCase("SE")) {
-                graph3.addPlotter(new SimplePlotter("Swedish"));
-            }
-            if (!getConfig().getString("language").equalsIgnoreCase("EN") && !getConfig().getString("language").equalsIgnoreCase("FR") && !getConfig().getString("language").equalsIgnoreCase("NL") && !getConfig().getString("language").equalsIgnoreCase("SE")) {
-                graph3.addPlotter(new SimplePlotter("Other"));
-            }
-            
-            //Graph4
-            Metrics.Graph graph4 = metrics.createGraph("min-players");
-            graph4.addPlotter(new SimplePlotter("" + getConfig().getInt("min-players")));
-
-            //Graph5
-            Metrics.Graph graph5 = metrics.createGraph("random");
-            if (getConfig().getBoolean("random")) {
-                graph5.addPlotter(new SimplePlotter("enabled"));
-            } else {
-                graph5.addPlotter(new SimplePlotter("disabled"));
-            }
-            
-            //Graph6
-            Metrics.Graph graph6 = metrics.createGraph("warn-update");
-            if (!getConfig().getBoolean("auto-update")) {
-                if (getConfig().getString("warn-update0").equalsIgnoreCase("op")) {
-                    graph6.addPlotter(new SimplePlotter("op"));
-                } else if (getConfig().getString("warn-update").equalsIgnoreCase("perm")) {
-                    graph6.addPlotter(new SimplePlotter("perm"));
-                } else {
-                    graph6.addPlotter(new SimplePlotter("none"));
-                }
-            }
-            onDebug("Sending metrics data...");
-            metrics.start();
-        } catch (Exception e) {
-            Main.logger.warning(e.getMessage());
-        }
-    }
-
-    public class SimplePlotter extends Metrics.Plotter {
-
-        public SimplePlotter(final String name)
-        {
-            super(name);
-        }
-
-        @Override
-        public int getValue()
-        {
-            return 1;
-        }
     }
 }
