@@ -12,5 +12,7 @@ simplemsg-main: ' Affiche les commandes'
 simplemsg-reload: " Recharge la configuration"
 simplemsg-list: " Affiche toutes les commandes actif"
 simplemsg-update: ' Va forcer une mise à jour'
+simplemsg-report: ''
+simplemsg-support: ''
 # Texte traduit de l'anglais par psgs || Translated from English by psgs.
 # This text might contain typos. Please inform us if you find a typo!
