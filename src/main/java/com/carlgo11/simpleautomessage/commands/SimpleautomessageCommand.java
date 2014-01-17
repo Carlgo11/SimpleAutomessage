@@ -21,8 +21,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
     {
         this.plugin = plug;
     }
-    
 
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
         String topic = ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + "]" + ChatColor.GREEN + " ======== ";
@@ -168,5 +168,4 @@ public class SimpleautomessageCommand implements CommandExecutor {
         sender.sendMessage(NothingHere.playerMoo);
         Bukkit.getPlayer(pn).getWorld().playSound(Bukkit.getPlayer(pn).getLocation(), Sound.COW_IDLE, 1, 0);
     }
-
 }
