@@ -11,6 +11,7 @@ public class Report {
      * File created by Carlgo11. And uploaded to https://github.com/carlgo11/report
      * Please see LICENSE on https://github.com/carlgo11/report for the terms and conditions for this file.
      */
+    
     public static String Main(Main plugin)
     {
         String topic = "Report for " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " created. The following info is gathered from the config.yml & latest.log.\n\n";
