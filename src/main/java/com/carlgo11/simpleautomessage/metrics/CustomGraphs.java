@@ -8,7 +8,7 @@ public class CustomGraphs {
     { // Custom Graphs. Sends data to mcstats.org
         try {
             //Graph1
-            Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the user has.
+            Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the server has.
             int o = 0;
             for (int i = 1; Main.getConfig().contains("msg" + i); i++) {
                 o = i;
