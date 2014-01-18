@@ -54,9 +54,9 @@ public class CustomGraphs {
             }
 
             //Graph6
-            Metrics.Graph graph6 = metrics.createGraph("warn-update");
+            Metrics.Graph graph6 = metrics.createGraph("warn-update0");
             if (!Main.getConfig().getBoolean("auto-update")) {
-                if (Main.getConfig().getString("warn-update0").equalsIgnoreCase("op")) {
+                if (Main.getConfig().getString("warn-update").equalsIgnoreCase("op")) {
                     graph6.addPlotter(new SimplePlotter("op"));
                 } else if (Main.getConfig().getString("warn-update").equalsIgnoreCase("perm")) {
                     graph6.addPlotter(new SimplePlotter("perm"));
