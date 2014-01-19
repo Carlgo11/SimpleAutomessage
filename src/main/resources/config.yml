@@ -13,7 +13,7 @@
 # When this config.yml is broken it's often because of the msg strings! ALWAYS USE '' AROUND A MESSAGE!
 # Example: msg1: 'This is an example' 
 
-# Don't Change the version! If the version is changed this config.yml will be deleted!
+# Don't change the version! If the version is changed this config.yml will be deleted!
 version: 1.0.6
 
 ############################################################
@@ -37,7 +37,7 @@ auto-update: true
 # Available options: op, perm, none
 warn-update: perm
 
-# Backup the current config and replace it with a new one when a new version is downloaded. (Recommended: 'true')
+# Backup the current config and replace it with a new one when a new version of SimpleAutoMessage is downloaded. (Recommended: 'true')
 update-config: true
 
 # When seeking assistance via /simpleautomessage support should the plugin upload your latest.log? (Recommended: 'true')
@@ -75,8 +75,8 @@ random: false
 # ALWAYS use '' outside a message! 
 # Remove the '#' in front of the msg<number> when you want to enable it!
 
-#msg1: 'Remove the "#" in front of this msg to enable it!'
-#msg2: 'You can add how many msgs as you want!'
+#msg1: 'Remove the "#" in front of this message to enable it!'
+#msg2: 'You can add how many messages as you want!'
 #msg3: '&dYou can also use colorcodes! &aThis is GREEN &cand this is RED'
 #msg4: 'Remember to alsways use '' outside the message!'
 

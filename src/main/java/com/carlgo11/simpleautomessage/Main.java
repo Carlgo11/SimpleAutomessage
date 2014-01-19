@@ -114,7 +114,7 @@ public class Main extends JavaPlugin {
     }
 
     public void debug(String s)
-    { // Debug message method
+    {
         if (debugm) {
             getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
