@@ -1,0 +1,18 @@
+# RUSSIAN translation for SimpleAutoMessage
+plugin-enabled: 'включен!'
+plugin-disabled: 'выключен!'
+mcstats-error: 'Ошибка отправки статистики!'
+bad-perms: "&cОшибка: Вы не имеете право использовать эту команду!"
+plugin-reloaded: '&aSimpleAutoMessage перезагружен!'
+unknown-command: '&cОшибка: Неизвестная команда!'
+no-msg1: 'Ошибка: msg1 не найдено! Вы забыли установить один или конфигурации не работает?'
+updating: 'Обновление %prefix%...'
+updated: 'Готово. Перезапустите сервер, чтобы загрузить новый патч.'
+simplemsg-main: ' Показывает команды'
+simplemsg-reload: ' Перезагрузка config.yml'
+simplemsg-list: ' Списки всех активных сообщений'
+simplemsg-update: ' Будет принудительно обновлен'
+simplemsg-report: ' Загрузить отчет на Pastebin'
+simplemsg-support: ' Получить помощь от разработчика'
+# Перевел на русский по MySt1k. 
+# This text might contain typos. Please inform us if you find a typo!

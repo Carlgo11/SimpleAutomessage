@@ -5,7 +5,7 @@ description: Auto-announcer plugin
 author: Carlgo11
 website: http://www.carlgo11.com/
 commands:
-   SimpleAutomessage:
+   simpleautomessage:
      aliases: [AutoMessage, Simplemsg, automsg]
      description: Main command of SimpleAutoMessage.
      
