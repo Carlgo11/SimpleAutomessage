@@ -27,17 +27,19 @@ public class CustomGraphs {
             Metrics.Graph graph3 = metrics.createGraph("language");
             if (Main.getConfig().getString("language").equalsIgnoreCase("EN") || Main.getConfig().getString("language").isEmpty()) {
                 graph3.addPlotter(new SimplePlotter("English"));
-            }
+            }else
             if (Main.getConfig().getString("language").equalsIgnoreCase("FR")) {
                 graph3.addPlotter(new SimplePlotter("French"));
-            }
+            }else
             if (Main.getConfig().getString("language").equalsIgnoreCase("NL")) {
                 graph3.addPlotter(new SimplePlotter("Dutch"));
-            }
+            }else
             if (Main.getConfig().getString("language").equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Swedish"));
-            }
-            if (!Main.getConfig().getString("language").equalsIgnoreCase("EN") && !Main.getConfig().getString("language").equalsIgnoreCase("FR") && !Main.getConfig().getString("language").equalsIgnoreCase("NL") && !Main.getConfig().getString("language").equalsIgnoreCase("SE")) {
+            }else
+            if (Main.getConfig().getString("language").equalsIgnoreCase("RU") ) {
+                graph3.addPlotter(new SimplePlotter("Russian"));
+            }else{
                 graph3.addPlotter(new SimplePlotter("Other"));
             }
 
