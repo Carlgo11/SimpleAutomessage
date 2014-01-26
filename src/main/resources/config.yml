@@ -23,7 +23,7 @@ version: 1.0.6
 ############################################################
 
 # You can set a translation or make your own.
-# There's currently EN, NL, FR, SE translations. If you want to help us translate to your language please contact us via our IRC!
+# There's currently EN, NL, FR, SE, RU translations. If you want to help us translate to your language please contact us via our IRC!
 language: EN
 
 # Set this to true when having issues with this plugin. Then give the server.log to us on http://tiny.cc/simpleautomessage-irc and wait for a reply. (Recommended: 'false')
