@@ -37,8 +37,8 @@ auto-update: true
 # Available options: op, perm, none
 warn-update: perm
 
-# Backup the current config and replace it with a new one when a new version of SimpleAutoMessage is downloaded. (Recommended: 'true')
-update-config: true
+# Backup the current config and replace it with a new one when a new version of SimpleAutoMessage is downloaded.
+update-config: false
 
 # When seeking assistance via /simpleautomessage support should the plugin upload your latest.log? (Recommended: 'true')
 send-log: true
