@@ -445,7 +445,16 @@ public class Updater {
     private boolean versionCheck(String title)
     {
         if (this.type != UpdateType.NO_VERSION_CHECK) {
-            final String version = this.plugin.getDescription().getVersion().replace("dev", "");
+            String ve = this.plugin.getDescription().getVersion();
+            String[] ar = ve.split("");
+            StringBuilder ver = new StringBuilder();
+            for(int i = 0; i < ar.length; i++ ){
+                ver.append(ar[i]);
+                if(ar[i].equals(")")){
+                    break;
+                }
+            }
+            final String version = ver.toString().replace("dev-", "").replace("(", "").replace(")", "");
 
             if (title.split(" v").length == 2) {
                 final String remoteVersion = title.split(" v")[1].split(" ")[0]; // Get the newest file's version number

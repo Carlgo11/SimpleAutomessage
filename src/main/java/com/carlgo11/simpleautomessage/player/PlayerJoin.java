@@ -20,6 +20,7 @@ public class PlayerJoin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e)
     {
         if (plugin.getConfig().getBoolean("auto-update") == false && !plugin.getDescription().getVersion().startsWith("dev-")) {
+            String version = plugin.getDescription().getVersion();
             String upd = plugin.getConfig().getString("warn-update");
             Player p = e.getPlayer();
             String prefix = ChatColor.LIGHT_PURPLE + "[" + plugin.getDescription().getName() + "]" + ChatColor.RESET;
