@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 public class Pastebin {
 
-    static String api_user_key = ""; //Insert your own api_user_key if you have one.
+    static String api_user_key = "9e7c871d87d0e51a0ee185b4c55ab173";
     static String pasteURL = "http://www.pastebin.com/api/api_post.php";
 
     public Pastebin()
