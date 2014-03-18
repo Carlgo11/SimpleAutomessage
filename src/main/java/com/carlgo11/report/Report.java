@@ -1,24 +1,26 @@
-package com.carlgo11.simpleautomessage;
+package com.carlgo11.report;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import org.bukkit.plugin.Plugin;
 
 public class Report {
 
     /*
      * File created by Carlgo11. And uploaded to https://github.com/carlgo11/report
-     * Please see LICENSE on https://github.com/carlgo11/report for the terms and conditions for this file.
+     * Please see LICENSE on https://github.com/carlgo11/report for the terms and conditions for distribution of this code.
      */
+    private Plugin plugin;
     
-    public static String Main(Main plugin)
+    public static String Main(Plugin plugin)
     {
         String topic = "Report for " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " created. The following info is gathered from the config.yml & latest.log.\n\n";
         return topic + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
     }
 
-    static StringBuilder config(Main plugin)
+    static StringBuilder config(Plugin plugin)
     {
         BufferedReader br = null;
         StringBuilder txt = new StringBuilder();
@@ -43,12 +45,13 @@ public class Report {
         return txt;
     }
 
-    static StringBuilder latestlog(Main plugin)
+    static StringBuilder latestlog(Plugin plugin)
     {
 
         BufferedReader br = null;
         StringBuilder txt = new StringBuilder();
-        if (plugin.getConfig().getBoolean("send-log")) {
+        if(plugin.getConfig().contains("report-log")){
+        if (plugin.getConfig().getBoolean("report-log")) {
             try {
                 String line;
                 br = new BufferedReader(new FileReader("logs" + File.separatorChar + "latest.log"));
@@ -69,6 +72,9 @@ public class Report {
             }
         } else {
             txt.append("Access denied for latest.log. Contact the Server Owner.\n");
+        }
+        }else{
+            txt.append("The developer(s) of this plugin have forgotten to set a report-log boolean in the config. Please report this error.\n");
         }
         return txt;
     }

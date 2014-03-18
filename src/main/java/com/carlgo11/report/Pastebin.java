@@ -1,4 +1,4 @@
-package com.carlgo11.simpleautomessage.pastebin;
+package com.carlgo11.report;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -8,18 +8,18 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import org.bukkit.plugin.Plugin;
 
 public class Pastebin {
 
-    static public String token = "b558dbec597603c726d31633634f294b";
-    static public String devkey = "9e7c871d87d0e51a0ee185b4c55ab173";
-    static public String pasteURL = "http://www.pastebin.com/api/api_post.php";
+    static String api_user_key = ""; //Insert your own api_user_key if you have one.
+    static String pasteURL = "http://www.pastebin.com/api/api_post.php";
 
     public Pastebin()
     {
     }
 
-    static public String checkResponse(String response)
+    static String checkResponse(String response)
     {
         if (response.substring(0, 15).equals("Bad API request")) {
             return response.substring(17);
@@ -27,15 +27,16 @@ public class Pastebin {
         return "";
     }
 
-    static public String makePaste(String code, String name, String format)
+    static public String makePaste(String name, Plugin plugin, String devkey)
             throws UnsupportedEncodingException
     {
-        String content = URLEncoder.encode(code, "UTF-8");
-        String title = URLEncoder.encode(name, "UTF-8");
-        String data = "api_option=paste&api_user_key=" + Pastebin.token
+        String body = Report.Main(plugin);
+        String content = URLEncoder.encode(body, "UTF-8");
+        String title = URLEncoder.encode(name + " report", "UTF-8");
+        String data = "api_option=paste&api_user_key=" + Pastebin.api_user_key
                 + "&api_paste_private=0&api_paste_name=" + title
-                + "&api_paste_expire_date=1M&api_paste_format=" + format
-                + "&api_dev_key=" + Pastebin.devkey + "&api_paste_code=" + content;
+                + "&api_paste_expire_date=1M&api_paste_format=" + "text"
+                + "&api_dev_key=" + devkey + "&api_paste_code=" + content;
         String response = Pastebin.page(Pastebin.pasteURL, data);
         String check = Pastebin.checkResponse(response);
         if (!check.equals("")) {
@@ -44,7 +45,7 @@ public class Pastebin {
         return response;
     }
 
-    static public String page(String uri, String urlParameters)
+    static String page(String uri, String urlParameters)
     {
         URL url;
         HttpURLConnection connection = null;

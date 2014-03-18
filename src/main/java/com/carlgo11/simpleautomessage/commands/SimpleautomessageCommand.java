@@ -1,10 +1,9 @@
 package com.carlgo11.simpleautomessage.commands;
 
+import com.carlgo11.report.Pastebin;
 import com.carlgo11.simpleautomessage.Main;
 import com.carlgo11.simpleautomessage.NothingHere;
-import com.carlgo11.simpleautomessage.Report;
 import com.carlgo11.simpleautomessage.language.Lang;
-import com.carlgo11.simpleautomessage.pastebin.Pastebin;
 import java.io.UnsupportedEncodingException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -134,7 +133,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
     {
         if (sender.hasPermission("simpleAutoMessage.simpleautomessage.report")) {
             try {
-                String pastebin = Pastebin.makePaste(Report.Main(plugin), "SimpleAutoMessage report", "text");
+                String pastebin = Pastebin.makePaste("SimpleAutoMessage report", plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
                 sender.sendMessage("" + Lang.PREFIX + ChatColor.GREEN + "Here's your log: " + pastebin);
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage("Error: " + ex.toString());
@@ -149,7 +148,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
     {
         if (sender.hasPermission("simpleAutoMessage.simpleautomessage.support")) {
             try {
-                String pastebin = Pastebin.makePaste(Report.Main(plugin), "SimpleAutoMessage report", "text");
+                String pastebin = Pastebin.makePaste("SimpleAutoMessage report", plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
                 String purelink = pastebin.toString().replace("http://pastebin.com/", "");
                 sender.sendMessage("" + Lang.PREFIX + ChatColor.GREEN + "Thank you for choosing our support IRC!\nIf the helpers busy please post a question on bukkit.");
                 sender.sendMessage(ChatColor.YELLOW + "Connect with this link: " + ChatColor.BLUE + "http://cajs.co.uk/link/msg-irc?&nick=simplemsg_" + purelink);
