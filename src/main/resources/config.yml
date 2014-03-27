@@ -4,14 +4,15 @@
 # +------------------------------------------------------+ #
 ############################################################
 # Config for SimpleAutoMessage
-# SimpleAutoMessage is a Bukkit plugin developed by Carlgo11.
+# SimpleAutoMessage is a Bukkit-plugin, developed by Carlgo11.
 
 # COLORS:
 # When adding colors use the minecraft colorcodes.
 # Example: &a = green, &d = purple.
 
 # When this config.yml is broken it's often because of the msg strings! ALWAYS USE '' AROUND A MESSAGE!
-# Example: msg1: 'This is an example' 
+# Example: msg1: 'This is an example'
+# If your config isn't working use a yaml parser or contact us on IRC.
 
 # Don't change the version! If the version is changed this config.yml will be deleted!
 version: 1.0.6
@@ -23,10 +24,10 @@ version: 1.0.6
 ############################################################
 
 # You can set a translation or make your own.
-# There's currently EN, NL, FR, SE, RU translations. If you want to help us translate to your language please contact us via our IRC!
+# There's currently EN, NL, FR, SE, RU translations. If you want to help us translate into your own language go to our github.
 language: EN
 
-# Set this to true when having issues with this plugin. Then give the server.log to us on http://tiny.cc/simpleautomessage-irc and wait for a reply. (Recommended: 'false')
+# Used when having issues or doing development on the plugin. Otherwise it should be false. (Recommended: 'false')
 # For more information go to http://tiny.cc/simplemsg-debug
 debug: false
 
@@ -81,6 +82,5 @@ random: false
 #msg4: 'Remember to alsways use '' outside the message!'
 
 
-# Have any questions? Post a comment on http://dev.bukkit.org/bukkit-plugins/simpleautomessage/
-# You can also contact me on http://tiny.cc/simpleautomessage-irc
+# Need help? Contact us on IRC: http://tiny.cc/simpleautomessage-irc
 # END OF CONFIG.YML! :)
