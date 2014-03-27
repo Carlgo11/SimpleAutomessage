@@ -6,44 +6,44 @@ author: Carlgo11
 website: http://www.carlgo11.com/
 commands:
    simpleautomessage:
-     aliases: [AutoMessage, Simplemsg, automsg]
+     aliases: [automessage, simplemsg, automsg]
      description: Main command of SimpleAutoMessage.
      
 permissions:
-  simpleAutoMessage.seemsg:
+  simpleautomessage.seemsg:
     default: true
     description: Permission to see the messages broadcasted by SimpleAutomessage
-  simpleAutoMessage.simpleautomessage:
+  simpleautomessage.simpleautomessage:
     default: true
     description: Permission to use /simpleautomessage 
-  simpleAutoMessage.simpleautomessage.reload:
+  simpleautomessage.simpleautomessage.reload:
     default: op
     description: Permission to use /simpleautomessage reload
-  simpleAutoMessage.simpleautomessage.list:
+  simpleautomessage.simpleautomessage.list:
     default: op
     description: Permission to use /simpleautomessage reload
-  simpleAutoMessage.simpleautomessage.update:
+  simpleautomessage.simpleautomessage.update:
     default: op
     description: Permission to use /simpleautomessage update
-  simpleAutoMessage.simpleautomessage.support:
+  simpleautomessage.simpleautomessage.support:
     default: op
     description: Permission to use /simpleautomessage support
-  simpleAutoMessage.simpleautomessage.report:
+  simpleautomessage.simpleautomessage.report:
     default: op
     description: Permission to use /simpleautomessage report
     
-  simpleAutoMessage.notify:
+  simpleautomessage.notify:
     defaylt: op
     description: Player will be notified on login when a new update is avible.
-  simpleAutoMessage.*:
+  simpleautomessage.*:
     default: op
     description: Gives the player all the SimpleAutoMessage permissions
     children:
-      simpleAutoMessage.simpleautomessage: true
-      simpleAutoMessage.simpleautomessage.reload: true
-      simpleAutoMessage.simpleautomessage.list: true
-      simpleAutoMessage.simpleautomessage.update: true
-      simpleAutoMessage.simpleautomessage.support: true
-      simpleAutoMessage.simpleautomessage.report: true
-      simpleAutoMessage.seemsg: true
-      simpleAutoMessage.notify: true
+      simpleautomessage.simpleautomessage: true
+      simpleautomessage.simpleautomessage.reload: true
+      simpleautomessage.simpleautomessage.list: true
+      simpleautomessage.simpleautomessage.update: true
+      simpleautomessage.simpleautomessage.support: true
+      simpleautomessage.simpleautomessage.report: true
+      simpleautomessage.seemsg: true
+      simpleautomessage.notify: true
