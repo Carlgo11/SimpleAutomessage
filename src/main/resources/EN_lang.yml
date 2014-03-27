@@ -5,7 +5,7 @@ mcstats-error: 'Error Submitting stats!'
 bad-perms: "&cError: You don't have permission to use that command!"
 plugin-reloaded: '&aSimpleAutoMessage reloaded!'
 unknown-command: '&cError: Unknown command!'
-no-msg1: 'Error: No msg1 found! Did you forget to set one or is the config broken?'
+no-msg1: 'Error: No msg %tick% set in the config. calling msg1 instead.'
 updating: 'Updating %prefix%...'
 updated: 'Done. Restart the server to load the new patch.'
 simplemsg-main: ' Shows the commands'
