@@ -16,7 +16,7 @@ public enum Lang {
     UNKNOWN_CMD("unknown-command", "Error: Unknown command!"),
     NO_TIME("no-time", "No time string found!"),
     NO_TIME_SETUP("time-setup", "Time-setup: string found!"),
-    NO_MSG1("no-msg1", "Error: No msg %tick% set in the config. calling msg1 instead."),
+    NO_MSG1("no-msg1", "Error: No msg1 found. Did you break the config?"),
     ERROR("error", "Error acurred! Plugin disabeled!"),
     UPDATING("updating", "Updating %prefix%..."),
     UPDATED("updated", "Done. Restart the server to load the new patch."),
