@@ -25,8 +25,7 @@ public class Main extends JavaPlugin {
     public boolean debugm;
     public String configv = "1.0.6";
 
-    public void onEnable()
-    {
+    public void onEnable() {
         reloadConfig();
         getServer().getPluginManager().registerEvents(new Time(this), this);
         checkConfig();
@@ -40,18 +39,15 @@ public class Main extends JavaPlugin {
         getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
     }
 
-    public void onDisable()
-    {
+    public void onDisable() {
         getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.DISABLED);
     }
 
-    public void commands()
-    {
+    public void commands() {
         getCommand("simpleautomessage").setExecutor(new SimpleautomessageCommand(this));
     }
 
-    public void checkVersion()
-    {
+    public void checkVersion() {
         if (getDescription().getVersion().startsWith("dev-")) { // prints out a warning when using dev build
             getLogger().warning("You are using a development build! Keep in mind development builds may contain bugs!");
             getLogger().warning("If you want a fully working version please use a recommended build!");
@@ -71,8 +67,7 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void checkMetrics()
-    {
+    public void checkMetrics() {
         try {
             Metrics metrics = new Metrics(this);
             CustomGraphs.graphs(metrics, this);
@@ -82,8 +77,7 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void checkConfig()
-    {
+    public void checkConfig() {
         File config = new File(getDataFolder(), "config.yml");
         if (!config.exists()) {
             saveDefaultConfig();
@@ -91,44 +85,35 @@ public class Main extends JavaPlugin {
         }
         if (getConfig().getBoolean("update-config")) {
             if (!getConfig().getString("version").equals(this.configv)) {
-                if (!getDescription().getVersion().startsWith("dev-")) {
-                    config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
-                    saveDefaultConfig();
-                } else {
-                    debug("The plugin-version is a dev-build. Will not try to reload the config.");
-                }
+                config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
+                saveDefaultConfig();
             }
         } else {
             debug("update-config is set to false.");
         }
     }
 
-    public YamlConfiguration getLang()
-    {
+    public YamlConfiguration getLang() {
         return LANG;
     }
 
-    public File getLangFile()
-    {
+    public File getLangFile() {
         return LANG_FILE;
     }
 
-    public void debug(String s)
-    {
+    public void debug(String s) {
         if (debugm) {
             getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
     }
 
-    public void checkDebugMode()
-    {
+    public void checkDebugMode() {
         if (getConfig().getBoolean("debug")) {
             debugm = true;
         }
     }
 
-    public void forceUpdate(CommandSender p, String sender0)
-    {
+    public void forceUpdate(CommandSender p, String sender0) {
         String up = Lang.UPDATING.toString().replaceAll("%prefix%", getDescription().getName());
         String updone = Lang.UPDATED.toString().replaceAll("%prefix%", getDescription().getName());
         p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
