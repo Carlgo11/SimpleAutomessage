@@ -7,6 +7,7 @@ public class CustomGraphs {
     public static void graphs(Metrics metrics, Main Main)
     { // Custom Graphs. Sends data to mcstats.org
         try {
+            
             //Graph1
             Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the server has.
             int o = 0;
@@ -25,19 +26,21 @@ public class CustomGraphs {
 
             //Graph3
             Metrics.Graph graph3 = metrics.createGraph("language");
-            if (Main.getConfig().getString("language").equalsIgnoreCase("EN") || Main.getConfig().getString("language").isEmpty()) {
+            String lang = Main.getConfig().getString("language");
+            if (lang.equalsIgnoreCase("EN") || lang.isEmpty()) {
                 graph3.addPlotter(new SimplePlotter("English"));
-            }
-            if (Main.getConfig().getString("language").equalsIgnoreCase("FR")) {
+            }else
+            if (lang.equalsIgnoreCase("FR")) {
                 graph3.addPlotter(new SimplePlotter("French"));
-            }
-            if (Main.getConfig().getString("language").equalsIgnoreCase("NL")) {
+            }else
+            if (lang.equalsIgnoreCase("NL")) {
                 graph3.addPlotter(new SimplePlotter("Dutch"));
-            }
-            if (Main.getConfig().getString("language").equalsIgnoreCase("SE")) {
+            }else
+            if (lang.equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Swedish"));
-            }
-            if (!Main.getConfig().getString("language").equalsIgnoreCase("EN") && !Main.getConfig().getString("language").equalsIgnoreCase("FR") && !Main.getConfig().getString("language").equalsIgnoreCase("NL") && !Main.getConfig().getString("language").equalsIgnoreCase("SE")) {
+            }else if(lang.equalsIgnoreCase("RU")){
+                graph3.addPlotter(new SimplePlotter("Russian"));
+            }else{
                 graph3.addPlotter(new SimplePlotter("Other"));
             }
 
@@ -64,12 +67,16 @@ public class CustomGraphs {
                     graph6.addPlotter(new SimplePlotter("none"));
                 }
             }
+            
+            //Graph7
             Metrics.Graph graph7 = metrics.createGraph("update-config");
             if(!Main.getConfig().getBoolean("update-config")){
                 graph7.addPlotter(new SimplePlotter("enabled"));
             }else{
                 graph7.addPlotter(new SimplePlotter("disalbed"));
             }
+            
+            
             Main.debug("Sending metrics data...");
             metrics.start();
         } catch (Exception e) {
