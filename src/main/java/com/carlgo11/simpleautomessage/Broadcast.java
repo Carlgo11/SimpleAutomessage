@@ -100,9 +100,4 @@ public class Broadcast implements Listener {
             }
         }, d, d);
     }
-    /* What does this do? 
-     * 
-     * This class sends the broadcast messages.
-     * 
-     */
 }
