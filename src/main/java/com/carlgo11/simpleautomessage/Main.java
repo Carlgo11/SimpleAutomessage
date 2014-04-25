@@ -6,14 +6,14 @@ import com.carlgo11.simpleautomessage.language.*;
 import com.carlgo11.simpleautomessage.player.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.carlgo11.simpleautomessage.metrics.*;
 import java.util.Random;
+import java.util.logging.Level;
+import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getPluginManager;
 import org.bukkit.plugin.PluginManager;
 
@@ -21,7 +21,6 @@ public class Main extends JavaPlugin {
 
     public int tick = 1; // msg+<tick> int
     public int time = 0; // the delay
-    public final static Logger logger = Logger.getLogger("Minecraft");
     public static YamlConfiguration LANG;
     public static File LANG_FILE;
     public boolean update = false;
@@ -48,10 +47,10 @@ public class Main extends JavaPlugin {
 
     private void registerListeners(PluginManager pm) {
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
-        
+
         Announce announce = new Announce();
         announce.setup(this);
-        
+
     }
 
     private void registerCommands() {
@@ -130,6 +129,17 @@ public class Main extends JavaPlugin {
         p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
         Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
         p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
+    }
+
+    public boolean onlinePlayers() {
+        int conf = getConfig().getInt("min-players");
+        int online = Bukkit.getOnlinePlayers().length;
+
+        if (online >= conf) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getRandomInt(int maxammount) {

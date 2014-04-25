@@ -80,7 +80,7 @@ public class CustomGraphs {
             Main.debug("Sending metrics data...");
             metrics.start();
         } catch (Exception e) {
-            Main.logger.warning(e.getMessage());
+            Main.getLogger().warning(e.getMessage());
         }
     }
 }

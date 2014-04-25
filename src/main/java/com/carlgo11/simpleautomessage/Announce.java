@@ -29,18 +29,19 @@ public class Announce {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main, new Runnable() {
 
             public void run() {
-
-                if (cm == 0) {
-                    Main.getLogger().severe("Could not load any messages from the config. Did you forget to add any or is the config broken?");
-                    warningCounter++;
-                    if (warningCounter >= 5) {
-                        return;
-                    }
-                } else {
-                    if (isRandom) {
-                        onRandom();
+                if (Main.onlinePlayers()) {
+                    if (cm == 0) {
+                        Main.getLogger().severe("Could not load any messages from the config. Did you forget to add any or is the config broken?");
+                        warningCounter++;
+                        if (warningCounter >= 5) {
+                            return;
+                        }
                     } else {
-                        onInOrder();
+                        if (isRandom) {
+                            onRandom();
+                        } else {
+                            onInOrder();
+                        }
                     }
                 }
             }
@@ -74,9 +75,9 @@ public class Announce {
 
     public int getNextMessage() {
         if (isRandom) {
-            int r = Main.getRandomInt(lastMessage-1);
+            int r = Main.getRandomInt(lastMessage - 1);
             while (r == lastRandom) {
-                r = Main.getRandomInt(lastMessage-1);
+                r = Main.getRandomInt(lastMessage - 1);
 
             }
             return r;
