@@ -8,13 +8,17 @@ public class Announce {
     private Main Main;
     private int messageCounter = 0;
     private int lastMessage;
-    private boolean isRandom;
+    private boolean isRandom = false;
     private int warningCounter = 0;
+    private int lastRandom;
 
     public void setup(Main m) {
         this.Main = m;
-        this.isRandom = Main.getConfig().getBoolean("random");
+
         int cm = collectMessages();
+        if (Main.getConfig().getBoolean("random") && cm > 2) {
+            this.isRandom = true;
+        }
         this.lastMessage = cm;
         schedule(cm);
 
@@ -46,13 +50,13 @@ public class Announce {
     private void onRandom() {
         int nm = getNextMessage();
         String message = Main.getConfig().getString("msg" + nm);
+        lastRandom = nm;
         sendMessage(message);
     }
 
     private void onInOrder() {
         int nm = getNextMessage();
         String message = Main.getConfig().getString("msg" + nm);
-        System.out.println(nm);
         sendMessage(message);
 
     }
@@ -62,7 +66,6 @@ public class Announce {
         int currentMessage = 0;
         while (true) {
             currentMessage++;
-            System.out.println("checkMessage "+currentMessage);
             if (!Main.getConfig().contains("msg" + currentMessage)) {
                 return currentMessage;
             }
@@ -71,15 +74,19 @@ public class Announce {
 
     public int getNextMessage() {
         if (isRandom) {
-            return Main.getRandomInt(lastMessage);
+            int r = Main.getRandomInt(lastMessage-1);
+            while (r == lastRandom) {
+                r = Main.getRandomInt(lastMessage-1);
+
+            }
+            return r;
         } else {
-            int nm = messageCounter+1;
-            System.out.println("nm "+nm+"\tlastMessage "+lastMessage);
+            int nm = messageCounter + 1;
             if (nm < lastMessage) {
                 messageCounter++;
                 return nm;
             } else {
-                messageCounter=1;
+                messageCounter = 1;
                 return 1;
             }
         }
