@@ -32,10 +32,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
         String suffixToSend = plugin.getConfig().getString("suffix");
         String suffix = ChatColor.translateAlternateColorCodes('&', suffixToSend);
         String pn = sender.getName();
-
-            if (args.length == 0) {
-                help(sender, cmd, topic);
-            } else if (args.length == 1) {
+              
+        if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     reload(sender, sender0);
                 } else if (args[0].equalsIgnoreCase("list")) {
@@ -49,10 +47,10 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 } else if (args[0].equalsIgnoreCase("report")) {
                     report(sender);
                 } else {
-                    sender.sendMessage("" + Lang.UNKNOWN_CMD);
+                    help(sender, cmd, topic);
                 }
-            } else if (args.length > 1) {
-                sender.sendMessage("" + Lang.UNKNOWN_CMD);
+            } else {
+                help(sender, cmd, topic);
             }
         return true;
     }

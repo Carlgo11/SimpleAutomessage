@@ -15,7 +15,7 @@
 # If your config isn't working use a yaml parser or contact us on IRC.
 
 # Don't change the version! If the version is changed this config.yml will be deleted!
-version: 1.0.6
+version: 1.0.7
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -66,7 +66,7 @@ time: 20
 # +------------------------------------------------------+ #
 ############################################################
 
-# Want to broadcast the messages randomly?
+# Want to broadcast the messages in order or randomly?
 random: false
 
 # MESSAGES:

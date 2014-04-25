@@ -13,6 +13,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.carlgo11.simpleautomessage.metrics.*;
+import java.util.Random;
+import static org.bukkit.Bukkit.getPluginManager;
+import org.bukkit.plugin.PluginManager;
 
 public class Main extends JavaPlugin {
 
@@ -23,9 +26,10 @@ public class Main extends JavaPlugin {
     public static File LANG_FILE;
     public boolean update = false;
     public boolean debugm;
-    public String configv = "1.0.6";
+    public String configv = "1.0.7";
 
     public void onEnable() {
+
         reloadConfig();
         getServer().getPluginManager().registerEvents(new Time(this), this);
         checkConfig();
@@ -33,9 +37,8 @@ public class Main extends JavaPlugin {
         checkVersion();
         checkMetrics();
         getServer().getPluginManager().registerEvents(new loadLang(this), this);
-        getServer().getPluginManager().registerEvents(new Broadcast(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
-        commands();
+        registerListeners(getPluginManager());
+        registerCommands();
         getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
     }
 
@@ -43,7 +46,15 @@ public class Main extends JavaPlugin {
         getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.DISABLED);
     }
 
-    public void commands() {
+    private void registerListeners(PluginManager pm) {
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+        
+        Announce announce = new Announce();
+        announce.setup(this);
+        
+    }
+
+    private void registerCommands() {
         getCommand("simpleautomessage").setExecutor(new SimpleautomessageCommand(this));
     }
 
@@ -120,4 +131,30 @@ public class Main extends JavaPlugin {
         Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
         p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
     }
+
+    public int getRandomInt(int maxammount) {
+        int qwe = 0;
+        int a = 0;
+        if (maxammount < 3 || qwe == 0) {
+            Random n = new Random();
+            int num = 0;
+            for (int count = 1; count <= 2; count++) {
+                num = 1 + n.nextInt(maxammount);
+            }
+            a = num;
+        } else {
+            Random n = new Random();
+            int num = 0;
+            for (int count = 1; count <= 2; count++) {
+                num = 1 + n.nextInt(maxammount);
+            }
+            a = num;
+            if (qwe == a) {
+                this.getRandomInt(maxammount);
+            }
+        }
+        return a;
+
+    }
+
 }
