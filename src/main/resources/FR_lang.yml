@@ -15,4 +15,4 @@ simplemsg-update: ' Va forcer une mise à jour'
 simplemsg-report: 'Télécharger un rapport à pastebin.com'
 simplemsg-support: "Obtenez l'aide d'un développeur"
 # Texte traduit de l'anglais par psgs || Translated from English by psgs.
-# This text might contain typos. Please inform us if you find a typo!
+# This text might contain typos. Please inform us if you find any!
