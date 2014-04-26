@@ -29,18 +29,25 @@ public class Announce {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main, new Runnable() {
 
             public void run() {
-                if (Main.onlinePlayers()) {
-                    if (cm == 0) {
-                        Main.getLogger().severe("Could not load any messages from the config. Did you forget to add any or is the config broken?");
-                        warningCounter++;
-                        if (warningCounter >= 5) {
-                            return;
-                        }
-                    } else {
-                        if (isRandom) {
-                            onRandom();
+                if (warningCounter <= 4) {
+                    
+
+                    if (Main.onlinePlayers()) {
+                        if (cm == 1) {
+                            Main.getLogger().severe("Could not load any messages from the config. Did you forget to add any or is the config broken?");
+                            warningCounter++;
+                            if(warningCounter == 5){
+                                Main.getLogger().severe("Will stop outputing warnings now. Please fix your config and reload the plugin.");
+                            }
+
                         } else {
-                            onInOrder();
+                            if (isRandom) {
+                                Main.debug("isRandom: " + isRandom);
+                                onRandom();
+                            } else {
+                                Main.debug("isRandom: " + isRandom);
+                                onInOrder();
+                            }
                         }
                     }
                 }
@@ -59,7 +66,6 @@ public class Announce {
         int nm = getNextMessage();
         String message = Main.getConfig().getString("msg" + nm);
         sendMessage(message);
-
     }
 
     private int collectMessages() {
@@ -68,7 +74,8 @@ public class Announce {
         while (true) {
             currentMessage++;
             if (!Main.getConfig().contains("msg" + currentMessage)) {
-                return currentMessage;
+                Main.debug("currentMessage: " + currentMessage);
+                return currentMessage++;
             }
         }
     }
@@ -78,9 +85,10 @@ public class Announce {
             int r = Main.getRandomInt(lastMessage - 1);
             while (r == lastRandom) {
                 r = Main.getRandomInt(lastMessage - 1);
-
             }
+
             return r;
+
         } else {
             int nm = messageCounter + 1;
             if (nm < lastMessage) {

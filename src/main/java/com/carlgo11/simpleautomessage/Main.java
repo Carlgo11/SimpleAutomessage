@@ -34,7 +34,6 @@ public class Main extends JavaPlugin {
         checkConfig();
         checkDebugMode();
         checkVersion();
-        checkMetrics();
         getServer().getPluginManager().registerEvents(new loadLang(this), this);
         registerListeners(getPluginManager());
         registerCommands();
@@ -50,7 +49,15 @@ public class Main extends JavaPlugin {
 
         Announce announce = new Announce();
         announce.setup(this);
-
+        
+        try {
+            Metrics metrics = new Metrics(this);
+            CustomGraphs.graphs(metrics, this);
+            metrics.start();
+        } catch (IOException ex) {
+            System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
+        }
+        
     }
 
     private void registerCommands() {
@@ -74,16 +81,6 @@ public class Main extends JavaPlugin {
             update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
         } else {
             debug("auto-update & warn-update is set to false!");
-        }
-    }
-
-    public void checkMetrics() {
-        try {
-            Metrics metrics = new Metrics(this);
-            CustomGraphs.graphs(metrics, this);
-            metrics.start();
-        } catch (IOException ex) {
-            System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
         }
     }
 
