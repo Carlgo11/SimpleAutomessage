@@ -25,7 +25,7 @@ public class Main extends JavaPlugin {
     public static File LANG_FILE;
     public boolean update = false;
     public boolean debugm;
-    public String configv = "1.0.7";
+    public String configv = "1.0.6";
 
     public void onEnable() {
 
@@ -49,7 +49,7 @@ public class Main extends JavaPlugin {
 
         Announce announce = new Announce();
         announce.setup(this);
-        
+
         try {
             Metrics metrics = new Metrics(this);
             CustomGraphs.graphs(metrics, this);
@@ -57,7 +57,7 @@ public class Main extends JavaPlugin {
         } catch (IOException ex) {
             System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
         }
-        
+
     }
 
     private void registerCommands() {
@@ -161,7 +161,6 @@ public class Main extends JavaPlugin {
             }
         }
         return a;
-
     }
 
 }
