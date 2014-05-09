@@ -68,18 +68,6 @@ public class Announce {
         sendMessage(message);
     }
 
-//    private int collectMessages() {
-//        Main.debug("Running message collection query...");
-//        int currentMessage = 0;
-//        while (true) {
-//            currentMessage++;
-//            if (!Main.getConfig().contains("msg" + currentMessage)) {
-//                Main.debug("currentMessage: " + currentMessage);
-//                return currentMessage++;
-//            }
-//        }
-//    }
-
     public int getNextMessage() {
         if (isRandom) {
             int r = Main.getRandomInt(lastMessage - 1);
