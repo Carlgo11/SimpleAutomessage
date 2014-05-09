@@ -15,7 +15,7 @@ public class Announce {
     public void setup(Main m) {
         this.Main = m;
 
-        int cm = collectMessages();
+        int cm = Main.messages.size();
         if (Main.getConfig().getBoolean("random") && cm > 2) {
             this.isRandom = true;
         }
@@ -57,28 +57,28 @@ public class Announce {
 
     private void onRandom() {
         int nm = getNextMessage();
-        String message = Main.getConfig().getString("msg" + nm);
+        String message = Main.messages.get(nm);
         lastRandom = nm;
         sendMessage(message);
     }
 
     private void onInOrder() {
         int nm = getNextMessage();
-        String message = Main.getConfig().getString("msg" + nm);
+        String message = Main.messages.get(nm);
         sendMessage(message);
     }
 
-    private int collectMessages() {
-        Main.debug("Running message collection query...");
-        int currentMessage = 0;
-        while (true) {
-            currentMessage++;
-            if (!Main.getConfig().contains("msg" + currentMessage)) {
-                Main.debug("currentMessage: " + currentMessage);
-                return currentMessage++;
-            }
-        }
-    }
+//    private int collectMessages() {
+//        Main.debug("Running message collection query...");
+//        int currentMessage = 0;
+//        while (true) {
+//            currentMessage++;
+//            if (!Main.getConfig().contains("msg" + currentMessage)) {
+//                Main.debug("currentMessage: " + currentMessage);
+//                return currentMessage++;
+//            }
+//        }
+//    }
 
     public int getNextMessage() {
         if (isRandom) {

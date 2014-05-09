@@ -90,17 +90,11 @@ public class SimpleautomessageCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.GRAY + "prefix" + ": " + ChatColor.RESET + prefix);
             sender.sendMessage(ChatColor.GRAY + "sender" + ": " + ChatColor.RESET + sender0);
             sender.sendMessage(ChatColor.GRAY + "suffix" + ": " + ChatColor.RESET + suffix);
-            int err = 0;
-            for (int i = 1; err != 1; i++) {
-                if (plugin.getConfig().contains("msg" + i)) {
-                    String messageToSend = plugin.getConfig().getString("msg" + i);
+            for (int i = 1; i < plugin.messages.size(); i++) {
+                    String messageToSend = plugin.messages.get(i);
                     String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                     sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
-                    plugin.debug("Found msg" + i);
-                } else {
-                    err++;
-                    plugin.debug("Did not find msg" + i);
-                }
+                    plugin.debug("Found " + i);
             }
         } else {
             sender.sendMessage(Lang.BAD_PERMS + "");

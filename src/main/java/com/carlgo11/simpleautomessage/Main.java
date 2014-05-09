@@ -11,8 +11,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.carlgo11.simpleautomessage.metrics.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getPluginManager;
 import org.bukkit.plugin.PluginManager;
@@ -25,7 +30,8 @@ public class Main extends JavaPlugin {
     public static File LANG_FILE;
     public boolean update = false;
     public boolean debugm;
-    public String configv = "1.0.6";
+    public ArrayList<String> messages = new ArrayList<String>();
+    public String configv = "1.0.7";
 
     public void onEnable() {
 
@@ -45,7 +51,8 @@ public class Main extends JavaPlugin {
     }
 
     private void registerListeners(PluginManager pm) {
-        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+        loadMessages();
+        pm.registerEvents(new PlayerJoin(this), this);
 
         Announce announce = new Announce();
         announce.setup(this);
@@ -88,7 +95,7 @@ public class Main extends JavaPlugin {
         File config = new File(getDataFolder(), "config.yml");
         if (!config.exists()) {
             saveDefaultConfig();
-            System.out.println("[" + getDescription().getName() + "] " + "No config.yml detected, config.yml created.");
+            System.out.println("[" + getDescription().getName() + "] " + "No config.yml found, config.yml created.");
         }
         if (getConfig().getBoolean("update-config")) {
             if (!getConfig().getString("version").equals(this.configv)) {
@@ -97,6 +104,31 @@ public class Main extends JavaPlugin {
             }
         } else {
             debug("update-config is set to false.");
+        }
+    }
+    
+    private void loadMessages() {
+        messages.clear();
+        messages.add("This message should not be displayed. Contact the developers");
+        try {
+            File file = new File(this.getDataFolder() + "//messages.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+                this.getLogger().info("No messages.txt found. Created a new one");
+            }
+            BufferedReader read;
+            read = new BufferedReader(new FileReader(file));
+
+            String line;
+            while ((line = read.readLine()) != null) {
+                if (!messages.contains(line)) {
+                    if(!line.startsWith("#")){
+                    messages.add(line);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
