@@ -30,16 +30,13 @@ public class Announce {
 
             public void run() {
                 if (warningCounter <= 4) {
-                    
-
                     if (Main.onlinePlayers()) {
                         if (cm == 1) {
                             Main.getLogger().severe("Could not load any messages from the config. Did you forget to add any or is the config broken?");
                             warningCounter++;
-                            if(warningCounter == 5){
+                            if (warningCounter == 5) {
                                 Main.getLogger().severe("Will stop outputing warnings now. Please fix your config and reload the plugin.");
                             }
-
                         } else {
                             if (isRandom) {
                                 Main.debug("isRandom: " + isRandom);
@@ -74,7 +71,6 @@ public class Announce {
             while (r == lastRandom) {
                 r = Main.getRandomInt(lastMessage - 1);
             }
-
             return r;
 
         } else {
