@@ -4,10 +4,9 @@ import com.carlgo11.simpleautomessage.Main;
 
 public class CustomGraphs {
 
-    public static void graphs(Metrics metrics, Main Main)
-    { // Custom Graphs. Sends data to mcstats.org
+    public static void graphs(Metrics metrics, Main Main) { // Custom Graphs. Sends data to mcstats.org
         try {
-            
+
             //Graph1
             Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the server has.
             int o = 0;
@@ -29,18 +28,15 @@ public class CustomGraphs {
             String lang = Main.getConfig().getString("language");
             if (lang.equalsIgnoreCase("EN") || lang.isEmpty()) {
                 graph3.addPlotter(new SimplePlotter("English"));
-            }else
-            if (lang.equalsIgnoreCase("FR")) {
+            } else if (lang.equalsIgnoreCase("FR")) {
                 graph3.addPlotter(new SimplePlotter("French"));
-            }else
-            if (lang.equalsIgnoreCase("NL")) {
+            } else if (lang.equalsIgnoreCase("NL")) {
                 graph3.addPlotter(new SimplePlotter("Dutch"));
-            }else
-            if (lang.equalsIgnoreCase("SE")) {
+            } else if (lang.equalsIgnoreCase("SE")) {
                 graph3.addPlotter(new SimplePlotter("Swedish"));
-            }else if(lang.equalsIgnoreCase("RU")){
+            } else if (lang.equalsIgnoreCase("RU")) {
                 graph3.addPlotter(new SimplePlotter("Russian"));
-            }else{
+            } else {
                 graph3.addPlotter(new SimplePlotter("Other"));
             }
 
@@ -67,16 +63,15 @@ public class CustomGraphs {
                     graph6.addPlotter(new SimplePlotter("none"));
                 }
             }
-            
+
             //Graph7
             Metrics.Graph graph7 = metrics.createGraph("update-config");
-            if(!Main.getConfig().getBoolean("update-config")){
-                graph7.addPlotter(new SimplePlotter("enabled"));
-            }else{
-                graph7.addPlotter(new SimplePlotter("disalbed"));
+            if (Main.getConfig().getBoolean("update-config")) {
+                graph7.addPlotter(new SimplePlotter("true"));
+            } else {
+                graph7.addPlotter(new SimplePlotter("false"));
             }
-            
-            
+
             Main.debug("Sending metrics data...");
             metrics.start();
         } catch (Exception e) {

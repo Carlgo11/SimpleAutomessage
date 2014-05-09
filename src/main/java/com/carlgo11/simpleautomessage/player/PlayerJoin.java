@@ -29,7 +29,7 @@ public class PlayerJoin implements Listener {
                     p.sendMessage(updateav);
                 }
             } else if (upd.equalsIgnoreCase("perm")) {
-                if (p.hasPermission("simpleAutoMessage.notify") && plugin.update) {
+                if (p.hasPermission("simpleautomessage.notify") && plugin.update) {
                     p.sendMessage(updateav);
                 }
             }
