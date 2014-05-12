@@ -34,11 +34,11 @@ debug: false
 # Automatically download patches and bug-fixes? This means you'll never have to download any new versions from dev.bukkit.org! (Recommended: 'true')
 auto-update: true
 
-# If auto-update is set to false. Who should recive information when a new update is available? (Recommended: 'perm')
+# If auto-update is set to false, who should recive information when a new update is available? (Recommended: 'perm')
 # Available options: op, perm, none
 warn-update: perm
 
-# Backup the current config and replace it with a new one when a new version of SimpleAutoMessage is downloaded.
+# Backup the current config and replace it with a new one when a new config version is loaded.
 update-config: false
 
 # When seeking assistance via /simpleautomessage report should the plugin upload your latest.log? (Recommended: 'true')
@@ -60,14 +60,8 @@ suffix: ''
 # TIME SHOULD BE IN SECONDS!
 time: 20
 
-############################################################
-# +------------------------------------------------------+ #
-# |                       Messages                       | #
-# +------------------------------------------------------+ #
-############################################################
-
 # Want to broadcast the messages in order or randomly?
 random: false
 
-# Need help? Contact us on IRC: http://tiny.cc/simpleautomessage-irc
+# Need help? Contact us on IRC: /simpleautomessage support
 # END OF CONFIG.YML! :)

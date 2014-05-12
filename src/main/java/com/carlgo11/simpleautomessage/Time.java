@@ -19,9 +19,9 @@ public class Time implements Listener {
             plugin.debug("No time string found!");
         }
         plugin.time = plugin.getConfig().getInt("time");
-        if (plugin.getConfig().contains("Time-setup")) {
-            plugin.debug("Time-setup: string found!");
-            if (plugin.getConfig().getString("Time-setup").equalsIgnoreCase("sec")) {
+        if (plugin.getConfig().contains("time-setup")) {
+            plugin.debug("time-setup: string found!");
+            if (plugin.getConfig().getString("time-setup").equalsIgnoreCase("sec")) {
                 plugin.time *= 20;
             }
         } else {
