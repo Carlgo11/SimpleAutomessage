@@ -50,6 +50,7 @@ public class Main extends JavaPlugin {
     }
 
     private void registerListeners(PluginManager pm) {
+        moveMessages.moveOldMessages(this);
         loadMessages();
         pm.registerEvents(new PlayerJoin(this), this);
 
@@ -105,7 +106,7 @@ public class Main extends JavaPlugin {
             debug("update-config is set to false.");
         }
     }
-    
+
     private void loadMessages() {
         messages.clear();
         messages.add("This message should not be displayed. Contact the developers");
@@ -121,8 +122,8 @@ public class Main extends JavaPlugin {
             String line;
             while ((line = read.readLine()) != null) {
                 if (!messages.contains(line)) {
-                    if(!line.startsWith("#")){
-                    messages.add(line);
+                    if (!line.startsWith("#")) {
+                        messages.add(line);
                     }
                 }
             }
