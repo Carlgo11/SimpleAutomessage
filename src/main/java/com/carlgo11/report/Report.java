@@ -17,7 +17,7 @@ public class Report {
 
     public static String Main(Plugin plugin) {
         String topic = "Report for " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " created. The following info is gathered from the config.yml & latest.log.\n\n";
-        return topic + summary(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
+        return topic + summary(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
     }
 
     static StringBuilder summary(Plugin plugin) {
