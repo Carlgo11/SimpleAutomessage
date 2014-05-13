@@ -14,15 +14,33 @@ public class Report {
      */
     
     private Plugin plugin;
-    
-    public static String Main(Plugin plugin)
-    {
+
+    public static String Main(Plugin plugin) {
         String topic = "Report for " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " created. The following info is gathered from the config.yml & latest.log.\n\n";
-        return topic + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
+        return topic + summary(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
     }
 
-    static StringBuilder config(Plugin plugin)
-    {
+    static StringBuilder summary(Plugin plugin) {
+        StringBuilder txt = new StringBuilder();
+
+        if (plugin.getConfig().getBoolean("report-summary")) {
+            txt.append("====   Summery   ====\n");
+            txt.append("OS: " + System.getProperty("os.name") + "\n");
+            txt.append("Java version: " + System.getProperty("java.version") + "\n");
+            txt.append("Plugin version: " + plugin.getDescription().getVersion() + "\n");
+            txt.append("Config version: " + plugin.getConfig().getString("version") + "\n");
+            txt.append("Auto update: " + plugin.getConfig().getBoolean("auto-update") + "\n");
+            txt.append("Warn update: " + plugin.getConfig().getString("warn-update") + "\n");
+            txt.append("Message-file: " + plugin.getConfig().getString("message-file") + "\n");
+            txt.append("\n\n");
+        } else {
+            txt.append("Cannot create a summary (Access denied). Contact the Server Owner.\n\n");
+        }
+
+        return txt;
+    }
+
+    static StringBuilder config(Plugin plugin) {
         BufferedReader br = null;
         StringBuilder txt = new StringBuilder();
         try {
@@ -46,35 +64,58 @@ public class Report {
         return txt;
     }
 
-    static StringBuilder latestlog(Plugin plugin)
-    {
+    static StringBuilder automessage(Plugin plugin) {
+        BufferedReader br = null;
+        StringBuilder txt = new StringBuilder();
+        try {
+            String line;
+            br = new BufferedReader(new FileReader("" + plugin.getDataFolder() + File.separatorChar + plugin.getConfig().getString("message-file")));
+            while ((line = br.readLine()) != null) {
+                txt.append(line);
+                txt.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return txt;
+    }
+
+    static StringBuilder latestlog(Plugin plugin) {
 
         BufferedReader br = null;
         StringBuilder txt = new StringBuilder();
-        if(plugin.getConfig().contains("report-log")){
-        if (plugin.getConfig().getBoolean("report-log")) {
-            try {
-                String line;
-                br = new BufferedReader(new FileReader("logs" + File.separatorChar + "latest.log"));
-                while ((line = br.readLine()) != null) {
-                    txt.append(line);
-                    txt.append("\n");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
+        if (plugin.getConfig().contains("report-log")) {
+            if (plugin.getConfig().getBoolean("report-log")) {
                 try {
-                    if (br != null) {
-                        br.close();
+                    String line;
+                    br = new BufferedReader(new FileReader("logs" + File.separatorChar + "latest.log"));
+                    while ((line = br.readLine()) != null) {
+                        txt.append(line);
+                        txt.append("\n");
                     }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (br != null) {
+                            br.close();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
+            } else {
+                txt.append("Access denied for latest.log. Contact the Server Owner.\n");
             }
         } else {
-            txt.append("Access denied for latest.log. Contact the Server Owner.\n");
-        }
-        }else{
             txt.append("The developer(s) of this plugin have forgotten to set a report-log boolean in the config. Please report this error.\n");
         }
         return txt;

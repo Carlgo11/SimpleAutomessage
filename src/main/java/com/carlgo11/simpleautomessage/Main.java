@@ -111,7 +111,7 @@ public class Main extends JavaPlugin {
         messages.clear();
         messages.add("This message should not be displayed. Contact the developers");
         try {
-            File file = new File(this.getDataFolder() + "//messages.txt");
+            File file = new File("" + this.getDataFolder() + File.separatorChar + this.getConfig().getString("message-file"));
             if (!file.exists()) {
                 file.createNewFile();
                 this.getLogger().info("No messages.txt found. Created a new one");

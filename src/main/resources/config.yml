@@ -41,6 +41,12 @@ warn-update: perm
 # Backup the current config and replace it with a new one when a new config version is loaded.
 update-config: false
 
+# The file that will contain the messages to broadcast.
+message-file: messages.txt
+
+# When seeking assistance via /simpleautomessage report should the plugin write a summary? (Recommended: 'true')
+report-summary: true
+
 # When seeking assistance via /simpleautomessage report should the plugin upload your latest.log? (Recommended: 'true')
 report-log: true
 
