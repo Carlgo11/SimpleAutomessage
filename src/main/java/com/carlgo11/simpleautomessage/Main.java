@@ -110,7 +110,7 @@ public class Main extends JavaPlugin {
         messages.clear();
         messages.add("This message should not be displayed. Contact the developers");
         try {
-            File file = new File("" + this.getDataFolder() + File.separatorChar + this.getConfig().getString("message-file"));
+            File file = this.getDataFolder();
             if (!file.exists()) {
                 file.createNewFile();
                 this.getLogger().info("No messages.txt found. Created a new one");
@@ -192,6 +192,10 @@ public class Main extends JavaPlugin {
             }
         }
         return a;
+    }
+    public File getMessageFile(){
+        File file = new File("" + this.getDataFolder() + File.separatorChar + this.getConfig().getString("message-file"));
+        return file;
     }
 
 }
