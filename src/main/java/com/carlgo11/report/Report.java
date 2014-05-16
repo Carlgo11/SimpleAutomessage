@@ -18,13 +18,13 @@ public class Report {
 
     public static String Main(Plugin plugin) {
         String topic = "Report for " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " created. The following info is gathered from the config.yml & latest.log.\n\n";
-        return topic + summary(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
+        return topic + summery(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
     }
 
-    static StringBuilder summary(Plugin plugin) {
+    static StringBuilder summery(Plugin plugin) {
         StringBuilder txt = new StringBuilder();
 
-        if (plugin.getConfig().getBoolean("report-summary")) {
+        if (plugin.getConfig().getBoolean("report-summery")) {
             txt.append("====   Summery   ====\n");
             txt.append("OS: " + System.getProperty("os.name") + "\n");
             txt.append("Java version: " + System.getProperty("java.version") + "\n");
