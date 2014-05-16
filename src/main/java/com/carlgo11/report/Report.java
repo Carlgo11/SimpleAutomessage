@@ -13,15 +13,16 @@ public class Report {
      * File created by Carlgo11. And uploaded to https://github.com/carlgo11/report
      * Please see LICENSE on https://github.com/carlgo11/report for the terms and conditions for distribution of this code.
      */
-    
     private Plugin plugin;
 
-    public static String Main(Plugin plugin) {
+    public static String Main(Plugin plugin)
+    {
         String topic = "Report for " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " created. The following info is gathered from the config.yml & latest.log.\n\n";
         return topic + summery(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
     }
 
-    static StringBuilder summery(Plugin plugin) {
+    static StringBuilder summery(Plugin plugin)
+    {
         StringBuilder txt = new StringBuilder();
 
         if (plugin.getConfig().getBoolean("report-summery")) {
@@ -43,7 +44,8 @@ public class Report {
         return txt;
     }
 
-    static StringBuilder config(Plugin plugin) {
+    static StringBuilder config(Plugin plugin)
+    {
         BufferedReader br = null;
         StringBuilder txt = new StringBuilder();
         try {
@@ -67,7 +69,8 @@ public class Report {
         return txt;
     }
 
-    static StringBuilder automessage(Plugin plugin) {
+    static StringBuilder automessage(Plugin plugin)
+    {
         BufferedReader br = null;
         StringBuilder txt = new StringBuilder();
         try {
@@ -91,7 +94,8 @@ public class Report {
         return txt;
     }
 
-    static StringBuilder latestlog(Plugin plugin) {
+    static StringBuilder latestlog(Plugin plugin)
+    {
 
         BufferedReader br = null;
         StringBuilder txt = new StringBuilder();

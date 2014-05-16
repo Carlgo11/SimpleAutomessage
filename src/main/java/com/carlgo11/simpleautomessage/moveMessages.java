@@ -9,7 +9,8 @@ import java.util.logging.Logger;
 
 public class moveMessages {
 
-    public static void moveOldMessages(Main Main) {
+    public static void moveOldMessages(Main Main)
+    {
         File file = Main.getMessageFile();
         if (!file.exists()) {
             ArrayList<String> mm = new ArrayList<String>();

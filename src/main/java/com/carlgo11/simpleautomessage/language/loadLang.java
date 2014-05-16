@@ -11,13 +11,15 @@ public class loadLang implements Listener {
 
     Main plugin;
 
-    public loadLang(Main plug) {
+    public loadLang(Main plug)
+    {
         super();
         this.plugin = plug;
         this.loadLang();
     }
 
-    public void loadLang() {
+    public void loadLang()
+    {
         File dir = new File(plugin.getDataFolder() + "/language");
         dir.mkdir();
         if (!plugin.getConfig().getString("language").isEmpty()) {

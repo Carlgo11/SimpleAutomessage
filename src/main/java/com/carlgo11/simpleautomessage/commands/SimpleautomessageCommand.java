@@ -16,12 +16,14 @@ public class SimpleautomessageCommand implements CommandExecutor {
 
     private Main plugin;
 
-    public SimpleautomessageCommand(Main plug) {
+    public SimpleautomessageCommand(Main plug)
+    {
         this.plugin = plug;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+    {
         String topic = ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + "]" + ChatColor.GREEN + " ======== ";
         String senderToSend = plugin.getConfig().getString("sender");
         String sender0 = ChatColor.translateAlternateColorCodes('&', senderToSend);
@@ -53,7 +55,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
         return true;
     }
 
-    void help(CommandSender sender, Command cmd, String topic) {
+    void help(CommandSender sender, Command cmd, String topic)
+    {
         if (sender.hasPermission("simpleautomessage.simpleautomessage")) {
             sender.sendMessage(topic);
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + ChatColor.YELLOW + Lang.Simplemsg_Main);
@@ -71,7 +74,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
         }
     }
 
-    void reload(CommandSender sender, String sender0) {
+    void reload(CommandSender sender, String sender0)
+    {
         if (sender.hasPermission("simpleautomessage.simpleautomessage.reload")) {
             plugin.getServer().getPluginManager().disablePlugin(plugin);
             plugin.getServer().getPluginManager().enablePlugin(plugin);
@@ -81,7 +85,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
         }
     }
 
-    void list(CommandSender sender, String sender0, String prefix, String suffix, String topic) {
+    void list(CommandSender sender, String sender0, String prefix, String suffix, String topic)
+    {
         if (sender.hasPermission("simpleautomessage.simpleautomessage.list")) {
             sender.sendMessage(topic);
             sender.sendMessage(ChatColor.GRAY + "min-players" + ": " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
@@ -91,17 +96,18 @@ public class SimpleautomessageCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.GRAY + "sender" + ": " + ChatColor.RESET + sender0);
             sender.sendMessage(ChatColor.GRAY + "suffix" + ": " + ChatColor.RESET + suffix);
             for (int i = 1; i < plugin.messages.size(); i++) {
-                    String messageToSend = plugin.messages.get(i);
-                    String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
-                    sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
-                    plugin.debug("Found " + i);
+                String messageToSend = plugin.messages.get(i);
+                String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
+                sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
+                plugin.debug("Found " + i);
             }
         } else {
             sender.sendMessage(Lang.BAD_PERMS + "");
         }
     }
 
-    void update(CommandSender sender, String sender0) {
+    void update(CommandSender sender, String sender0)
+    {
         if (sender.hasPermission("simpleautomessage.simpleautomessage.update")) {
             plugin.forceUpdate(sender, sender0);
         } else {
@@ -109,7 +115,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
         }
     }
 
-    void report(CommandSender sender) {
+    void report(CommandSender sender)
+    {
         if (sender.hasPermission("simpleautomessage.simpleautomessage.report")) {
             try {
                 String pastebin = Pastebin.makePaste(plugin.getDescription().getName(), plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
@@ -123,7 +130,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
         }
     }
 
-    void support(CommandSender sender) {
+    void support(CommandSender sender)
+    {
         if (sender.hasPermission("simpleautomessage.simpleautomessage.support")) {
             try {
                 String pastebin = Pastebin.makePaste("SimpleAutoMessage report", plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
@@ -140,7 +148,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
         }
     }
 
-    void moo(CommandSender sender, String pn) {
+    void moo(CommandSender sender, String pn)
+    {
         sender.sendMessage(NothingHere.playerMoo);
         Bukkit.getPlayer(pn).getWorld().playSound(Bukkit.getPlayer(pn).getLocation(), Sound.COW_IDLE, 1, 0);
     }

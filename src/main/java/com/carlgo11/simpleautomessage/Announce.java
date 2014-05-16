@@ -12,7 +12,8 @@ public class Announce {
     private int warningCounter = 0;
     private int lastRandom;
 
-    public void setup(Main m) {
+    public void setup(Main m)
+    {
         this.Main = m;
 
         int cm = Main.messages.size();
@@ -24,11 +25,13 @@ public class Announce {
 
     }
 
-    private void schedule(final int cm) {
+    private void schedule(final int cm)
+    {
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main, new Runnable() {
 
-            public void run() {
+            public void run()
+            {
                 if (warningCounter <= 4) {
                     if (Main.onlinePlayers()) {
                         if (cm == 1) {
@@ -52,20 +55,23 @@ public class Announce {
         }, Main.time, Main.time);
     }
 
-    private void onRandom() {
+    private void onRandom()
+    {
         int nm = getNextMessage();
         String message = Main.messages.get(nm);
         lastRandom = nm;
         sendMessage(message);
     }
 
-    private void onInOrder() {
+    private void onInOrder()
+    {
         int nm = getNextMessage();
         String message = Main.messages.get(nm);
         sendMessage(message);
     }
 
-    public int getNextMessage() {
+    public int getNextMessage()
+    {
         if (isRandom) {
             int r = Main.getRandomInt(lastMessage - 1);
             while (r == lastRandom) {
@@ -85,7 +91,8 @@ public class Announce {
         }
     }
 
-    private void sendMessage(String message) {
+    private void sendMessage(String message)
+    {
         String prefix = ChatColor.translateAlternateColorCodes('&', Main.getConfig().getString("prefix"));
         String sender = ChatColor.translateAlternateColorCodes('&', Main.getConfig().getString("sender"));
         String suffix = ChatColor.translateAlternateColorCodes('&', Main.getConfig().getString("suffix"));

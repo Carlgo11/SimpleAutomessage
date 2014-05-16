@@ -32,7 +32,8 @@ public class Main extends JavaPlugin {
     public ArrayList<String> messages = new ArrayList<String>();
     public String configv = "1.0.7";
 
-    public void onEnable() {
+    public void onEnable()
+    {
 
         reloadConfig();
         checkConfig();
@@ -44,11 +45,13 @@ public class Main extends JavaPlugin {
         getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
     }
 
-    public void onDisable() {
+    public void onDisable()
+    {
         getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.DISABLED);
     }
 
-    private void registerListeners(PluginManager pm) {
+    private void registerListeners(PluginManager pm)
+    {
         moveMessages.moveOldMessages(this);
         loadMessages();
         pm.registerEvents(new Time(this), this);
@@ -66,11 +69,13 @@ public class Main extends JavaPlugin {
         }
     }
 
-    private void registerCommands() {
+    private void registerCommands()
+    {
         getCommand("simpleautomessage").setExecutor(new SimpleautomessageCommand(this));
     }
 
-    public void checkVersion() {
+    public void checkVersion()
+    {
         if (getDescription().getVersion().startsWith("dev-")) { // prints out a warning when using dev build
             getLogger().warning("You are using a development build. Keep in mind development builds may contain bugs!");
             getLogger().warning("If you want a fully working version please use a recommended build.");
@@ -90,7 +95,8 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void checkConfig() {
+    public void checkConfig()
+    {
         File config = new File(getDataFolder(), "config.yml");
         if (!config.exists()) {
             saveDefaultConfig();
@@ -106,7 +112,8 @@ public class Main extends JavaPlugin {
         }
     }
 
-    private void loadMessages() {
+    private void loadMessages()
+    {
         messages.clear();
         messages.add("This message should not be displayed. Contact the developers");
         try {
@@ -131,27 +138,32 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public YamlConfiguration getLang() {
+    public YamlConfiguration getLang()
+    {
         return LANG;
     }
 
-    public File getLangFile() {
+    public File getLangFile()
+    {
         return LANG_FILE;
     }
 
-    public void debug(String s) {
+    public void debug(String s)
+    {
         if (debugm) {
             getLogger().log(Level.INFO, "[" + "Debug" + "]" + " {0}", s);
         }
     }
 
-    public void checkDebugMode() {
+    public void checkDebugMode()
+    {
         if (getConfig().getBoolean("debug")) {
             debugm = true;
         }
     }
 
-    public void forceUpdate(CommandSender p, String sender0) {
+    public void forceUpdate(CommandSender p, String sender0)
+    {
         String up = Lang.UPDATING.toString().replaceAll("%prefix%", getDescription().getName());
         String updone = Lang.UPDATED.toString().replaceAll("%prefix%", getDescription().getName());
         p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
@@ -159,7 +171,8 @@ public class Main extends JavaPlugin {
         p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
     }
 
-    public boolean onlinePlayers() {
+    public boolean onlinePlayers()
+    {
         int conf = getConfig().getInt("min-players");
         int online = Bukkit.getOnlinePlayers().length;
 
@@ -170,7 +183,8 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public int getRandomInt(int maxammount) {
+    public int getRandomInt(int maxammount)
+    {
         int qwe = 0;
         int a = 0;
         if (maxammount < 3 || qwe == 0) {
@@ -193,9 +207,10 @@ public class Main extends JavaPlugin {
         }
         return a;
     }
-    public File getMessageFile(){
-        File file = new File("" + this.getDataFolder() + File.separatorChar + this.getConfig().getString("message-file"));
-        return file;
+
+    public File getMessageFile()
+    {
+        return new File("" + this.getDataFolder() + File.separatorChar + this.getConfig().getString("message-file"));
     }
 
 }

@@ -4,7 +4,8 @@ import com.carlgo11.simpleautomessage.Main;
 
 public class CustomGraphs {
 
-    public static void graphs(Metrics metrics, Main Main) { // Custom Graphs. Sends data to mcstats.org
+    public static void graphs(Metrics metrics, Main Main)
+    { // Custom Graphs. Sends data to mcstats.org
         try {
 
             //Graph1
