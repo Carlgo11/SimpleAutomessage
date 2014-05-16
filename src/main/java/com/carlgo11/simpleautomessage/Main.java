@@ -35,7 +35,6 @@ public class Main extends JavaPlugin {
     public void onEnable() {
 
         reloadConfig();
-        getServer().getPluginManager().registerEvents(new Time(this), this);
         checkConfig();
         checkDebugMode();
         checkVersion();
@@ -52,6 +51,7 @@ public class Main extends JavaPlugin {
     private void registerListeners(PluginManager pm) {
         moveMessages.moveOldMessages(this);
         loadMessages();
+        pm.registerEvents(new Time(this), this);
         pm.registerEvents(new PlayerJoin(this), this);
 
         Announce announce = new Announce();
@@ -64,7 +64,6 @@ public class Main extends JavaPlugin {
         } catch (IOException ex) {
             System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
         }
-
     }
 
     private void registerCommands() {
