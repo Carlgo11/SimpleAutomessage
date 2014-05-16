@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 public class Report {
@@ -27,11 +28,13 @@ public class Report {
             txt.append("====   Summery   ====\n");
             txt.append("OS: " + System.getProperty("os.name") + "\n");
             txt.append("Java version: " + System.getProperty("java.version") + "\n");
+            txt.append("Bukkit version: " + Bukkit.getServer().getBukkitVersion() + "\n");
             txt.append("Plugin version: " + plugin.getDescription().getVersion() + "\n");
             txt.append("Config version: " + plugin.getConfig().getString("version") + "\n");
             txt.append("Auto update: " + plugin.getConfig().getBoolean("auto-update") + "\n");
             txt.append("Warn update: " + plugin.getConfig().getString("warn-update") + "\n");
-            txt.append("Message-file: " + plugin.getConfig().getString("message-file") + "\n");
+            txt.append("Online mode: " + Bukkit.getServer().getOnlineMode() + "\n");
+            txt.append("Message file: " + plugin.getConfig().getString("message-file") + "\n");
             txt.append("\n\n");
         } else {
             txt.append("Cannot create a summary (Access denied). Contact the Server Owner.\n\n");

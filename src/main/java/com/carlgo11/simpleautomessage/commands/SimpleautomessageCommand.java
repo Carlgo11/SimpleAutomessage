@@ -112,7 +112,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
     void report(CommandSender sender) {
         if (sender.hasPermission("simpleautomessage.simpleautomessage.report")) {
             try {
-                String pastebin = Pastebin.makePaste("SimpleAutoMessage report", plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
+                String pastebin = Pastebin.makePaste(plugin.getDescription().getName(), plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
                 sender.sendMessage("" + Lang.PREFIX + ChatColor.GREEN + "Here's your log: " + pastebin);
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage("Error: " + ex.toString());
