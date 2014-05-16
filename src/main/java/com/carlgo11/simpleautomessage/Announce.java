@@ -91,7 +91,7 @@ public class Announce {
         String suffix = ChatColor.translateAlternateColorCodes('&', Main.getConfig().getString("suffix"));
         String msg = ChatColor.translateAlternateColorCodes('&', message);
 
-        Bukkit.broadcast(prefix + sender + suffix + " " + ChatColor.RESET + msg, "simpleautomessage.seemsg");
+        Bukkit.broadcast(prefix + ChatColor.RESET + sender + ChatColor.RESET + suffix + " " + ChatColor.RESET + msg, "simpleautomessage.seemsg");
     }
 
 }
