@@ -13,6 +13,7 @@ public class Report {
      * File created by Carlgo11. And uploaded to https://github.com/carlgo11/report
      * Please see LICENSE on https://github.com/carlgo11/report for the terms and conditions for distribution of this code.
      */
+    
     private Plugin plugin;
 
     public static String Main(Plugin plugin)
@@ -24,21 +25,24 @@ public class Report {
     static StringBuilder summery(Plugin plugin)
     {
         StringBuilder txt = new StringBuilder();
-
-        if (plugin.getConfig().getBoolean("report-summery")) {
-            txt.append("====   Summery   ====\n");
-            txt.append("OS: " + System.getProperty("os.name") + "\n");
-            txt.append("Java version: " + System.getProperty("java.version") + "\n");
-            txt.append("Bukkit version: " + Bukkit.getServer().getBukkitVersion() + "\n");
-            txt.append("Plugin version: " + plugin.getDescription().getVersion() + "\n");
-            txt.append("Config version: " + plugin.getConfig().getString("version") + "\n");
-            txt.append("Auto update: " + plugin.getConfig().getBoolean("auto-update") + "\n");
-            txt.append("Warn update: " + plugin.getConfig().getString("warn-update") + "\n");
-            txt.append("Online mode: " + Bukkit.getServer().getOnlineMode() + "\n");
-            txt.append("Message file: " + plugin.getConfig().getString("message-file") + "\n");
-            txt.append("\n\n");
+        if (plugin.getConfig().contains("report-summery")) {
+            if (plugin.getConfig().getBoolean("report-summery")) {
+                txt.append("====   Summery   ====\n");
+                txt.append("OS: " + System.getProperty("os.name") + "\n");
+                txt.append("Java version: " + System.getProperty("java.version") + "\n");
+                txt.append("Bukkit version: " + Bukkit.getServer().getBukkitVersion() + "\n");
+                txt.append("Plugin version: " + plugin.getDescription().getVersion() + "\n");
+                txt.append("Config version: " + plugin.getConfig().getString("version") + "\n");
+                txt.append("Auto update: " + plugin.getConfig().getBoolean("auto-update") + "\n");
+                txt.append("Warn update: " + plugin.getConfig().getString("warn-update") + "\n");
+                txt.append("Online mode: " + Bukkit.getServer().getOnlineMode() + "\n");
+                txt.append("Message file: " + plugin.getConfig().getString("message-file") + "\n");
+                txt.append("\n\n");
+            } else {
+                txt.append("Cannot create a summary (Access denied). Contact the Server Owner.\n\n");
+            }
         } else {
-            txt.append("Cannot create a summary (Access denied). Contact the Server Owner.\n\n");
+            txt.append("The developer(s) of this plugin have forgotten to set a report-log boolean in the config. Please report this error.\n");
         }
 
         return txt;
