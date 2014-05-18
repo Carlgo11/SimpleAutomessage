@@ -34,7 +34,6 @@ public class Main extends JavaPlugin {
 
     public void onEnable()
     {
-
         reloadConfig();
         checkConfig();
         checkDebugMode();
