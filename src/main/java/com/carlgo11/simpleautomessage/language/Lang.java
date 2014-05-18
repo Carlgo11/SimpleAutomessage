@@ -21,7 +21,7 @@ public enum Lang {
     Simplemsg_Update("simplemsg-update", " Will force an update"),
     Simplemsg_List("simplemsg-list", " Lists all the enabled messages"),
     Simplemsg_Report("simplemsg-report", " Upload a report to pastebin"),
-    Simplemsg_Support("simplemsg-support", " Get help by a developer");
+    Simplemsg_Support("simplemsg-support", " Get help from a developer");
     private String path;
     private String def;
     private static YamlConfiguration LANG;
