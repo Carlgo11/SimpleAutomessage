@@ -6,8 +6,8 @@
 # Config for SimpleAutoMessage
 # SimpleAutoMessage is a Bukkit-plugin, developed by Carlgo11.
 
-# COLORS:
-# When adding colors use the minecraft colorcodes.
+# COLOURS:
+# When adding colours use the minecraft colour codes.
 # Example: &a = green, &d = purple.
 
 # When this config.yml is broken it's often because of the msg strings! ALWAYS USE '' AROUND A MESSAGE!
