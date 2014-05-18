@@ -123,7 +123,7 @@ public class Report {
                 txt.append("Access denied for latest.log. Contact the Server Owner.\n");
             }
         } else {
-            txt.append("The developer(s) of this plugin have forgotten to set a report-log boolean in the config. Please report this error.\n");
+            txt.append("The developer(s) of this plugin has forgotten to set the report-log boolean in the config. Please report this error.\n");
         }
         return txt;
     }
