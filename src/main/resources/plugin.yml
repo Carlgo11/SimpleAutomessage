@@ -31,7 +31,6 @@ permissions:
   simpleautomessage.simpleautomessage.report:
     default: op
     description: Permission to use /simpleautomessage report
-    
   simpleautomessage.notify:
     defaylt: op
     description: Player will be notified on login when a new update is avible.
