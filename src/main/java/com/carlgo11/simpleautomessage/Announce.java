@@ -35,7 +35,7 @@ public class Announce {
                 if (warningCounter <= 4) {
                     if (Main.onlinePlayers()) {
                         if (cm == 1) {
-                            Main.getLogger().severe("Could not load any messages from the config. Did you forget to add any or is the config broken?");
+                            Main.getLogger().severe("Could not find any messages in the config. Did you forget to add some or is the config broken?");
                             warningCounter++;
                             if (warningCounter == 5) {
                                 Main.getLogger().severe("Will stop outputing warnings now. Please fix your config and reload the plugin.");
