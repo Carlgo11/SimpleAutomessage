@@ -18,30 +18,27 @@ public class Report {
     public static String Main(Plugin plugin)
     {
         String topic = "Report for " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " created. The following info is gathered from the config.yml & latest.log.\n\n";
-        return topic + summary(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
+        return topic + summery(plugin).toString() + "CONFIG: \n{\n" + config(plugin).toString() + "}\n\n\nMESSAGE-FILE: \n{\n" + automessage(plugin).toString() + "}\n\n\nLatest Log:\n{\n" + latestlog(plugin).toString() + "}";
     }
 
-    static StringBuilder summary(Plugin plugin)
+    static StringBuilder summery(Plugin plugin)
     {
         StringBuilder txt = new StringBuilder();
-        if (plugin.getConfig().contains("report-summary")) {
-            if (plugin.getConfig().getBoolean("report-summary")) {
-                txt.append("====   Summary   ====\n");
-                txt.append("OS: " + System.getProperty("os.name") + "\n");
-                txt.append("Java version: " + System.getProperty("java.version") + "\n");
-                txt.append("Bukkit version: " + Bukkit.getServer().getBukkitVersion() + "\n");
-                txt.append("Plugin version: " + plugin.getDescription().getVersion() + "\n");
-                txt.append("Config version: " + plugin.getConfig().getString("version") + "\n");
-                txt.append("Auto update: " + plugin.getConfig().getBoolean("auto-update") + "\n");
-                txt.append("Warn update: " + plugin.getConfig().getString("warn-update") + "\n");
-                txt.append("Online mode: " + Bukkit.getServer().getOnlineMode() + "\n");
-                txt.append("Message file: " + plugin.getConfig().getString("message-file") + "\n");
-                txt.append("\n\n");
-            } else {
-                txt.append("Cannot create a summary (Access denied). Contact the Server Owner.\n\n");
-            }
+
+        if (plugin.getConfig().getBoolean("report-summery")) {
+            txt.append("====   Summery   ====\n");
+            txt.append("OS: " + System.getProperty("os.name") + "\n");
+            txt.append("Java version: " + System.getProperty("java.version") + "\n");
+            txt.append("Bukkit version: " + Bukkit.getServer().getBukkitVersion() + "\n");
+            txt.append("Plugin version: " + plugin.getDescription().getVersion() + "\n");
+            txt.append("Config version: " + plugin.getConfig().getString("version") + "\n");
+            txt.append("Auto update: " + plugin.getConfig().getBoolean("auto-update") + "\n");
+            txt.append("Warn update: " + plugin.getConfig().getString("warn-update") + "\n");
+            txt.append("Online mode: " + Bukkit.getServer().getOnlineMode() + "\n");
+            txt.append("Message file: " + plugin.getConfig().getString("message-file") + "\n");
+            txt.append("\n\n");
         } else {
-            txt.append("The developer(s) of this plugin have forgotten to set a report-log boolean in the config. Please report this error.\n");
+            txt.append("Cannot create a summary (Access denied). Contact the Server Owner.\n\n");
         }
 
         return txt;
@@ -126,7 +123,7 @@ public class Report {
                 txt.append("Access denied for latest.log. Contact the Server Owner.\n");
             }
         } else {
-            txt.append("The developer(s) of this plugin have forgotten to set a report-log boolean in the config. Please report this error.\n");
+            txt.append("The developer(s) of this plugin has forgotten to set the report-log boolean in the config. Please report this error.\n");
         }
         return txt;
     }
