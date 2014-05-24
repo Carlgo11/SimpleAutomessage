@@ -116,13 +116,13 @@ public class Main extends JavaPlugin {
         messages.clear();
         messages.add("This message should not be displayed. Contact the developers");
         try {
-            File file = this.getDataFolder();
+            File file = getMessageFile();
             if (!file.exists()) {
                 file.createNewFile();
                 this.getLogger().info("No messages.txt found. Created a new one");
             }
             BufferedReader read;
-            read = new BufferedReader(new FileReader(file + "//" + this.getConfig().getString("message-file"))); //Workaround for weird path bug :\
+            read = new BufferedReader(new FileReader(file));
             
             String line;
             while ((line = read.readLine()) != null) {
