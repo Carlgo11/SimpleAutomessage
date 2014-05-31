@@ -80,7 +80,9 @@ public class Main extends JavaPlugin {
             getLogger().warning("If you want a fully working version please use a recommended build.");
             getLogger().warning("Type /simpleautomessage update to download the latest recommended build.");
         }
-        
+        update();
+    }
+    void update(){
         if (getConfig().getBoolean("auto-update")) {
             debug("Calling Updater.java");
             Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.DEFAULT, true);
@@ -211,5 +213,4 @@ public class Main extends JavaPlugin {
     {
         return new File("" + this.getDataFolder() + File.separatorChar + this.getConfig().getString("message-file"));
     }
-    
 }

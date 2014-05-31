@@ -1,6 +1,7 @@
 package com.carlgo11.simpleautomessage.player;
 
 import com.carlgo11.simpleautomessage.Main;
+import com.carlgo11.simpleautomessage.Players;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,13 +30,13 @@ public class PlayerJoin implements Listener {
                     p.sendMessage(updateav);
                 }
             } else if (upd.equalsIgnoreCase("perm")) {
-                if (p.hasPermission("simpleautomessage.notify") && plugin.update) {
+                if (Players.checkPerms(p, "simpleautomessage.notify", plugin) && plugin.update) {
                     p.sendMessage(updateav);
                 }
             }
         }
         if (!plugin.getConfig().getString("version").equals(plugin.configv)) {
-            if (plugin.getConfig().getString("ignore-old-configs").equalsIgnoreCase("perm") && p.hasPermission("simpleautomessage.notify")) {
+            if (plugin.getConfig().getString("ignore-old-configs").equalsIgnoreCase("perm") && Players.checkPerms(p, "simpleautomessage.notify", plugin)) {
                 p.sendMessage(prefix + ChatColor.GREEN + " Your config.yml is outdated. You should probably create a new one.");
             } else if (plugin.getConfig().getString("ignore-old-configs").equalsIgnoreCase("op") && p.isOp()) {
                 p.sendMessage(prefix + ChatColor.GREEN + " Your config.yml is outdated. You should probably create a new one.");

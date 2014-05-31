@@ -10,11 +10,8 @@ public class CustomGraphs {
 
             //Graph1
             Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the server has.
-            int o = 0;
-            for (int i = 1; Main.getConfig().contains("msg" + i); i++) {
-                o = i;
-            }
-            graph1.addPlotter(new SimplePlotter("" + o));
+            
+            graph1.addPlotter(new SimplePlotter("" + Main.messages.size()));
 
             //graph2
             Metrics.Graph graph2 = metrics.createGraph("auto-update"); //Sends auto-update data. if auto-update: is true it returns 'enabled'.
