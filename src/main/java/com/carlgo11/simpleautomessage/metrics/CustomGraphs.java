@@ -9,7 +9,7 @@ public class CustomGraphs {
         try {
 
             //Graph1
-            Metrics.Graph graph1 = metrics.createGraph("Messages"); //Sends data about how many msg strings the server has.
+            Metrics.Graph graph1 = metrics.createGraph("messages-file"); //Sends data about how many msg strings the server has.
             
             graph1.addPlotter(new SimplePlotter("" + Main.messages.size()));
 
