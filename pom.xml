@@ -20,7 +20,7 @@
         </repository>
     </repositories>
     <build>
-        <finalName>${project.name}-${project.version}</finalName>
+        <finalName>${project.name}_v${project.version}</finalName>
     </build>
     <dependencies>
         <dependency>
