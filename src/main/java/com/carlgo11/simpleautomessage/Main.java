@@ -82,6 +82,7 @@ public class Main extends JavaPlugin {
         }
         update();
     }
+    
     void update(){
         if (getConfig().getBoolean("auto-update")) {
             debug("Calling Updater.java");
@@ -121,7 +122,7 @@ public class Main extends JavaPlugin {
             File file = getMessageFile();
             if (!file.exists()) {
                 file.createNewFile();
-                this.getLogger().info("No messages.txt found. Created a new one");
+                this.getLogger().info("No "+file.getName()+" found. Created a new one");
             }
             BufferedReader read;
             read = new BufferedReader(new FileReader(file));
