@@ -13,15 +13,18 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
     <repositories>
         <repository>
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
         </repository>
     </repositories>
+    
     <build>
-        <finalName>${project.name}-${project.version}-${BUILD_NUMBER}</finalName>
+        <finalName>${project.name}_v${project.version}</finalName>
     </build>
+    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
