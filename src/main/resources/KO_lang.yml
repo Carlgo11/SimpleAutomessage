@@ -1,0 +1,18 @@
+# KOREAN translation for SimpleAutoMessage
+plugin-enabled: '가 활성화되었습니다!'
+plugin-disabled: '가 비활성화되었습니다!'
+mcstats-error: '상태가 좋지 않습니다!'
+bad-perms: "&c오류: 이 명령어를 사용할 권한이 없습니다!"
+plugin-reloaded: '&aSimpleAutoMessage가 갱신되었습니다!'
+unknown-command: '&c오류: 알수없는 명령어!'
+no-msg1: '오류: 메세지1을 찾을 수 없습니다. 빠트린 부분이 있거나 설정이 잘못되어 있습니까?'
+updating: '%prefix% 등록중...'
+updated: '완료. 서버 재시작시 새 경로를 불러올 것입니다.'
+simplemsg-main: ' 명령어들을 보여줍니다'
+simplemsg-reload: ' config.yml를 갱신합니다'
+simplemsg-list: ' 활성화된 명령어 목록을 봅니다'
+simplemsg-update: ' 강제 업데이트를 합니다'
+simplemsg-report: ' 제작자한테 보고를 올립니다 (영어루 써요 한쿡말 몰라용)'
+simplemsg-support: ' 개발자분들의 도움을 받습니다'
+# Written by wolfwork.
+# This text might contain typos. Please inform us if you find any!
