@@ -97,7 +97,9 @@ public class Announce {
         String sender = ChatColor.translateAlternateColorCodes('&', Main.getConfig().getString("sender"));
         String suffix = ChatColor.translateAlternateColorCodes('&', Main.getConfig().getString("suffix"));
         String msg = ChatColor.translateAlternateColorCodes('&', message);
-
+        if (msg.contains("\n")) {
+            msg.replaceAll("\n", System.getProperty("line.separator"));
+        }
         Bukkit.broadcast(prefix + ChatColor.RESET + sender + ChatColor.RESET + suffix + " " + ChatColor.RESET + msg, "simpleautomessage.seemsg");
     }
 
