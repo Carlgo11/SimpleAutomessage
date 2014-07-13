@@ -5,7 +5,6 @@ mcstats-error: 'fout met het indienen van de statistieken!'
 bad-perms: "&cError: je hebt geen toestemming voor deze command!"
 plugin-reloaded: '&aSimpleAutoMessage is geladen!'
 unknown-command: '&cError: Unknown command!'
-no-msg1: 'Error: geen msg1 ingesteld in de config.yml! '
 updating: '%prefix% aan het updaten...'
 updated: 'Klaar. Herstart de server om de nieuwste patch te laden.'
 simplemsg-main: ' Laat de commands zien'
