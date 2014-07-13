@@ -14,5 +14,6 @@ simplemsg-list: ' Visar alla aktiva medelanden'
 simplemsg-update: ' Kommer updatera pluginet'
 simplemsg-report: ' Ladda upp en raport på pastebin'
 simplemsg-support: ' Få hjälp av en developer'
+no-messages: 'Kunde inte hitta några medelanden i {0} Glömde du kanske lägga till några?'
 # Översatt från engelska av Carlgo11. || Translated from English by Carlgo11.
 # This text might contain typos. Please inform us if you find any!
