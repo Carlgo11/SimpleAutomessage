@@ -16,7 +16,7 @@ version: 1.0.7
 ############################################################
 
 # You can set a translation or make your own.
-# There's currently EN, NL, FR, SE, RU translations. If you want to help us translate into your own language go to our github.
+# There's currently EN, NL, FR, SE, RU, KO translations. If you want to help us translate into your own language go to our github.
 language: EN
 
 # Used when having issues or doing development on the plugin. Otherwise it should be false. (Recommended: 'false')
