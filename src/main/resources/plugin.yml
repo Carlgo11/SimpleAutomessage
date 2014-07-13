@@ -37,12 +37,3 @@ permissions:
   simpleautomessage.*:
     default: op
     description: Gives the player all the SimpleAutoMessage permissions
-    children:
-      simpleautomessage.simpleautomessage: true
-      simpleautomessage.simpleautomessage.reload: true
-      simpleautomessage.simpleautomessage.list: true
-      simpleautomessage.simpleautomessage.update: true
-      simpleautomessage.simpleautomessage.support: true
-      simpleautomessage.simpleautomessage.report: true
-      simpleautomessage.seemsg: true
-      simpleautomessage.notify: true
