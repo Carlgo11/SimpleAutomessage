@@ -37,7 +37,7 @@ public class Announce {
                 if (warningCounter <= 4) {
                     if (Main.onlinePlayers()) {
                         if (cm == 1) {
-                            Main.getLogger().log(Level.SEVERE,Lang.No_Messages.toString(), new Object[]{Main.getConfig().getString("message-file")});
+                            Main.getLogger().log(Level.SEVERE,Lang.get("no-messages"), new Object[]{Main.getConfig().getString("message-file")});
                             warningCounter++;
                             if (warningCounter == 5) {
                                 Main.getLogger().severe("Will stop outputing warnings now. Please fix your config and reload the plugin.");

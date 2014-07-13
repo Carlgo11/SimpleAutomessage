@@ -1,6 +1,6 @@
 # RUSSIAN translation for SimpleAutoMessage
-plugin-enabled: 'включен!'
-plugin-disabled: 'выключен!'
+plugin-enabled: '{0} {1} включен!'
+plugin-disabled: '{0} {1} выключен!'
 mcstats-error: 'Ошибка отправки статистики!'
 bad-perms: "&cОшибка: Вы не имеете право использовать эту команду!"
 plugin-reloaded: '&aSimpleAutoMessage перезагружен!'

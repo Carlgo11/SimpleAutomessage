@@ -1,6 +1,6 @@
 # KOREAN translation for SimpleAutoMessage
-plugin-enabled: '가 활성화되었습니다!'
-plugin-disabled: '가 비활성화되었습니다!'
+plugin-enabled: '{0} {1} 가 활성화되었습니다!'
+plugin-disabled: '{0} {1} 가 비활성화되었습니다!'
 mcstats-error: '상태가 좋지 않습니다!'
 bad-perms: "&c오류: 이 명령어를 사용할 권한이 없습니다!"
 plugin-reloaded: '&aSimpleAutoMessage가 갱신되었습니다!'

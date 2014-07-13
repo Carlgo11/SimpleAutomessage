@@ -60,18 +60,18 @@ public class SimpleautomessageCommand implements CommandExecutor {
     {
         if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage", plugin)) {
             sender.sendMessage(topic);
-            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + ChatColor.YELLOW + Lang.Simplemsg_Main);
-            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Reload" + ChatColor.YELLOW + Lang.Simplemsg_Reload);
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + ChatColor.YELLOW + Lang.get("simplemsg-main"));
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Reload" + ChatColor.YELLOW + Lang.get("simplemsg-reload"));
             if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.update", plugin) && plugin.update) {
-                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.GREEN + cmd.getName() + " Update" + ChatColor.GREEN + Lang.Simplemsg_Update);
+                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.GREEN + cmd.getName() + " Update" + ChatColor.GREEN + Lang.get("simplemsg-update"));
             } else {
-                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.Simplemsg_Update);
+                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.get("simplemsg-update"));
             }
-            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.Simplemsg_List);
-            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Support" + ChatColor.YELLOW + Lang.Simplemsg_Support);
-            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Report" + ChatColor.YELLOW + Lang.Simplemsg_Report);
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.get("simplemsg-list"));
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Support" + ChatColor.YELLOW + Lang.get("simplemsg-support"));
+            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Report" + ChatColor.YELLOW + Lang.get("simplemsg-report"));
         } else {
-            sender.sendMessage(Lang.BAD_PERMS + "");
+            sender.sendMessage(Lang.get("bad-perms") + "");
         }
     }
 
@@ -80,9 +80,9 @@ public class SimpleautomessageCommand implements CommandExecutor {
         if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.reload", plugin)) {
             plugin.getServer().getPluginManager().disablePlugin(plugin);
             plugin.getServer().getPluginManager().enablePlugin(plugin);
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(sender0) + ChatColor.GREEN + " " + Lang.PL_RELOADED);
+            sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(sender0) + ChatColor.GREEN + " " + Lang.get("plugin-reloaded"));
         } else {
-            sender.sendMessage(Lang.BAD_PERMS + "");
+            sender.sendMessage(Lang.get("bad-perms") + "");
         }
     }
 
@@ -103,7 +103,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 plugin.debug("Found " + i);
             }
         } else {
-            sender.sendMessage(Lang.BAD_PERMS + "");
+            sender.sendMessage(Lang.get("bad-perms") + "");
         }
     }
 
@@ -112,7 +112,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
         if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.update", plugin)) {
             plugin.forceUpdate(sender, sender0);
         } else {
-            sender.sendMessage(Lang.BAD_PERMS + "");
+            sender.sendMessage(Lang.get("bad-perms") + "");
         }
     }
 
@@ -121,13 +121,13 @@ public class SimpleautomessageCommand implements CommandExecutor {
         if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.report", plugin)) {
             try {
                 String pastebin = Pastebin.makePaste(plugin.getDescription().getName(), plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
-                sender.sendMessage("" + Lang.PREFIX + ChatColor.GREEN + "Here's your log: " + pastebin);
+                sender.sendMessage("" + Lang.get("prefix") + ChatColor.GREEN + "Here's your log: " + pastebin);
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage("Error: " + ex.toString());
                 plugin.debug(ex.toString());
             }
         } else {
-            sender.sendMessage(Lang.BAD_PERMS + "");
+            sender.sendMessage(Lang.get("bad-perms") + "");
         }
     }
 
@@ -137,7 +137,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
             try {
                 String pastebin = Pastebin.makePaste("SimpleAutoMessage report", plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
                 String purelink = pastebin.toString().replace("http://pastebin.com/", "");
-                sender.sendMessage("" + Lang.PREFIX + ChatColor.GREEN + "Thank you for choosing our support IRC!\nIf the helpers busy please post a question on bukkit.");
+                sender.sendMessage("" + Lang.get("prefix") + ChatColor.GREEN + "Thank you for choosing our support IRC!\nIf the helpers busy please post a question on bukkit.");
                 sender.sendMessage(ChatColor.YELLOW + "Connect with this link: " + ChatColor.BLUE + "http://cajs.co.uk/link/irc?&nick=simplemsg_" + purelink);
                 sender.sendMessage(ChatColor.YELLOW + "Here's your log: " + ChatColor.BLUE + pastebin);
             } catch (UnsupportedEncodingException ex) {
@@ -145,7 +145,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 plugin.debug(ex.toString());
             }
         } else {
-            sender.sendMessage(Lang.BAD_PERMS + "");
+            sender.sendMessage(Lang.get("bad-perms") + "");
         }
     }
 

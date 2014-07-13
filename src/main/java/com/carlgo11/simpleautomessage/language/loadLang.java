@@ -5,34 +5,36 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Listener;
 
-public class loadLang implements Listener {
+public class loadLang {
 
-    Main plugin;
 
-    public loadLang(Main plug)
+    public static void loadLang(String lan, Main plugin)
     {
-        super();
-        this.plugin = plug;
-        this.loadLang();
-    }
-
-    public void loadLang()
-    {
+        
+        String l;
+        if(lan.equals("backup")){
+            l="EN";
+        }else{
+            l=lan;
+        }
         File dir = new File(plugin.getDataFolder() + "/language");
         dir.mkdir();
         if (!plugin.getConfig().getString("language").isEmpty()) {
-            File lang = new File(plugin.getDataFolder() + "/language", plugin.getConfig().getString("language") + "_lang.yml");
+            File lang = new File(plugin.getDataFolder() + "/language", l + "_lang.yml");
             if (!lang.exists()) {
                 try {
                     plugin.getDataFolder().mkdir();
                     lang.createNewFile();
-                    InputStream defConfigStream = plugin.getResource(plugin.getConfig().getString("language") + "_lang.yml");
+                    InputStream defConfigStream = plugin.getResource(l + "_lang.yml");
                     if (defConfigStream != null) {
                         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
                         defConfig.save(lang);
-                        Lang.setFile(defConfig);
+                        if(!lan.equals("backup")){
+                        Lang.setLang(defConfig);
+                        }else{
+                           Lang.setEN(defConfig);
+                        }
                         return;
                     }
                 } catch (IOException e) {
@@ -49,7 +51,11 @@ public class loadLang implements Listener {
                     conf.set(item.getPath(), item.getDefault());
                 }
             }
-            Lang.setFile(conf);
+            if(!lan.equals("backup")){
+                        Lang.setLang(conf);
+                        }else{
+                           Lang.setEN(conf);
+                        }
             Main.LANG = conf;
             Main.LANG_FILE = lang;
             try {
@@ -69,7 +75,11 @@ public class loadLang implements Listener {
                     if (defConfigStream != null) {
                         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
                         defConfig.save(lang);
-                        Lang.setFile(defConfig);
+                        if(!lan.equals("backup")){
+                        Lang.setLang(defConfig);
+                        }else{
+                           Lang.setEN(defConfig);
+                        }
                         return;
                     }
                 } catch (IOException e) {
@@ -86,7 +96,11 @@ public class loadLang implements Listener {
                     conf.set(item.getPath(), item.getDefault());
                 }
             }
-            Lang.setFile(conf);
+            if(!lan.equals("backup")){
+                        Lang.setLang(conf);
+                        }else{
+                           Lang.setEN(conf);
+                        }
             Main.LANG = conf;
             Main.LANG_FILE = lang;
             try {

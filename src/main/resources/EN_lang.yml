@@ -1,6 +1,7 @@
 # ENGLISH translation for SimpleAutoMessage
-plugin-enabled: 'is enabled!'
-plugin-disabled: 'is disabled!'
+prefix: '&r[SimpleAutoMessage] '
+plugin-enabled: '{0} {1} is enabled!'
+plugin-disabled: '{0} {1} is disabled!'
 mcstats-error: 'Error Submitting stats!'
 bad-perms: "&cError: You don't have permission to use that command!"
 plugin-reloaded: '&aSimpleAutoMessage reloaded!'

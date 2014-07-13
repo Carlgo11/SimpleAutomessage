@@ -1,6 +1,6 @@
 # FRENCH translation for SimpleAutoMessage
-plugin-enabled: 'est activé!'
-plugin-disabled: 'est désactivé!'
+plugin-enabled: '{0} {1} est activé!'
+plugin-disabled: '{0} {1} est désactivé!'
 mcstats-error: 'Erreur pendant la soumission des statistiques'
 bad-perms: "&cErreur: Vous n'avez pas la permission d'utiliser cette commande!"
 plugin-reloaded: '&aSimpleAutoMessage rechargé!'

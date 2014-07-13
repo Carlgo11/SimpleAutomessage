@@ -1,6 +1,6 @@
 # SWEDISH translation for SimpleAutoMessage
-plugin-enabled: 'är aktiverat!'
-plugin-disabled: 'är inaktiverat!'
+plugin-enabled: '{0} {1} är aktiverat!'
+plugin-disabled: '{0} {1} är inaktiverat!'
 mcstats-error: 'Ett fel inträffade! Kunde inte skicka stats!'
 bad-perms: "&cFel: Du har inte behörighet för att använda det kommandot!"
 plugin-reloaded: '&aSimpleAutoMessage omladdad!'

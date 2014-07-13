@@ -38,15 +38,16 @@ public class Main extends JavaPlugin {
         checkConfig();
         checkDebugMode();
         checkVersion();
-        getServer().getPluginManager().registerEvents(new loadLang(this), this);
+        loadLang.loadLang(getConfig().getString("language"), this);
+        loadLang.loadLang("backup", this);
         registerListeners(getPluginManager());
         registerCommands();
-        getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.ENABLED);
+         getLogger().log(Level.INFO, Lang.get("plugin-enabled"), new Object[]{getDescription().getName(), getDescription().getVersion()});
     }
 
     public void onDisable()
     {
-        getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " " + Lang.DISABLED);
+        getLogger().log(Level.INFO, Lang.get("plugin-disabled"), new Object[]{getDescription().getName(), getDescription().getVersion()});
     }
 
     private void registerListeners(PluginManager pm)
@@ -64,7 +65,7 @@ public class Main extends JavaPlugin {
             CustomGraphs.graphs(metrics, this);
             metrics.start();
         } catch (IOException ex) {
-            System.out.println("[" + getDescription().getName() + "] " + Lang.STATS_ERROR + "Output: " + ex.toString());
+            System.out.println("[" + getDescription().getName() + "] " + Lang.get("mcstats-error") + "Output: " + ex.toString());
         }
     }
 
@@ -123,7 +124,7 @@ public class Main extends JavaPlugin {
             File file = getMessageFile();
             if (!file.exists()) {
                 file.createNewFile();
-                this.getLogger().info("No " + file.getName() + " found. Created a new one");
+                this.getLogger().log(Level.INFO, Lang.get("no-msg-file"), file.getName());
             }
             BufferedReader read;
             read = new BufferedReader(new FileReader(file));
@@ -167,8 +168,8 @@ public class Main extends JavaPlugin {
 
     public void forceUpdate(CommandSender p, String sender0)
     {
-        String up = Lang.UPDATING.toString().replaceAll("%prefix%", getDescription().getName());
-        String updone = Lang.UPDATED.toString().replaceAll("%prefix%", getDescription().getName());
+        String up = Lang.get("updating").toString().replaceAll("%prefix%", getDescription().getName());
+        String updone = Lang.get("updated").toString().replaceAll("%prefix%", getDescription().getName());
         p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
         Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
         p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
