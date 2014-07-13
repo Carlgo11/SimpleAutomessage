@@ -13,6 +13,7 @@ public class Report {
      * File created by Carlgo11. And uploaded to https://github.com/carlgo11/report
      * Please see LICENSE on https://github.com/carlgo11/report for the terms and conditions for distribution of this code.
      */
+    
     private Plugin plugin;
 
     public static String Main(Plugin plugin)
