@@ -14,5 +14,6 @@ simplemsg-list: ' Lists all the active messages'
 simplemsg-update: ' Will force an update'
 simplemsg-report: ' Upload a report to pastebin'
 simplemsg-support: ' Get help from a developer'
+no-messages: 'Could not find any messages in {0} Did you forget to add some?'
 # Written by Carlgo11.
 # This text might contain typos. Please inform us if you find any!
