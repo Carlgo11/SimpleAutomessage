@@ -1,5 +1,7 @@
 package com.carlgo11.simpleautomessage;
 
+import com.carlgo11.simpleautomessage.language.Lang;
+import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -35,7 +37,7 @@ public class Announce {
                 if (warningCounter <= 4) {
                     if (Main.onlinePlayers()) {
                         if (cm == 1) {
-                            Main.getLogger().severe("Could not find any messages in the config. Did you forget to add some or is the config broken?");
+                            Main.getLogger().log(Level.SEVERE,Lang.No_Messages.toString(), new Object[]{Main.getConfig().getString("message-file")});
                             warningCounter++;
                             if (warningCounter == 5) {
                                 Main.getLogger().severe("Will stop outputing warnings now. Please fix your config and reload the plugin.");
