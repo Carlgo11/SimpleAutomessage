@@ -139,7 +139,6 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 String purelink = pastebin.toString().replace("http://pastebin.com/", "");
                 sender.sendMessage("" + Lang.get("prefix") + ChatColor.GREEN + "Thank you for choosing our support IRC!\nIf the helpers busy please post a question on bukkit.");
                 sender.sendMessage(ChatColor.YELLOW + "Connect with this link: " + ChatColor.BLUE + "http://cajs.co.uk/link/irc?&nick=simplemsg_" + purelink);
-                sender.sendMessage(ChatColor.YELLOW + "Here's your log: " + ChatColor.BLUE + pastebin);
             } catch (UnsupportedEncodingException ex) {
                 sender.sendMessage("Error: " + ex.toString());
                 plugin.debug(ex.toString());
