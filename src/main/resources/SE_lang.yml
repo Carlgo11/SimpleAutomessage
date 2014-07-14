@@ -5,8 +5,8 @@ mcstats-error: 'Ett fel inträffade! Kunde inte skicka stats!'
 bad-perms: "&cFel: Du har inte behörighet för att använda det kommandot!"
 plugin-reloaded: '&aSimpleAutoMessage omladdad!'
 unknown-command: '&cFel: Okänt kommando!'
-updating: 'Uppdaterar %prefix%...'
-updated: 'Klart. Starta om servern för att ladda den nya uppdateringen'
+updating: '&aUppdaterar {0}...'
+updated: '&aKlart! Starta om servern för att ladda den nya uppdateringen.'
 simplemsg-main: ' Visar alla kommandon för pluginet'
 simplemsg-reload: ' Startar om pluginet'
 simplemsg-list: ' Visar alla aktiva medelanden'
@@ -14,5 +14,6 @@ simplemsg-update: ' Kommer updatera pluginet'
 simplemsg-report: ' Ladda upp en raport på pastebin'
 simplemsg-support: ' Få hjälp av en developer'
 no-messages: 'Kunde inte hitta några medelanden i {0} Glömde du kanske lägga till några?'
+stop-errors: 'Kommer sluta skicka varningar nu. Fixa din {0} fil och ladda om pluginet.'
 # Översatt från engelska av Carlgo11. || Translated from English by Carlgo11.
 # This text might contain typos. Please inform us if you find any!

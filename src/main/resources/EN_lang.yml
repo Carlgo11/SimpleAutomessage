@@ -1,13 +1,14 @@
 # ENGLISH translation for SimpleAutoMessage
-prefix: '&r[SimpleAutoMessage] '
+prefix: '&d[SimpleAutoMessage]&r '
 plugin-enabled: '{0} {1} is enabled!'
 plugin-disabled: '{0} {1} is disabled!'
 mcstats-error: 'Error Submitting stats!'
 bad-perms: "&cError: You don't have permission to use that command!"
 plugin-reloaded: '&aSimpleAutoMessage reloaded!'
 unknown-command: '&cError: Unknown command!'
-updating: 'Updating %prefix%...'
-updated: 'Done. Restart the server to load the new patch.'
+updating: '&aUpdating {0}...'
+updated: '&aDone. Restart the server to load the new patch.'
+update-error: '&cAn error accured while downloading the latest version.'
 simplemsg-main: ' Shows the commands'
 simplemsg-reload: ' Reloads the config.yml'
 simplemsg-list: ' Lists all the active messages'
@@ -15,5 +16,6 @@ simplemsg-update: ' Will force an update'
 simplemsg-report: ' Upload a report to pastebin'
 simplemsg-support: ' Get help from a developer'
 no-messages: 'Could not find any messages in {0} Did you forget to add some?'
+stop-errors: 'Will stop outputing warnings now. Please fix your {0} and reload the plugin.'
 # Written by Carlgo11.
 # This text might contain typos. Please inform us if you find any!

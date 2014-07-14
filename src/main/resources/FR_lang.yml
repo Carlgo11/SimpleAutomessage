@@ -5,8 +5,8 @@ mcstats-error: 'Erreur pendant la soumission des statistiques'
 bad-perms: "&cErreur: Vous n'avez pas la permission d'utiliser cette commande!"
 plugin-reloaded: '&aSimpleAutoMessage rechargé!'
 unknown-command: '&cErreur: Commande inconnue!'
-updating: 'Mise à jour de %prefix%...'
-updated: 'Complet. Redémarrez le serveur pour charger la nouvelle patch.'
+updating: '&aMise à jour de {0}...'
+updated: '&aComplet. Redémarrez le serveur pour charger la nouvelle patch.'
 simplemsg-main: ' Affiche les commandes'
 simplemsg-reload: " Recharge la configuration"
 simplemsg-list: " Affiche toutes les commandes actif"

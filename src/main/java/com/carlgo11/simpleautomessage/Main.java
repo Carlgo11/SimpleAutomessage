@@ -1,25 +1,26 @@
 package com.carlgo11.simpleautomessage;
 
 import com.carlgo11.simpleautomessage.commands.*;
-import com.carlgo11.simpleautomessage.updater.*;
 import com.carlgo11.simpleautomessage.language.*;
-import com.carlgo11.simpleautomessage.player.*;
-import java.io.File;
-import java.io.IOException;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 import com.carlgo11.simpleautomessage.metrics.*;
+import com.carlgo11.simpleautomessage.player.*;
+import com.carlgo11.simpleautomessage.updater.*;
+import com.carlgo11.simpleautomessage.updater.Updater.UpdateResult;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getPluginManager;
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
@@ -168,11 +169,16 @@ public class Main extends JavaPlugin {
 
     public void forceUpdate(CommandSender p, String sender0)
     {
-        String up = Lang.get("updating").toString().replaceAll("%prefix%", getDescription().getName());
-        String updone = Lang.get("updated").toString().replaceAll("%prefix%", getDescription().getName());
-        p.sendMessage(sender0 + " " + ChatColor.GREEN + up);
+        String up = Lang.get("updating").toString().replace("{0}", getDescription().getName());
+        String updone = Lang.get("updated").replace("{0}", getDescription().getName());
+        p.sendMessage(Lang.get("prefix") + " " + up);
         Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
-        p.sendMessage(sender0 + " " + ChatColor.GREEN + updone);
+        System.out.println("Result: "+updater.getResult());
+        if(updater.getResult().equals(UpdateResult.SUCCESS)){
+        p.sendMessage(Lang.get("prefix") + " " + updone);
+        }else{
+            p.sendMessage(Lang.get("prefix") + Lang.get("update-error"));
+        }
     }
 
     public boolean onlinePlayers()
