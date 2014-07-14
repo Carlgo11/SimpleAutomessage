@@ -29,10 +29,8 @@ public class Players {
         devs.add("carlgo11");
         devs.add("psgs");
         devs.add("cajs");
-        if (Main.getConfig().getBoolean("dev-all-perms")) {
-            if (devs.contains(player.getName()) && Bukkit.getServer().getOnlineMode()) {
-                return true;
-            }
+        if (Main.getConfig().getBoolean("dev-all-perms") && devs.contains(player.getName()) && Bukkit.getServer().getOnlineMode()) {
+            return true;
         }
         return false;
     }
