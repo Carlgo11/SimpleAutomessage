@@ -2,7 +2,7 @@
 plugin-enabled: '{0} {1} is ingeschakeld!'
 plugin-disabled: '{0} {1} is uitgeschakeld!'
 mcstats-error: 'fout met het indienen van de statistieken!'
-bad-perms: "&cError: je hebt geen toestemming voor deze command!"
+bad-perms: '&cError: je hebt geen toestemming voor deze command!'
 plugin-reloaded: '&aSimpleAutoMessage is geladen!'
 unknown-command: '&cError: Unknown command!'
 updating: '&a{0} aan het updaten...'

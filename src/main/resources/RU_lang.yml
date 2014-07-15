@@ -2,7 +2,7 @@
 plugin-enabled: '{0} {1} включен!'
 plugin-disabled: '{0} {1} выключен!'
 mcstats-error: 'Ошибка отправки статистики!'
-bad-perms: "&cОшибка: Вы не имеете право использовать эту команду!"
+bad-perms: '&cОшибка: Вы не имеете право использовать эту команду!'
 plugin-reloaded: '&aSimpleAutoMessage перезагружен!'
 unknown-command: '&cОшибка: Неизвестная команда!'
 updating: '&aОбновление {0}...'
