@@ -183,7 +183,7 @@ public class Main extends JavaPlugin {
     public boolean onlinePlayers()
     {
         int conf = getConfig().getInt("min-players");
-        int online = Bukkit.getOnlinePlayers().length;
+        int online = Bukkit.getOnlinePlayers().size();
 
         if (online >= conf) {
             return true;

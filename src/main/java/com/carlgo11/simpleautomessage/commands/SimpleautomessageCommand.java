@@ -151,6 +151,6 @@ public class SimpleautomessageCommand implements CommandExecutor {
     void moo(CommandSender sender, String pn)
     {
         sender.sendMessage(NothingHere.playerMoo);
-        Bukkit.getPlayer(pn).getWorld().playSound(Bukkit.getPlayer(pn).getLocation(), Sound.COW_IDLE, 1, 0);
+        Bukkit.getPlayer(pn).getWorld().playSound(Bukkit.getPlayer(pn).getLocation(), Sound.ENTITY_COW_AMBIENT, 1, 0);
     }
 }
