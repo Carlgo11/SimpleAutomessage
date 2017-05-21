@@ -42,7 +42,7 @@ public class Main extends JavaPlugin {
         loadLang.loadLang("backup", this);
         registerListeners(getPluginManager());
         registerCommands();
-         getLogger().log(Level.INFO, Lang.get("plugin-enabled"), new Object[]{getDescription().getName(), getDescription().getVersion()});
+        getLogger().log(Level.INFO, Lang.get("plugin-enabled"), new Object[]{getDescription().getName(), getDescription().getVersion()});
     }
 
     public void onDisable()
@@ -168,14 +168,14 @@ public class Main extends JavaPlugin {
 
     public void forceUpdate(CommandSender p, String sender0)
     {
-        String up = Lang.get("updating").toString().replace("{0}", getDescription().getName());
+        String up = Lang.get("updating").replace("{0}", getDescription().getName());
         String updone = Lang.get("updated").replace("{0}", getDescription().getName());
         p.sendMessage(Lang.get("prefix") + " " + up);
         Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
-        System.out.println("Result: "+updater.getResult());
-        if(updater.getResult().equals(UpdateResult.SUCCESS)){
-        p.sendMessage(Lang.get("prefix") + " " + updone);
-        }else{
+        System.out.println("Result: " + updater.getResult());
+        if (updater.getResult().equals(UpdateResult.SUCCESS)) {
+            p.sendMessage(Lang.get("prefix") + " " + updone);
+        } else {
             p.sendMessage(Lang.get("prefix") + Lang.get("update-error"));
         }
     }

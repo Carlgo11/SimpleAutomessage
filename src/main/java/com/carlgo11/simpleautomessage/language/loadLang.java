@@ -3,113 +3,66 @@ package com.carlgo11.simpleautomessage.language;
 import com.carlgo11.simpleautomessage.Main;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.logging.Level;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class loadLang {
 
-
     public static void loadLang(String lan, Main plugin)
     {
-        
         String l;
-        if(lan.equals("backup")){
-            l="EN";
-        }else{
-            l=lan;
+        if (lan.equals("backup") || lan.isEmpty()) {
+            l = "EN";
+        } else {
+            l = lan;
         }
         File dir = new File(plugin.getDataFolder() + "/language");
         dir.mkdir();
-        if (!plugin.getConfig().getString("language").isEmpty()) {
-            File lang = new File(plugin.getDataFolder() + "/language", l + "_lang.yml");
-            if (!lang.exists()) {
-                try {
-                    plugin.getDataFolder().mkdir();
-                    lang.createNewFile();
-                    InputStream defConfigStream = plugin.getResource(l + "_lang.yml");
-                    if (defConfigStream != null) {
-                        YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-                        defConfig.save(lang);
-                        if(!lan.equals("backup")){
-                        Lang.setLang(defConfig);
-                        }else{
-                           Lang.setEN(defConfig);
-                        }
-                        return;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "Couldn't create language file.");
-                    plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "This is a fatal error. Now disabling");
-                    plugin.getServer().getPluginManager().disablePlugin(plugin);
-                }
-            }
+        loadLang.getLangFile(l, lan, plugin);
+    }
 
-            YamlConfiguration conf = YamlConfiguration.loadConfiguration(lang);
-            for (Lang item : Lang.values()) {
-                if (conf.getString(item.getPath()) == null) {
-                    conf.set(item.getPath(), item.getDefault());
-                }
-            }
-            if(!lan.equals("backup")){
-                        Lang.setLang(conf);
-                        }else{
-                           Lang.setEN(conf);
-                        }
-            Main.LANG = conf;
-            Main.LANG_FILE = lang;
+    public static void getLangFile(String language, String lan, Main plugin)
+    {
+        File lang = new File(plugin.getDataFolder() + "/language", language + "_lang.yml");
+        if (!lang.exists()) {
             try {
-                conf.save(plugin.getLangFile());
+                plugin.getDataFolder().mkdir();
+                lang.createNewFile();
+                Reader defConfigStream = new InputStreamReader(plugin.getResource(language + "_lang.yml"), "UTF8");
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                defConfig.save(lang);
+                if (!lan.equals("backup")) {
+                    Lang.setLang(defConfig);
+                } else {
+                    Lang.setEN(defConfig);
+                }
+                return;
             } catch (IOException e) {
-                plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "Failed to save lang.yml.");
-                plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "Report this stack trace to an developer.");
-                e.printStackTrace();
+                plugin.getLogger().log(Level.WARNING, "[{0}] " + "Couldn''t create language file.", plugin.getDescription().getName());
+                plugin.getLogger().log(Level.WARNING, "[{0}] " + "This is a fatal error. Now disabling", plugin.getDescription().getName());
+                plugin.getServer().getPluginManager().disablePlugin(plugin);
             }
+        }
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(lang);
+        for (Lang item : Lang.values()) {
+            if (conf.getString(item.getPath()) == null) {
+                conf.set(item.getPath(), item.getDefault());
+            }
+        }
+        if (!lan.equals("backup")) {
+            Lang.setLang(conf);
         } else {
-            File lang = new File(plugin.getDataFolder() + "/language", "EN_lang.yml");
-            if (!lang.exists()) {
-                try {
-                    plugin.getDataFolder().mkdir();
-                    lang.createNewFile();
-                    InputStream defConfigStream = plugin.getResource("EN_lang.yml");
-                    if (defConfigStream != null) {
-                        YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-                        defConfig.save(lang);
-                        if(!lan.equals("backup")){
-                        Lang.setLang(defConfig);
-                        }else{
-                           Lang.setEN(defConfig);
-                        }
-                        return;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "Couldn't create language file.");
-                    plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "This is a fatal error. Now disabling");
-                    plugin.getServer().getPluginManager().disablePlugin(plugin);
-                }
-            }
-
-            YamlConfiguration conf = YamlConfiguration.loadConfiguration(lang);
-            for (Lang item : Lang.values()) {
-                if (conf.getString(item.getPath()) == null) {
-                    conf.set(item.getPath(), item.getDefault());
-                }
-            }
-            if(!lan.equals("backup")){
-                        Lang.setLang(conf);
-                        }else{
-                           Lang.setEN(conf);
-                        }
-            Main.LANG = conf;
-            Main.LANG_FILE = lang;
-            try {
-                conf.save(plugin.getLangFile());
-            } catch (IOException e) {
-                plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "Failed to save lang.yml.");
-                plugin.getLogger().warning("[" + plugin.getDescription().getName() + "] " + "Report this stack trace to an developer.");
-                e.printStackTrace();
-            }
+            Lang.setEN(conf);
+        }
+        Main.LANG = conf;
+        Main.LANG_FILE = lang;
+        try {
+            conf.save(plugin.getLangFile());
+        } catch (IOException e) {
+            plugin.getLogger().log(Level.WARNING, "[{0}] " + "Failed to save lang.yml.", plugin.getDescription().getName());
+            plugin.getLogger().log(Level.WARNING, "[{0}] " + "Report this stack trace to an developer.", plugin.getDescription().getName());
         }
     }
 }
