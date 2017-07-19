@@ -9,18 +9,12 @@ public class Players {
 
     public static boolean checkPerms(Player player, String permission, Main Main)
     {
-        if (player.hasPermission(permission) || player.hasPermission("simpleautomessage.*") || isDev(player, Main)) {
-            return true;
-        }
-        return false;
+        return player.hasPermission(permission) || player.hasPermission("simpleautomessage.*") || isDev(player, Main);
     }
 
     public static boolean checkPerms(CommandSender player, String permission, Main Main)
     {
-        if (player.hasPermission(permission) || player.hasPermission("simpleautomessage.*") || isDev(Bukkit.getPlayer(player.getName()), Main)) {
-            return true;
-        }
-        return false;
+        return player.hasPermission(permission) || player.hasPermission("simpleautomessage.*") || isDev(Bukkit.getPlayer(player.getName()), Main);
     }
 
     public static boolean isDev(Player player, Main Main)
@@ -29,10 +23,7 @@ public class Players {
         devs.add("carlgo11");
         devs.add("psgs");
         devs.add("cajs");
-        if (Main.getConfig().getBoolean("dev-all-perms") && devs.contains(player.getName()) && Bukkit.getServer().getOnlineMode()) {
-            return true;
-        }
-        return false;
+        return Main.getConfig().getBoolean("dev-all-perms") && devs.contains(player.getName()) && Bukkit.getServer().getOnlineMode();
     }
 
 }

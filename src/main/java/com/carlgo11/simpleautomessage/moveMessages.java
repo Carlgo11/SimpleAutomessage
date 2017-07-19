@@ -18,7 +18,6 @@ public class moveMessages {
             while (true) {
                 if (Main.getConfig().contains("msg" + a)) {
                     mm.add(Main.getConfig().getString("msg" + a));
-
                     a++;
                 } else {
                     break;

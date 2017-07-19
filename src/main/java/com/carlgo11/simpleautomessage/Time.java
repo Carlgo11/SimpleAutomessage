@@ -29,8 +29,4 @@ public class Time implements Listener {
         }
         plugin.debug("time: " + plugin.time);
     }
-    /* What is this?
-     * 
-     * Time() checks the time int and sets transfers the delay into seconds. Then returns the value to the Main.time int.
-     */
 }

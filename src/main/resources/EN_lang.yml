@@ -13,8 +13,6 @@ simplemsg-main: ' Shows the commands'
 simplemsg-reload: ' Reloads the config.yml'
 simplemsg-list: ' Lists all the active messages'
 simplemsg-update: ' Will force an update'
-simplemsg-report: ' Upload a report to pastebin'
-simplemsg-support: ' Get help from a developer'
 no-messages: 'Could not find any messages in {0} Did you forget to add some?'
 stop-errors: 'Will stop outputing warnings now. Please fix your {0} and reload the plugin.'
 # Written by Carlgo11.

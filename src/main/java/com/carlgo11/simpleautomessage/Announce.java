@@ -105,6 +105,6 @@ public class Announce {
            smsg = msg.replaceAll(":n", System.getProperty("line.separator"));
             System.out.println("new line found. "+smsg);
         }
-        Bukkit.broadcast(prefix + ChatColor.RESET + sender + ChatColor.RESET + suffix + " " + ChatColor.RESET + smsg, "simpleautomessage.seemsg");
+        Bukkit.broadcast(prefix + ChatColor.RESET + sender + " " + ChatColor.RESET + suffix + " " + ChatColor.RESET + smsg, "simpleautomessage.seemsg");
     }
 }

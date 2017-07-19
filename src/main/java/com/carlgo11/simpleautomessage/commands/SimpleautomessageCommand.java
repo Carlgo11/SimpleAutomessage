@@ -1,11 +1,9 @@
 package com.carlgo11.simpleautomessage.commands;
 
-import com.carlgo11.report.Pastebin;
 import com.carlgo11.simpleautomessage.Main;
 import com.carlgo11.simpleautomessage.NothingHere;
 import com.carlgo11.simpleautomessage.Players;
 import com.carlgo11.simpleautomessage.language.Lang;
-import java.io.UnsupportedEncodingException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -15,7 +13,7 @@ import org.bukkit.command.CommandSender;
 
 public class SimpleautomessageCommand implements CommandExecutor {
 
-    private Main plugin;
+    private final Main plugin;
 
     public SimpleautomessageCommand(Main plug)
     {
@@ -25,7 +23,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
-        String topic = ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + " v"+ plugin.getDescription().getVersion()+"]" + ChatColor.GREEN + " ======== ";
+        String topic = ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + "]" + ChatColor.GREEN + " ======== ";
         String senderToSend = plugin.getConfig().getString("sender");
         String sender0 = ChatColor.translateAlternateColorCodes('&', senderToSend);
         String prefixToSend = plugin.getConfig().getString("prefix");
@@ -43,10 +41,6 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 update(sender, sender0);
             } else if (args[0].equalsIgnoreCase("moo")) {
                 moo(sender, pn);
-            } else if (args[0].equalsIgnoreCase("support")) {
-                support(sender);
-            } else if (args[0].equalsIgnoreCase("report")) {
-                report(sender);
             } else {
                 help(sender, cmd, topic);
             }
@@ -68,10 +62,8 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.get("simplemsg-update"));
             }
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.get("simplemsg-list"));
-            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Support" + ChatColor.YELLOW + Lang.get("simplemsg-support"));
-            sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Report" + ChatColor.YELLOW + Lang.get("simplemsg-report"));
         } else {
-            sender.sendMessage(Lang.get("bad-perms") + "");
+            sender.sendMessage(Lang.get("bad-perms"));
         }
     }
 
@@ -82,7 +74,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
             plugin.getServer().getPluginManager().enablePlugin(plugin);
             sender.sendMessage(ChatColor.LIGHT_PURPLE + ChatColor.stripColor(sender0) + ChatColor.GREEN + " " + Lang.get("plugin-reloaded"));
         } else {
-            sender.sendMessage(Lang.get("bad-perms") + "");
+            sender.sendMessage(Lang.get("bad-perms"));
         }
     }
 
@@ -103,7 +95,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 plugin.debug("Found " + i);
             }
         } else {
-            sender.sendMessage(Lang.get("bad-perms") + "");
+            sender.sendMessage(Lang.get("bad-perms"));
         }
     }
 
@@ -112,39 +104,7 @@ public class SimpleautomessageCommand implements CommandExecutor {
         if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.update", plugin)) {
             plugin.forceUpdate(sender, sender0);
         } else {
-            sender.sendMessage(Lang.get("bad-perms") + "");
-        }
-    }
-
-    void report(CommandSender sender)
-    {
-        if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.report", plugin)) {
-            try {
-                String pastebin = Pastebin.makePaste(plugin.getDescription().getName(), plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
-                sender.sendMessage("" + Lang.get("prefix") + ChatColor.GREEN + "Here's your log: " + pastebin);
-            } catch (UnsupportedEncodingException ex) {
-                sender.sendMessage("Error: " + ex.toString());
-                plugin.debug(ex.toString());
-            }
-        } else {
-            sender.sendMessage(Lang.get("bad-perms") + "");
-        }
-    }
-
-    void support(CommandSender sender)
-    {
-        if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.support", plugin)) {
-            try {
-                String pastebin = Pastebin.makePaste("SimpleAutoMessage report", plugin, "9e7c871d87d0e51a0ee185b4c55ab173");
-                String purelink = pastebin.toString().replace("http://pastebin.com/", "");
-                sender.sendMessage("" + Lang.get("prefix") + ChatColor.GREEN + "Thank you for choosing our support IRC!\nIf the helpers busy please post a question on bukkit.");
-                sender.sendMessage(ChatColor.YELLOW + "Connect with this link: " + ChatColor.BLUE + "http://cajs.co.uk/link/irc?&nick=simplemsg_" + purelink);
-            } catch (UnsupportedEncodingException ex) {
-                sender.sendMessage("Error: " + ex.toString());
-                plugin.debug(ex.toString());
-            }
-        } else {
-            sender.sendMessage(Lang.get("bad-perms") + "");
+            sender.sendMessage(Lang.get("bad-perms"));
         }
     }
 

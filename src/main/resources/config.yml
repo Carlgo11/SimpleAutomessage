@@ -53,7 +53,7 @@ dev-all-perms: true
 min-players: 1
 
 # The sender of the messages.
-sender: '&d[Server]&r '
+sender: '&d[Server]&r'
 
 # The prefix of the sender.
 prefix: ''

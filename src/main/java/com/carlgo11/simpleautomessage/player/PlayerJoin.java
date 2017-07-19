@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoin implements Listener {
 
-    private Main plugin;
+    private final Main plugin;
 
     public PlayerJoin(Main plug)
     {

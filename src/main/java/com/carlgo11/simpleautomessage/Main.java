@@ -2,14 +2,12 @@ package com.carlgo11.simpleautomessage;
 
 import com.carlgo11.simpleautomessage.commands.*;
 import com.carlgo11.simpleautomessage.language.*;
-import com.carlgo11.simpleautomessage.metrics.*;
 import com.carlgo11.simpleautomessage.player.*;
 import com.carlgo11.simpleautomessage.updater.*;
 import com.carlgo11.simpleautomessage.updater.Updater.UpdateResult;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -59,14 +57,6 @@ public class Main extends JavaPlugin {
 
         Announce announce = new Announce();
         announce.setup(this);
-
-        try {
-            Metrics metrics = new Metrics(this);
-            CustomGraphs.graphs(metrics, this);
-            metrics.start();
-        } catch (IOException ex) {
-            System.out.println("[" + getDescription().getName() + "] " + Lang.get("mcstats-error") + "Output: " + ex.toString());
-        }
     }
 
     private void registerCommands()
@@ -184,18 +174,13 @@ public class Main extends JavaPlugin {
     {
         int conf = getConfig().getInt("min-players");
         int online = Bukkit.getOnlinePlayers().size();
-
-        if (online >= conf) {
-            return true;
-        } else {
-            return false;
-        }
+        return online >= conf;
     }
 
     public int getRandomInt(int maxammount)
     {
         int qwe = 0;
-        int a = 0;
+        int a;
         if (maxammount < 3 || qwe == 0) {
             Random n = new Random();
             int num = 0;

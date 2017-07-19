@@ -7,8 +7,8 @@ public enum Lang {
 
     msg("", "");
 
-    private String path;
-    private String def;
+    private final String path;
+    private final String def;
     private static YamlConfiguration LANG;
     private static YamlConfiguration EN;
 
