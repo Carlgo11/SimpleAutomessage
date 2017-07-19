@@ -1,11 +1,8 @@
 SimpleAutomessage
 =================
 [![Build Status](https://travis-ci.org/Carlgo11/SimpleAutomessage.png)](https://travis-ci.org/Carlgo11/SimpleAutomessage)<br><br>
- **IRC:** http://tiny.cc/simplemsg-irc
 
  **Dev.Bukkit.org:** http://dev.bukkit.org/server-mods/simpleautomessage/
-
- **Jenkins (ci):** http://ci.kamino.in/job/SimpleAutomessage/
 
 ## Description
 
@@ -17,7 +14,7 @@ You are able to change the time between each message in the config.yml along wit
 To develop this plugin we recommend you to install and use:
 
 + Github
-+ Netbeans
++ A Java IDE (Like NetBeans, Eclipse or IntelliJ IDEA)
 + Maven
 + Craftbukkit server to test on
 
