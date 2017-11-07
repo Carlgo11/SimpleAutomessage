@@ -1,0 +1,19 @@
+# HUNGARIAN translation for SimpleAutoMessage
+prefix: '&d[SimpleAutoMessage]&r '
+plugin-enabled: '{0} {1} engedélyezve!'
+plugin-disabled: '{0} {1} letitlva!'
+mcstats-error: 'Hiba történt a statisztika elküldésével!'
+bad-perms: "&cHiba: Nincs jogod ehhez a parancshoz!"
+plugin-reloaded: '&aSimpleAutoMessage újratöltve!'
+unknown-command: '&cHiba: Ismeretlen parancs!'
+updating: '&aFrissítés {0}...'
+updated: '&aKész. Indítsd újra a szervert az új javítás betöltéséhez.'
+update-error: '&cHiba történt a legfrissebb verzió letöltése közben.'
+simplemsg-main: ' Megjeleníti a parancsokat'
+simplemsg-reload: ' Újratölti a config.yml fájlt'
+simplemsg-list: ' Felsorolja az összes aktív üzenetet'
+simplemsg-update: ' Frissítést fog érvényesíteni'
+no-messages: 'Nem találhatók üzenetek {0} Elfelejtettél hozzá néhányat?'
+stop-errors: 'Mostantól leáll a figyelmeztetések kiadása. Kérjük, javítsd ki {0} és töltsd be újra a plugint.'
+# Written by montlikadani.
+# This text might contain typos. Please inform us if you find any!
