@@ -35,12 +35,5 @@ public class PlayerJoin implements Listener {
                 }
             }
         }
-        if (!plugin.getConfig().getString("version").equals(plugin.configv)) {
-            if (plugin.getConfig().getString("ignore-old-configs").equalsIgnoreCase("perm") && Players.checkPerms(p, "simpleautomessage.notify", plugin)) {
-                p.sendMessage(prefix + ChatColor.GREEN + " Your config.yml is outdated. You should probably create a new one.");
-            } else if (plugin.getConfig().getString("ignore-old-configs").equalsIgnoreCase("op") && p.isOp()) {
-                p.sendMessage(prefix + ChatColor.GREEN + " Your config.yml is outdated. You should probably create a new one.");
-            }
-        }
     }
 }

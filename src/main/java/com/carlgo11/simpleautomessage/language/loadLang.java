@@ -40,8 +40,8 @@ public class loadLang {
                 }
                 return;
             } catch (IOException e) {
-                plugin.getLogger().log(Level.WARNING, "[{0}] " + "Couldn''t create language file.", plugin.getDescription().getName());
-                plugin.getLogger().log(Level.WARNING, "[{0}] " + "This is a fatal error. Now disabling", plugin.getDescription().getName());
+                plugin.getLogger().log(Level.WARNING, "[{0}] Couldn''t create language file.", plugin.getDescription().getName());
+                plugin.getLogger().log(Level.WARNING, "[{0}] This is a fatal error. Now disabling", plugin.getDescription().getName());
                 plugin.getServer().getPluginManager().disablePlugin(plugin);
             }
         }
@@ -61,8 +61,8 @@ public class loadLang {
         try {
             conf.save(plugin.getLangFile());
         } catch (IOException e) {
-            plugin.getLogger().log(Level.WARNING, "[{0}] " + "Failed to save lang.yml.", plugin.getDescription().getName());
-            plugin.getLogger().log(Level.WARNING, "[{0}] " + "Report this stack trace to an developer.", plugin.getDescription().getName());
+            plugin.getLogger().log(Level.WARNING, "[{0}] Failed to save lang.yml.", plugin.getDescription().getName());
+            plugin.getLogger().log(Level.WARNING, "[{0}] Report this stack trace to an developer.", plugin.getDescription().getName());
         }
     }
 }

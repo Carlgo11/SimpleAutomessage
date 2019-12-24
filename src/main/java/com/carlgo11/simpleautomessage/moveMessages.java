@@ -3,6 +3,7 @@ package com.carlgo11.simpleautomessage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ public class moveMessages {
                     bw.newLine();
                 }
                 bw.close();
-            } catch (Exception ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

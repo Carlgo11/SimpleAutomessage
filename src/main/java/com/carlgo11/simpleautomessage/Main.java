@@ -3,8 +3,6 @@ package com.carlgo11.simpleautomessage;
 import com.carlgo11.simpleautomessage.commands.*;
 import com.carlgo11.simpleautomessage.language.*;
 import com.carlgo11.simpleautomessage.player.*;
-import com.carlgo11.simpleautomessage.updater.*;
-import com.carlgo11.simpleautomessage.updater.Updater.UpdateResult;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getPluginManager;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,14 +25,13 @@ public class Main extends JavaPlugin {
     public boolean update = false;
     public boolean debugm;
     public ArrayList<String> messages = new ArrayList<String>();
-    public String configv = "1.0.7";
 
+    @Override
     public void onEnable()
     {
         reloadConfig();
         checkConfig();
         checkDebugMode();
-        checkVersion();
         loadLang.loadLang(getConfig().getString("language"), this);
         loadLang.loadLang("backup", this);
         registerListeners(getPluginManager());
@@ -43,6 +39,7 @@ public class Main extends JavaPlugin {
         getLogger().log(Level.INFO, Lang.get("plugin-enabled"), new Object[]{getDescription().getName(), getDescription().getVersion()});
     }
 
+    @Override
     public void onDisable()
     {
         getLogger().log(Level.INFO, Lang.get("plugin-disabled"), new Object[]{getDescription().getName(), getDescription().getVersion()});
@@ -64,45 +61,12 @@ public class Main extends JavaPlugin {
         getCommand("simpleautomessage").setExecutor(new SimpleautomessageCommand(this));
     }
 
-    public void checkVersion()
-    {
-        if (getDescription().getVersion().startsWith("dev-")) { // prints out a warning when using dev build
-            getLogger().warning("You are using a development build. Keep in mind development builds may contain bugs!");
-            getLogger().warning("If you want a fully working version please use a recommended build.");
-            getLogger().warning("Type /simpleautomessage update to download the latest recommended build.");
-        }
-        update();
-    }
-
-    void update()
-    {
-        if (getConfig().getBoolean("auto-update")) {
-            debug("Calling Updater.java");
-            Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.DEFAULT, true);
-            update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
-
-        } else if (!getConfig().getString("warn-update").equalsIgnoreCase("none")) {
-            Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
-            update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
-        } else {
-            debug("auto-update & warn-update is set to false!");
-        }
-    }
-
     public void checkConfig()
     {
         File config = new File(getDataFolder(), "config.yml");
         if (!config.exists()) {
             saveDefaultConfig();
             System.out.println("[" + getDescription().getName() + "] " + "No config.yml found, config.yml created.");
-        }
-        if (getConfig().getBoolean("update-config")) {
-            if (!getConfig().getString("version").equals(this.configv)) {
-                config.renameTo(new File(getDataFolder(), "config.version-" + getConfig().getString("version") + ".yml"));
-                saveDefaultConfig();
-            }
-        } else {
-            debug("update-config is set to false.");
         }
     }
 
@@ -153,20 +117,6 @@ public class Main extends JavaPlugin {
     {
         if (getConfig().getBoolean("debug")) {
             debugm = true;
-        }
-    }
-
-    public void forceUpdate(CommandSender p, String sender0)
-    {
-        String up = Lang.get("updating").replace("{0}", getDescription().getName());
-        String updone = Lang.get("updated").replace("{0}", getDescription().getName());
-        p.sendMessage(Lang.get("prefix") + " " + up);
-        Updater updater = new Updater(this, 49417, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
-        System.out.println("Result: " + updater.getResult());
-        if (updater.getResult().equals(UpdateResult.SUCCESS)) {
-            p.sendMessage(Lang.get("prefix") + " " + updone);
-        } else {
-            p.sendMessage(Lang.get("prefix") + Lang.get("update-error"));
         }
     }
 

@@ -100,10 +100,10 @@ public class Announce {
         String suffix = ChatColor.translateAlternateColorCodes('&', Main.getConfig().getString("suffix"));
         String msg = ChatColor.translateAlternateColorCodes('&', message);
         String smsg = msg;
-        System.out.println("msg: "+msg);
+        System.out.println("msg: " + msg);
         if (msg.contains(":n")) {
-           smsg = msg.replaceAll(":n", System.getProperty("line.separator"));
-            System.out.println("new line found. "+smsg);
+            smsg = msg.replaceAll(":n", System.getProperty("line.separator"));
+            System.out.println("new line found. " + smsg);
         }
         Bukkit.broadcast(prefix + ChatColor.RESET + sender + " " + ChatColor.RESET + suffix + " " + ChatColor.RESET + smsg, "simpleautomessage.seemsg");
     }

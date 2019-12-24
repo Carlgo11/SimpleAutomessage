@@ -20,7 +20,6 @@ public class SimpleautomessageCommand implements CommandExecutor {
         this.plugin = plug;
     }
 
-    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
         String topic = ChatColor.GREEN + "======== " + ChatColor.YELLOW + "[" + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + "]" + ChatColor.GREEN + " ======== ";
@@ -37,8 +36,6 @@ public class SimpleautomessageCommand implements CommandExecutor {
                 reload(sender, sender0);
             } else if (args[0].equalsIgnoreCase("list")) {
                 list(sender, sender0, prefix, suffix, topic);
-            } else if (args[0].equalsIgnoreCase("update")) {
-                update(sender, sender0);
             } else if (args[0].equalsIgnoreCase("moo")) {
                 moo(sender, pn);
             } else {
@@ -56,11 +53,6 @@ public class SimpleautomessageCommand implements CommandExecutor {
             sender.sendMessage(topic);
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + ChatColor.YELLOW + Lang.get("simplemsg-main"));
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Reload" + ChatColor.YELLOW + Lang.get("simplemsg-reload"));
-            if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.update", plugin) && plugin.update) {
-                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.GREEN + cmd.getName() + " Update" + ChatColor.GREEN + Lang.get("simplemsg-update"));
-            } else {
-                sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " Update" + ChatColor.YELLOW + Lang.get("simplemsg-update"));
-            }
             sender.sendMessage(ChatColor.GRAY + "-  /" + ChatColor.RED + cmd.getName() + " List" + ChatColor.YELLOW + Lang.get("simplemsg-list"));
         } else {
             sender.sendMessage(Lang.get("bad-perms"));
@@ -82,27 +74,18 @@ public class SimpleautomessageCommand implements CommandExecutor {
     {
         if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.list", plugin)) {
             sender.sendMessage(topic);
-            sender.sendMessage(ChatColor.GRAY + "min-players" + ": " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
-            sender.sendMessage(ChatColor.GRAY + "time" + ": " + ChatColor.RESET + plugin.getConfig().getInt("time"));
-            sender.sendMessage(ChatColor.GRAY + "random" + ": " + ChatColor.RESET + plugin.getConfig().getBoolean("random"));
-            sender.sendMessage(ChatColor.GRAY + "prefix" + ": " + ChatColor.RESET + prefix);
-            sender.sendMessage(ChatColor.GRAY + "sender" + ": " + ChatColor.RESET + sender0);
-            sender.sendMessage(ChatColor.GRAY + "suffix" + ": " + ChatColor.RESET + suffix);
+            sender.sendMessage(ChatColor.GRAY + "min-players: " + ChatColor.RESET + plugin.getConfig().getInt("min-players"));
+            sender.sendMessage(ChatColor.GRAY + "time: " + ChatColor.RESET + plugin.getConfig().getInt("time"));
+            sender.sendMessage(ChatColor.GRAY + "random: " + ChatColor.RESET + plugin.getConfig().getBoolean("random"));
+            sender.sendMessage(ChatColor.GRAY + "prefix: " + ChatColor.RESET + prefix);
+            sender.sendMessage(ChatColor.GRAY + "sender: " + ChatColor.RESET + sender0);
+            sender.sendMessage(ChatColor.GRAY + "suffix: " + ChatColor.RESET + suffix);
             for (int i = 1; i < plugin.messages.size(); i++) {
                 String messageToSend = plugin.messages.get(i);
                 String msgToMC = ChatColor.translateAlternateColorCodes('&', messageToSend);
                 sender.sendMessage(ChatColor.GRAY + "msg" + i + ": '" + ChatColor.RESET + msgToMC + "'");
                 plugin.debug("Found " + i);
             }
-        } else {
-            sender.sendMessage(Lang.get("bad-perms"));
-        }
-    }
-
-    void update(CommandSender sender, String sender0)
-    {
-        if (Players.checkPerms(sender, "simpleautomessage.simpleautomessage.update", plugin)) {
-            plugin.forceUpdate(sender, sender0);
         } else {
             sender.sendMessage(Lang.get("bad-perms"));
         }
