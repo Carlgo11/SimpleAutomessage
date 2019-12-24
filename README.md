@@ -1,12 +1,14 @@
 SimpleAutomessage
 =================
-[![Build Status](https://travis-ci.org/Carlgo11/SimpleAutomessage.png)](https://travis-ci.org/Carlgo11/SimpleAutomessage)<br><br>
+[![Build Status](https://img.shields.io/github/workflow/status/Carlgo11/SimpleAutomessage/Java%20CI?style=for-the-badge)](https://github.com/Carlgo11/SimpleAutomessage/actions)
+[![License](https://img.shields.io/github/license/carlgo11/SimpleAutomessage?style=for-the-badge&color=bd0000)](https://github.com/Carlgo11/SimpleAutomessage/blob/master/LICENSE.md)
+![Bukkit](https://img.shields.io/badge/bukkit-v1.15.1-ab7b53?style=for-the-badge)
 
  **Dev.Bukkit.org:** http://dev.bukkit.org/server-mods/simpleautomessage/
 
 ## Description
 
-Simple AutoMessage is a plugin that will announce a custom message to the server.
+SimpleAutoMessage is a plugin that will announce a custom message to the server.
 You are able to change the time between each message in the config.yml along with the prefix and color of the messages!
 
 ## Developing
