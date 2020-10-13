@@ -48,11 +48,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <distributionManagement>
-      <repository>
-         <id>github</id>
-           <name>GitHub Carlgo11 Apache Maven Packages</name>
-           <url>https://maven.pkg.github.com/Carlgo11/SimpleAutomessage</url>
-      </repository>
-   </distributionManagement>
 </project>
