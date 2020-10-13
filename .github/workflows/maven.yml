@@ -15,7 +15,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Upload
-      run: mvn deploy -Dregistry=https://maven.pkg.github.com/Carlgo11 -Dtoken=${{ secrets.GITHUB_TOKEN }} -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ GITHUB_REPOSITORY }}
+      run: mvn deploy -Dregistry=https://maven.pkg.github.com/Carlgo11 -Dtoken=${{ secrets.GITHUB_TOKEN }} -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
     - uses: actions/upload-artifact@v2
       with:
         path: target/*.jar
