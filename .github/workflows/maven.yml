@@ -13,10 +13,9 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml --settings settings.xml
-      env:
-          GITHUB_USERNAME: x-access-token
-          GITHUB_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+      run: mvn -B package --file pom.xml
+    - name: Upload
+      run: mvn deploy -Dregistry=https://maven.pkg.github.com/Carlgo11 -Dtoken=GH_TOKEN
     - uses: actions/upload-artifact@v2
       with:
         path: target/*.jar
